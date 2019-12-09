@@ -1,0 +1,474 @@
+SQL> spool
+currently spooling to C:\Users\Dell PC\Desktop\New folder\anishassgt1.txt
+SQL> select sal,job
+  2  from emp
+  3  group by job;
+select sal,job
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select sum(sal),job
+  2  from emp
+  3* group by job
+SQL> /
+
+  SUM(SAL) JOB                                                                  
+---------- ---------                                                            
+      4150 CLERK                                                                
+      5600 SALESMAN                                                             
+      5000 PRESIDENT                                                            
+      8275 MANAGER                                                              
+      6000 ANALYST                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(empno)
+  2  from emp
+  3  group by hiredate
+  4* having count(empno)>2
+SQL> /
+
+no rows selected
+
+SQL> 
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select deptno
+  2  from emp
+  3  group by deptno
+  4* having count(empno)>2 and sum(sal)>9000
+SQL> /
+
+    DEPTNO                                                                      
+----------                                                                      
+        30                                                                      
+        20                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select deptno,count(empno),avg(sal)
+  2  from emp
+  3  group by deptno
+  4* having sal>comm
+SQL> /
+having sal>comm
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select deptno,count(empno),avg(sal)
+  2  from emp
+  3  group by deptno
+  4* where sal>comm
+SQL> /
+where sal>comm
+*
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select deptno,count(empno),avg(sal)
+  2  from emp
+  3  where sal>comm
+  4* group by deptno
+  5  /
+
+    DEPTNO COUNT(EMPNO)   AVG(SAL)                                              
+---------- ------------ ----------                                              
+        30            3       1450                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select sal
+  2  from emp
+  3  group by sal
+  4* having count(sal)>1
+SQL> /
+
+       SAL                                                                      
+----------                                                                      
+      1250                                                                      
+      3000                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename
+  2  from emp
+  3  group by ename
+  4* having count(ename)>1
+  5  /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select deptno
+  2  from emp
+  3  group by deptno
+  4* having avg(sal) between 2500 and 3000
+SQL> /
+
+    DEPTNO                                                                      
+----------                                                                      
+        10                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(empno)
+  2  from emp
+  3  group by job
+  4* having job in ('ANALYST','MANAGER') AND sal like '%0'
+SQL> /
+having job in ('ANALYST','MANAGER') AND sal like '%0'
+                                        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(empno)
+  2  from emp
+  3  group by deptno
+  4* having job in ('ANALYST','MANAGER') AND sal*12 like '%0'
+SQL> /
+having job in ('ANALYST','MANAGER') AND sal*12 like '%0'
+                                        *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(empno)
+  2  from emp
+  3  where job in ('ANALYST','MANAGER') AND sal*12 like '%0'
+  4* group by deptno
+  5  /
+
+COUNT(EMPNO)                                                                    
+------------                                                                    
+           1                                                                    
+           3                                                                    
+           1                                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select count(job)
+  2  from emp
+  3  group by job
+  4* having job = 'CLERK'
+SQL> /
+
+COUNT(JOB)                                                                      
+----------                                                                      
+         4                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select count(job)
+  2  from emp
+  3  group by DEPTNO
+  4* having job = 'CLERK'
+SQL> /
+having job = 'CLERK'
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select count(job)
+  2  from emp
+  3  WHERE job = 'CLERK'
+  4* group by DEPTNO
+  5  /
+
+COUNT(JOB)                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         1                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select MAX(SAL)
+  2  from emp
+  3  WHERE job = 'MANAGER'
+  4* group by DEPTNO
+SQL> /
+
+  MAX(SAL)                                                                      
+----------                                                                      
+      2850                                                                      
+      2975                                                                      
+      2450                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select COUNT(SAL)
+  2  from emp
+  3  group by SAL
+  4* HAVING COUNT(SAL)>1
+SQL> /
+
+COUNT(SAL)                                                                      
+----------                                                                      
+         2                                                                      
+         2                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select COUNT(EMPNO),DEPTNO
+  2  from emp
+  3  WHERE DEPTNO NOT IN (10)
+  4* group by DEPTNO
+SQL> /
+
+COUNT(EMPNO)     DEPTNO                                                         
+------------ ----------                                                         
+           6         30                                                         
+           5         20                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select COUNT(EMPNO),DEPTNO
+  2  from emp
+  3  group by DEPTNO
+  4* HAVING COMM IS NOT NULL
+SQL> /
+HAVING COMM IS NOT NULL
+       *
+ERROR at line 4:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select COUNT(EMPNO),DEPTNO
+  2  from emp
+  3  WHERE COMM IS NOT NULL
+  4* group by DEPTNO
+SQL> /
+
+COUNT(EMPNO)     DEPTNO                                                         
+------------ ----------                                                         
+           4         30                                                         
+
+SQL> SELECT * FROM EMP
+  2  ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> SET LINES 150
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM EMP
+  2  /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                 
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                 
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20                                                                 
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30                                                                 
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30                                                                 
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20                                                                 
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30                                                                 
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30                                                                 
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10                                                                 
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20                                                                 
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10                                                                 
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30                                                                 
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20                                                                 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO                                                                 
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------                                                                 
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30                                                                 
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20                                                                 
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10                                                                 
+
+14 rows selected.
+
+SQL> SPOOL
+currently spooling to C:\Users\Dell PC\Desktop\New folder\anishassgt1.txt
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(EMPNO)
+  2  FROM EMP
+  3  WHERE JOB NOT IN ('MANAGER') AND SAL>1600
+  4* GROUP BY DEPTNO
+SQL> /
+
+COUNT(EMPNO)                                                                                                                                          
+------------                                                                                                                                          
+           2                                                                                                                                          
+           1                                                                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO,COUNT(EMPNO)
+  2  FROM EMP
+  3  WHERE JOB NOT IN ('MANAGER') AND SAL>1600
+  4* GROUP BY DEPTNO
+SQL> /
+
+    DEPTNO COUNT(EMPNO)                                                                                                                               
+---------- ------------                                                                                                                               
+        20            2                                                                                                                               
+        10            1                                                                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT JOB,AVG(SAL)
+  2  FROM EMP
+  3  WHERE  MGR IS NOT NULL 
+  4* GROUP BY JOB
+SQL> /
+
+JOB         AVG(SAL)                                                                                                                                  
+--------- ----------                                                                                                                                  
+CLERK         1037.5                                                                                                                                  
+SALESMAN        1400                                                                                                                                  
+MANAGER   2758.33333                                                                                                                                  
+ANALYST         3000                                                                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(EMPNO)
+  2  FROM EMP 
+  3* GROUP BY HIREDATE,DEPTNO
+SQL> 
+SQL> /
+
+COUNT(EMPNO)                                                                                                                                          
+------------                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+
+COUNT(EMPNO)                                                                                                                                          
+------------                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+           1                                                                                                                                          
+
+14 rows selected.
+
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(EMPNO)
+  2  FROM EMP 
+  3  WHERE s
+  4* GROUP BY DEPTNO
+SQL> SPOOL OFF
