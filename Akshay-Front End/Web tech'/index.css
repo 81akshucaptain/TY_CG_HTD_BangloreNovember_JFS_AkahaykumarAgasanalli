@@ -1,0 +1,13 @@
+h1 {
+    font-style: italic;
+    background-color: aqua;
+    font-size: 20px;
+}
+table{
+    background-origin: padding-box;
+    border: aqua;
+    border-block-end-style: double;
+    border-block-start: double;
+border-block-start-color: blue;
+border-bottom: currentColor;
+}

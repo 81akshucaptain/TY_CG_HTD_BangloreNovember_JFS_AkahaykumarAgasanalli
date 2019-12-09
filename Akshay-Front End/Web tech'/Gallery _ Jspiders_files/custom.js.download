@@ -1,0 +1,295 @@
+﻿jQuery(document).ready(function() {
+    jQuery('.views-field-field-tutor .views-label-field-tutor , .views-field-field-tutor-1 , .views-label-field-trainer-ref-1 , .views-label-field-trainer-ref').html("<i class='fa fa-user'></i>" + "<span class='tutor_name'>Faculty :</span>");
+    jQuery('.views-field-field--contact-number .views-label-field--contact-number').html("<i class='fa fa-mobile'></i>" + "<span class='contact_label'>Register</span>");
+   });
+  jQuery(document).ready(function(){
+   jQuery(".more-link").wrap("<div id='morelink'></div>")
+    jQuery('#morelink .more-link a').addClass('btn btn-warning btn-md');
+     if (jQuery(".view-upcoming-batches-basavanagudi").length>0) {
+    // Do something
+      jQuery(".page-header").appendTo('#branches .container');
+       }
+     });
+  jQuery(document).ready(function() {
+  jQuery(".node-readmore").addClass("btn btn-warning");
+  jQuery('.node-trainer .field-type-text-with-summary').append("<a class='back_button' href='javascript:history.back(1)'>Back</a>");
+  jQuery(".form-number , #colorbox .webform-component-number input").attr("placeholder", "Mobile Number");
+  jQuery('.field-name-field-trainer-photo img , .views-field-field-trainer-photo img').addClass('img-responsive');
+  jQuery(".node-attachment .field-item .file a").attr({"target" : "_blank"});
+  jQuery('.user-role-hr .views-field-edit-node a').addClass('btn btn-sm btn-info');
+
+});
+
+/*----------------------flip effects---------------------*/
+jQuery(document).ready(function(){
+      jQuery("#block-block-8 h2").click(function(){
+        jQuery("#block-block-8 ul").toggle(400);
+     });
+     jQuery("#block-block-9  a").click(function(){
+     jQuery("#branch_contact").toggle(400);
+    }); // training calender 
+    jQuery("#block-block-16 h2").click(function(){
+        jQuery("#block-block-16 ul").toggle(400);
+    }); // hr menu
+});
+   
+jQuery(document).ready(function(){
+  jQuery('#branches_block a').click(function(){
+    jQuery('html, body').animate({
+        scrollTop: jQuery( jQuery(this).attr('href') ).offset().top
+      }, 500);
+    return false;
+     });
+   });
+jQuery(document).ready(function(){
+    jQuery(".page-header").prependTo("#branches .container");
+    jQuery(".view-placements .view-header h2").append("<p class='palcement_image'><img src='http://www.jspiders.com/images/under-heading.png'></p>");
+    }); 
+ jQuery(document).ready(function(){
+      jQuery(".views-field-php , .views-field-nothing").each(function(){
+        jQuery(this).on('mouseenter' , function() {
+             jQuery(this).find('.after_hover , .after_hover1 , .background_hover').show();
+            }); // mouseenter
+           
+           jQuery(this).on('mouseleave' , function() {
+             jQuery(this).find('.after_hover , .after_hover1 , .background_hover').hide();
+            }); // mouseleave
+         }); 
+    });
+jQuery(document).ready(function(){
+   jQuery('.placement_image , .before_hover ').parent('.views-field-nothing').on('mouseenter' , function(){
+        jQuery(this).css('background' , '#333' , 'padding' , 0);
+        });
+     jQuery('.placement_image , .before_hover').parent('.views-field-nothing').on('mouseleave' , function(){
+      jQuery(this).css('background' , 'none' , 'padding' , '5px');
+    });
+ });
+jQuery(document).ready(function(){
+   jQuery(".after_hover .colorbox-node").html("<p class='view_testimonails'><img src='sites/all/themes/bootstrap/images/index.png'/></p>");
+  });
+jQuery(document).ready(function(){
+     jQuery(".view-id-testimonials .views-row .field-content").each(function(){
+          if(jQuery(this).text() == 'Coming Soon'){
+             jQuery(this).parents( ".views-row" ).css( "display" , "none" );
+         }
+     });
+  });
+jQuery(document).ready(function(){
+  jQuery( ".view-testimonials .views-row" ).click(function() {
+  jQuery( this ).toggleClass( "highlight_testimonials");
+   });
+});
+
+jQuery(window).load(function()
+{
+    jQuery('#myModal').modal('show');
+});
+
+jQuery(document).ready(function(){
+
+  jQuery(".view-testimonials .views-row").wrapAll("<div class='row list'></div>");
+  jQuery('.view-testimonials .views-field-nid .field-content a , .view-individual-testimonials .views-field-nid .field-content a').addClass('btn btn-default btn-xs').html('Read Testimonial');
+  jQuery(".footer .date-display-single").prepend("<i class='fa fa-calendar-check-o'></i>"); 
+  jQuery(".view-upcoming-batches-basavanagudi").eq(0).css('border-top' , 'none');
+  jQuery("#block-webform-client-block-198").addClass("col-lg-6");
+  jQuery("#block-views-contact-view-block .views-row").addClass("col-lg-6  col-sm-6 contact_grid");
+  jQuery(".node-type-trainer .field-name-body ul li").prepend("<i class='fa fa-check' aria-hidden='true'></i>");
+  jQuery(".field-name-field-course-description ul li").prepend("<i class='fa fa-check' aria-hidden='true'></i>");
+  jQuery('.menu li a').removeAttr('data-toggle');
+});
+// //not selector
+   jQuery(document).ready(function(){
+    if(jQuery('#branches_inside .view-upcoming-batches-basavanagudi').length == 0){
+       jQuery(this).addClass('empty_class');
+       jQuery(".front #branches_inside").wrapAll("<div class='null_branches'><a href='contact'>View our branches</a></div>");
+      }
+  });
+// // end of not selector
+
+jQuery(document).ready(function(){
+  jQuery('ul.nav li.dropdown').hover(function() {
+   jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();
+   }, function() {
+  jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut();
+});
+ jQuery("ul.nav li.dropdown").on('click', 'someyourContainer .dropdown-menu', function (e) {
+        e.stopPropagation();
+    });
+
+});
+/************************************************
+  image Hover
+*************************************/
+jQuery(document).ready(function(){
+  jQuery('#block-views-testimonials-front-block').prepend("<div class='icon'><span class='fa fa-desktop'></span><span class='student_testi'>Student Testimonials</span></div>");
+  jQuery('#block-views-client-testimonials-block').prepend("<div class='icon'><span class='fa fa-empire'></span><span class='client_testi'>Clients Speak</span></div>");
+  jQuery('#block-views-front-video-testimonials-block').prepend("<div class='icon'><span class='fa fa-video-camera'></span><span class='video_testi'>Video</span></div>");
+  jQuery('#block-views-front-page-photos-block').prepend("<div class='icon'><span class='fa fa-camera'></span><span class='gallery_testi'>Gallery</span> </div>");
+  jQuery('.view-testimonials-front .carousel').carousel({interval: 5000});
+  jQuery('#block-views-client-testimonials-block .carousel').carousel({interval: 6000});
+  jQuery('#block-views-front-video-testimonials-block .carousel').carousel({interval: 7000});
+  });
+
+jQuery(document).ready(function(){
+  //dropdown hover
+  jQuery("#block-block-37 li").hover(function(){
+    jQuery(this).find('ul li').stop().fadeToggle(100);
+    jQuery(".not-front #block-block-37 li ul").addClass("bottom_dropdown");
+   });
+    jQuery(".view-gallery").on('mouseenter' , function(){
+    jQuery('#block-views-gallery-block .block-title').stop().show(200);
+     });
+    jQuery(".view-gallery").on('mouseleave' , function(){
+    jQuery('#block-views-gallery-block .block-title').stop().hide(200);
+     });
+
+     });
+
+
+jQuery(document).ready(function(){
+  jQuery('#job_seekers_side').on('click' , function(){
+    jQuery('.job_seekers_row').slideToggle(200);
+    
+  });
+  jQuery('.close').on('click' , function(){
+    jQuery('.model').hide();
+    
+  });
+});
+jQuery(document).ready(function(){
+     jQuery(".menu li a").each(function(){
+          if(jQuery(this).text() == 'Jspiders'){
+             jQuery(this).parents('li').addClass('jspiders');
+         }
+     }); // jspiders
+      jQuery(".menu li a").each(function(){
+          if(jQuery(this).text() == 'Job Seekers'){
+             jQuery(this).parents('li').addClass('jobseekers');
+         }
+     }); // job seekers
+
+  });
+
+    // on focus webform
+    jQuery(document).ready(function(){
+     jQuery("#footer_mid .webform-client-form-200 .form-control , #footer_mid .webform-client-form-200 input , #footer_mid .webform-component--courses-chosen ").focusin(function() {
+         jQuery('#footer_mid .webform-component--courses-chosen').css( "display", "block");
+         jQuery("#footer_mid .webform-component--branch").css("display" , "block");
+         });
+      jQuery("#footer_mid .webform-component--branch").prepend("<span class='form_toggle'>toggle</span");
+       });
+jQuery(document).ready(function(){
+       jQuery("#footer_mid .webform-component--branch .form_toggle").text(" " + "Minimize").on('click' , function(){
+       jQuery('#footer_mid .webform-component--branch .checkbox').slideToggle();
+       });   
+
+     jQuery("#footer_mid .webform-component--branch .form_toggle").click(function () {
+   
+     if (jQuery(this).text() == "Maximize") {
+        jQuery(this).text('Minimize');
+     } else {
+        jQuery(this).text('Maximize');
+     }
+   });
+
+});
+jQuery(document).ready(function(){
+  jQuery(".menu li a").each(function(){
+       if(jQuery(this).text() == 'QSpiders'){
+          jQuery(this).parents('li').addClass('qspiders');
+      }
+  }); // jspiders
+   jQuery(".menu li a").each(function(){
+       if(jQuery(this).text() == 'Job Seekers'){
+          jQuery(this).parents('li').addClass('jobseekers');
+      }
+  }); // job seekers
+  jQuery(".menu li a").each(function(){
+   if(jQuery(this).text() == 'PySpiders'){
+      jQuery(this).parents('li').addClass('PySpiders');
+   }
+  }); // PySpiders
+
+});
+
+/*--------------------hover --------------------------------------*/
+/*--------------------hover --------------------------------------*/
+
+       jQuery(document).ready(function(){
+          if (Modernizr.touch) {
+        // show the close overlay button
+        jQuery(".close-overlay").removeClass("hidden");
+        // handle the adding of hover class when clicked
+        jQuery(".img").click(function(e){
+            if (!jQuery(this).hasClass("hover")) {
+                jQuery(this).addClass("hover");
+            }
+        });
+        // handle the closing of the overlay
+        jQuery(".close-overlay").click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if (jQuery(this).closest(".img").hasClass("hover")) {
+                jQuery(this).closest(".img").removeClass("hover");
+            }
+        });
+    } else {
+        // handle the mouseenter functionality
+        jQuery(".img").mouseenter(function(){
+            jQuery(this).addClass("hover");
+        })
+        // handle the mouseleave functionality
+        .mouseleave(function(){
+            jQuery(this).removeClass("hover");
+        });
+    }
+});
+
+/*-------------------------end of hover --------------------------*/
+/*-------------------------end of hover --------------------------*/
+
+
+ jQuery(document).ready(function(){
+   
+   jQuery('.form-type-managed-file input').addClass('btn btn-info');
+
+
+ });
+
+
+ /*-----------------------------------top-fixed header----------------------------------*/
+
+(function (jQuery) {
+  Drupal.behaviors.yourBehaviorName = {
+    attach: function (context, settings) {
+  var fixed = false;
+ 
+jQuery(document).scroll(function() {
+    if( jQuery(this).scrollTop() >= 50 ) {
+        if( !fixed ) {
+            fixed = true;
+             
+            jQuery('.front #block-block-37').css({ position: "fixed", zIndex:99 , width:'100%', margin:'0' , bottom:'0'});
+              jQuery(".front #block-block-37  li ul").addClass("bottom_dropdown");
+         }
+} else {
+        if( fixed ) {
+            fixed = false;
+            jQuery('.front #block-block-37').css({  width:'50%' , margin:'50px 0' , bottom:'auto'});
+            jQuery(".front #block-block-37 li ul").removeClass("bottom_dropdown");
+           
+            
+        }
+    }
+
+    
+});
+
+
+/////////////////////
+ }
+  };})(jQuery);
+
+/*-------------------------------------end of fixed header-------------------------------*/
+
+
