@@ -1,0 +1,883 @@
+SQL> select 14*10 from emp;
+
+     14*10                                                                                          
+----------                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+       140                                                                                          
+
+14 rows selected.
+
+SQL> select 14*10 from dual;
+
+     14*10                                                                                          
+----------                                                                                          
+       140                                                                                          
+
+SQL> select 14*10 sum from dual;
+
+       SUM                                                                                          
+----------                                                                                          
+       140                                                                                          
+
+SQL> select 150/5 division from dual;
+
+  DIVISION                                                                                          
+----------                                                                                          
+        30                                                                                          
+
+SQL> select 10-5 sub from dual;
+
+       SUB                                                                                          
+----------                                                                                          
+         5                                                                                          
+
+SQL> select 10+5 add from dual;
+select 10+5 add from dual
+            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select 10+5 addition from dual;
+
+  ADDITION                                                                                          
+----------                                                                                          
+        15                                                                                          
+
+SQL> select 10*14 multi from dual;
+
+     MULTI                                                                                          
+----------                                                                                          
+       140                                                                                          
+
+SQL> select * from emp
+  2  where sal>1000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+12 rows selected.
+
+SQL> select * from emp
+  2  where sal<1000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> select * from emp
+  2  where sal<=1100;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> select * from emp
+  2  where sal>=1000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+12 rows selected.
+
+SQL> select * from emp
+  2  where sal!=1000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+14 rows selected.
+
+SQL> select * from em
+  2  ed
+  3  /
+select * from em
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where sal!=1100;
+SQL> /
+where sal!=1100;
+               *
+ERROR at line 2:
+ORA-00911: invalid character 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where sal!=1100
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+13 rows selected.
+
+SQL> select * from emp
+  2  where sal=1100;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+
+SQL> select *
+  2  from emp
+  3  where sal>1000 and sal<3000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+9 rows selected.
+
+SQL> select * from emp
+  2  where deptno=10 or deptno=20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+8 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select 'Mr.' || ename || 'your salary is ' || sal from emp
+  2  /
+
+'MR.'||ENAME||'YOURSALARYIS'||SAL                                                                   
+--------------------------------------------------------------------                                
+Mr.SMITHyour salary is 800                                                                          
+Mr.ALLENyour salary is 1600                                                                         
+Mr.WARDyour salary is 1250                                                                          
+Mr.JONESyour salary is 2975                                                                         
+Mr.MARTINyour salary is 1250                                                                        
+Mr.BLAKEyour salary is 2850                                                                         
+Mr.CLARKyour salary is 2450                                                                         
+Mr.SCOTTyour salary is 3000                                                                         
+Mr.KINGyour salary is 5000                                                                          
+Mr.TURNERyour salary is 1500                                                                        
+Mr.ADAMSyour salary is 1100                                                                         
+Mr.JAMESyour salary is 950                                                                          
+Mr.FORDyour salary is 3000                                                                          
+Mr.MILLERyour salary is 1300                                                                        
+
+14 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select 'Mr.' || ename || ' your salary is ' || sal from emp
+SQL> /
+
+'MR.'||ENAME||'YOURSALARYIS'||SAL                                                                   
+---------------------------------------------------------------------                               
+Mr.SMITH your salary is 800                                                                         
+Mr.ALLEN your salary is 1600                                                                        
+Mr.WARD your salary is 1250                                                                         
+Mr.JONES your salary is 2975                                                                        
+Mr.MARTIN your salary is 1250                                                                       
+Mr.BLAKE your salary is 2850                                                                        
+Mr.CLARK your salary is 2450                                                                        
+Mr.SCOTT your salary is 3000                                                                        
+Mr.KING your salary is 5000                                                                         
+Mr.TURNER your salary is 1500                                                                       
+Mr.ADAMS your salary is 1100                                                                        
+Mr.JAMES your salary is 950                                                                         
+Mr.FORD your salary is 3000                                                                         
+Mr.MILLER your salary is 1300                                                                       
+
+14 rows selected.
+
+SQL> select * from emp
+  2  where deptno=10 or deptno=20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+8 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where deptno in (10,20)
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+8 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where deptno not in (10,20)
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+6 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where sal between 1000 and 3000
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+11 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where sal not between 1000 and 3000
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('%S')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('%S')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('%S%')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('%A%A%')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('____')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where HIREDATE LIKE ('%81')
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* where ENAME LIKE ('%!_%') ESCAPE '!'
+SQL> /
+
+no rows selected
+
+SQL> INSERT INTO EMP VALUES(
+  2  '1234 A_B CLERK 7698 20-FEB-81 1600 300 30 HYDERABAD
+  3  ED
+  4  /
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP VALUES(
+  2* 1234 'A_B' 'CLERK' 7698 20-FEB-81 1600 300 30 'HYDERABAD')
+SQL> /
+1234 'A_B' 'CLERK' 7698 20-FEB-81 1600 300 30 'HYDERABAD')
+     *
+ERROR at line 2:
+ORA-00917: missing comma 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP VALUES(
+  2* 1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, 'HYDERABAD')
+SQL> /
+1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, 'HYDERABAD')
+                               *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP VALUES
+  2* (1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, 'HYDERABAD')
+SQL> /
+(1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, 'HYDERABAD')
+                                *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP VALUES
+  2* (1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, '')
+SQL> /
+(1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, '')
+                                *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP VALUES
+  2* (1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, '')
+SQL> /
+(1234, 'A_B' ,'CLERK', 7698 ,20-FEB-81, 1600, 300, 30, '')
+                                *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM EMP
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+14 rows selected.
+
+SQL> SELECT * FROM EMP
+  2  WHERE COMM IS NULL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT * FROM EMP
+  2* WHERE COMM IS NOT NULL
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+
+SQL> SELECT AVG(SAL) FROM EMP;
+
+  AVG(SAL)                                                                                          
+----------                                                                                          
+2073.21429                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MAX(SAL) FROM EMP
+SQL> /
+
+  MAX(SAL)                                                                                          
+----------                                                                                          
+      5000                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MIN(SAL) FROM EMP
+SQL> /
+
+  MIN(SAL)                                                                                          
+----------                                                                                          
+       800                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(SAL) FROM EMP
+SQL> /
+
+COUNT(SAL)                                                                                          
+----------                                                                                          
+        14                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SUM(SAL) FROM EMP
+SQL> /
+
+  SUM(SAL)                                                                                          
+----------                                                                                          
+     29025                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(COMM) FROM EMP
+SQL> /
+
+COUNT(COMM)                                                                                         
+-----------                                                                                         
+          4                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(MGR) FROM EMP
+SQL> /
+
+COUNT(MGR)                                                                                          
+----------                                                                                          
+        13                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(MGR) /* MULTIROW FUN IGNORE NULL VALUES */
+  2* FROM EMP
+SQL> /
+
+COUNT(MGR)/*MULTIROWFUNIGNORENULLVALUES*/                                                           
+-----------------------------------------                                                           
+                                       13                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(MGR) -- MULTIROW FUN IGNORE NULL VALUES --
+  2* FROM EMP
+SQL> /
+
+COUNT(MGR)--MULTIROWFUNIGNORENULLVALUES--                                                           
+-----------------------------------------                                                           
+                                       13                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(MGR) -- MULTIROW FUN IGNORE NULL VALUES --
+  2* FROM EMP
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(COMM),AVG(COMM),MAX(COMM),MIN(COMM),SUM(COMM),
+  2* FROM EMP
+SQL> /
+FROM EMP
+*
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(COMM),AVG(COMM),MAX(COMM),MIN(COMM),SUM(COMM)
+  2* FROM EMP
+SQL> /
+
+COUNT(COMM)  AVG(COMM)  MAX(COMM)  MIN(COMM)  SUM(COMM)                                             
+----------- ---------- ---------- ---------- ----------                                             
+          4        550       1400          0       2200                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(COUNT(COMM))
+  2* FROM EMP
+SQL> /
+SELECT MAX(COUNT(COMM))
+           *
+ERROR at line 1:
+ORA-00978: nested group function without GROUP BY 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT *
+  2  FROM EMP
+  3* WHERE SAL=MAX(SAL)
+SQL> /
+WHERE SAL=MAX(SAL)
+          *
+ERROR at line 3:
+ORA-00934: group function is not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL,COMM)
+  2* FROM EMP
+  3  /
+SELECT MAX(SAL,COMM)
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT * FROM EMP
+  2  GROUP BY DEPTNO
+  3  /
+SELECT * FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2* GROUP BY DEPTNO
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> SELECT * FROM EMP
+  2  /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+14 rows selected.
+
+SQL> SELECY COUNT(DEPTNO)
+SP2-0734: unknown command beginning "SELECY COU..." - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM EMP
+SQL> SELECT COUNT(DEPTNO)
+  2  FROM EMP;
+
+COUNT(DEPTNO)                                                                                       
+-------------                                                                                       
+           14                                                                                       
+
+SQL> SELECT COUNT(DEPTNO)
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+COUNT(DEPTNO)                                                                                       
+-------------                                                                                       
+            6                                                                                       
+            5                                                                                       
+            3                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(DEPTNO),DEPTNO
+  2  FROM EMP
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(DEPTNO)     DEPTNO                                                                            
+------------- ----------                                                                            
+            6         30                                                                            
+            5         20                                                                            
+            3         10                                                                            
+
+SQL> SELECT AVG(SUM(SAL))
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+AVG(SUM(SAL))                                                                                       
+-------------                                                                                       
+         9675                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(SAL)
+  2  FROM EMP
+  3* GROUP BY DEPTNO
+SQL> /
+
+  SUM(SAL)                                                                                          
+----------                                                                                          
+      9400                                                                                          
+     10875                                                                                          
+      8750                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(SAL)
+  2  FROM EMP
+  3* GROUP BY DEPTNO
+SQL> /
+
+  SUM(SAL)                                                                                          
+----------                                                                                          
+      9400                                                                                          
+     10875                                                                                          
+      8750                                                                                          
+
+SQL> SPOOL OFF

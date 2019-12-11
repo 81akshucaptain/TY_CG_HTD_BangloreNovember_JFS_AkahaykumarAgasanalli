@@ -1,0 +1,1319 @@
+SQL> select sum(sal) as "Total salary to pay each job" from emp;
+
+Total salary to pay each job                                                                        
+----------------------------                                                                        
+                       29025                                                                        
+
+SQL> SELECT HIREDATE FROM EMP
+  2  GROUP BY HIREDATE                                                                            // 1
+  3  HAVING SUM(HIREDATE) > 2;
+HAVING SUM(HIREDATE) > 2
+           *
+ERROR at line 3:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT HIREDATE FROM EMP
+  2  GROUP BY HIREDATE
+  3* HAVING COUNT(HIREDATE) > 2
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT HIREDATE FROM EMP
+  2  GROUP BY HIREDATE                                                                            // 2
+  3* HAVING COUNT(HIREDATE) > 1
+SQL> /
+
+HIREDATE                                                                                            
+---------                                                                                           
+03-DEC-81                                                                                           
+
+SQL> SELECT HIREDATE FROM EMP
+  2  ORDER BY DESC;
+ORDER BY DESC
+         *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT HIREDATE FROM EMP
+  2* ORDER BY 
+SQL> /
+ORDER BY 
+        *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT HIREDATE FROM EMP
+  2* ORDERBY 
+SQL> /
+
+HIREDATE                                                                                            
+---------                                                                                           
+17-DEC-80                                                                                           
+20-FEB-81                                                                                           
+22-FEB-81                                                                                           
+02-APR-81                                                                                           
+28-SEP-81                                                                                           
+01-MAY-81                                                                                           
+09-JUN-81                                                                                           
+19-APR-87                                                                                           
+17-NOV-81                                                                                           
+08-SEP-81                                                                                           
+23-MAY-87                                                                                           
+03-DEC-81                                                                                           
+03-DEC-81                                                                                           
+23-JAN-82                                                                                           
+
+14 rows selected.
+
+SQL> SELECT HIREDATE FROM EMP
+  2  GROUP BY HIREDATE
+  3  HAVING COUNT(HIREDATE) > 1;
+
+HIREDATE                                                                                            
+---------                                                                                           
+03-DEC-81                                                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT * FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DEPTNO) > 1
+SQL> /
+SELECT * FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DEPTNO) > 1
+SQL> /
+SELECT ENAME,DEPTNO FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DEPTNO) > 1
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO,ENAME FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DEPTNO) > 1
+SQL> /
+SELECT DEPTNO,ENAME FROM EMP
+              *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DEPTNO) > 1
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SAL FROM EMP                                 // 5
+  2  GROUP BY SAL
+  3* HAVING COUNT(SAL)>1
+SQL> /
+
+       SAL                                                                                          
+----------                                                                                          
+      1250                                                                                          
+      3000                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME FROM EMP
+  2  GROUP BY ENAME                                           //6
+  3* HAVING COUNT(ENAME)>1
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEN (2500,3000)
+SQL> /
+HAVING AVG(SAL) BETWEEN (2500,3000)
+                             *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) IN (2500,3000)
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEN(1000,3000)
+SQL> /
+HAVING AVG(SAL) BETWEEN(1000,3000)
+                            *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) IN (1000,3000)
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) > 1000
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) > 2500 AND  < 3000
+SQL> /
+HAVING AVG(SAL) > 2500 AND  < 3000
+                            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) SAL > 2500
+SQL> /
+HAVING AVG(SAL) SAL > 2500
+                *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL)  > 2500
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL)  > 2500
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL)  > 2500
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEEN 2500 AND 3000
+SQL> /
+HAVING AVG(SAL) BETWEEEN 2500 AND 3000
+                *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEEN 2500 AND 3000
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEEN (2500 AND 3000)
+SQL> /
+HAVING AVG(SAL) BETWEEEN (2500 AND 3000)
+                *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) =BETWEEEN (2500 AND 3000)
+SQL> /
+HAVING AVG(SAL) =BETWEEEN (2500 AND 3000)
+                                *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) >2500
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(EMPNAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB IN ('ANALYST','MANAGER') AND SAL*12 LIKE('%0') 
+SQL> /
+SELECT SUM(EMPNAME) FROM EMP
+           *
+ERROR at line 1:
+ORA-00904: "EMPNAME": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB IN ('ANALYST','MANAGER') AND SAL*12 LIKE('%0') 
+SQL> /
+HAVING JOB IN ('ANALYST','MANAGER') AND SAL*12 LIKE('%0') 
+                                        *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB IN ('ANALYST','MANAGER') 
+SQL> /
+HAVING JOB IN ('ANALYST','MANAGER') 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(ENAME),DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB IN ('ANALYST','MANAGER') 
+SQL> /
+HAVING JOB IN ('ANALYST','MANAGER') 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='ANALYST' 
+SQL> /
+HAVING JOB='ANALYST' 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='ANALYST' 
+SQL> /
+HAVING JOB='ANALYST' 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB="ANALYST" 
+SQL> /
+HAVING JOB="ANALYST" 
+           *
+ERROR at line 3:
+ORA-00904: "ANALYST": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB="CLERK" 
+SQL> /
+HAVING JOB="CLERK" 
+           *
+ERROR at line 3:
+ORA-00904: "CLERK": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='CLERK' 
+SQL> /
+HAVING JOB='CLERK' 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='CLERK' 
+SQL> /
+HAVING JOB='CLERK' 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='CLERK' 
+SQL> /
+HAVING JOB='CLERK' 
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING SAL>500
+SQL> /
+HAVING SAL>500
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING SAL>500
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(DEPTNO) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING JOB='CLERK'
+SQL> /
+HAVING JOB='CLERK'
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  WHERE JOB='CLERK'
+  3  GROUP BY DEPTNO
+  4* HAVING COUNT(DEPTNO) 
+SQL> /
+HAVING COUNT(DEPTNO) 
+                    *
+ERROR at line 4:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(DEPTNO) FROM EMP
+  2  WHERE JOB='CLERK'
+  3* GROUP BY DEPTNO
+SQL> /                                                                              
+
+COUNT(DEPTNO)                                                                                       
+-------------                                                                                       
+            1                                                                                       
+            2                                                                                       
+            1                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(DEPTNO) AS CLERKS IN DEPT FROM EMP
+  2  WHERE JOB='CLERK'
+  3* GROUP BY DEPTNO
+SQL> /
+SELECT COUNT(DEPTNO) AS CLERKS IN DEPT FROM EMP
+                               *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(DEPTNO) "CLERKS IN DEPT" FROM EMP
+  2  WHERE JOB='CLERK'
+  3* GROUP BY DEPTNO
+SQL> /
+                                                                //9
+CLERKS IN DEPT                                                                                      
+--------------                                                                                      
+             1                                                                                      
+             2                                                                                      
+             1                                                                                      
+
+SQL> SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3  HAVING COUNT(ENAME)>1 AND SUM(SAL)>9000;
+
+    DEPTNO                                                                  // 3                        
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(DEPTNO),AVG(SAL) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(ENAME)>1 AND SUM(SAL)>9000
+SQL> /
+
+COUNT(DEPTNO)   AVG(SAL)                                                                            
+------------- ----------                                                                            
+            6 1566.66667                                                                            
+            5       2175                                                                            
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(ENAME)>1 AND SUM(SAL)>9000
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY                                                                  
+------------------- --------------                                                                  
+                  6     1566.66667                                                                  
+                  5           2175                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING SAL<COMM
+SQL> /
+HAVING SAL<COMM
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  WHERE SAL < COMM
+  3* GROUP BY DEPTNO                                                                              // 4
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY                                                                  
+------------------- --------------                                                                  
+                  1           1250                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  WHERE NOT SAL < COMM
+  3* GROUP BY DEPTNO
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY                                                                  
+------------------- --------------                                                                  
+                  3           1450                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  WHERE  SAL  NOT < COMM
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE  SAL  NOT < COMM
+                *
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY" FROM EMP
+  2  WHERE NOT  SAL < COMM
+  3* GROUP BY DEPTNO
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY                                                                  
+------------------- --------------                                                                  
+                  3           1450                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY",DEPTNO FROM EMP
+  2  WHERE NOT  SAL < COMM
+  3* GROUP BY DEPTNO
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY     DEPTNO                                                       
+------------------- -------------- ----------                                                       
+                  3           1450         30                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY",DEPTNO FROM EMP
+  2* GROUP BY DEPTNO
+  3  /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY     DEPTNO                                                       
+------------------- -------------- ----------                                                       
+                  6     1566.66667         30                                                       
+                  5           2175         20                                                       
+                  3     2916.66667         10                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) "NUMBER OF EMPLOYEES",AVG(SAL) "AVERAGE SALARY",DEPTNO FROM EMP
+  2  WHERE NOT  SAL < COMM
+  3* GROUP BY DEPTNO
+SQL> /
+
+NUMBER OF EMPLOYEES AVERAGE SALARY     DEPTNO                                                       
+------------------- -------------- ----------                                                       
+                  3           1450         30                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) NOT IN (2500,3000)
+SQL> /
+
+    DEPTNO                                                                                          //7
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) IN (2500,3000)
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) NOT IN (2500,3000)
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) BETWEEEN (2500,3000)
+SQL> /
+HAVING AVG(SAL) BETWEEEN (2500,3000)
+                *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING AVG(SAL) NOT IN (2500,3000)
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+        10                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE JOB IN ('MANAGER','ANALYST')
+  3  GROUP BY DEPTNO
+  4* HAVING AVG(SAL) LIKE (%0)
+SQL> /
+HAVING AVG(SAL) LIKE (%0)
+                      *
+ERROR at line 4:
+ORA-00911: invalid character 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE JOB IN ('MANAGER','ANALYST')
+  3  GROUP BY DEPTNO                                                    //8
+  4* HAVING AVG(SAL) LIKE ('%0')
+SQL> /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           1                                                                                        
+           1                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,COUNT(ENAME) FROM EMP
+  2  WHERE JOB IN ('MANAGER','ANALYST')
+  3  GROUP BY DEPTNO
+  4* HAVING AVG(SAL) LIKE ('%0')
+SQL> /
+SELECT ENAME,COUNT(ENAME) FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),ENAME FROM EMP
+  2  WHERE JOB IN ('MANAGER','ANALYST')
+  3  GROUP BY DEPTNO
+  4* HAVING AVG(SAL) LIKE ('%0')
+SQL> /
+SELECT COUNT(ENAME),ENAME FROM EMP
+                    *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE JOB IN ('MANAGER','ANALYST')
+  3  GROUP BY DEPTNO
+  4* HAVING AVG(SAL) LIKE ('%0')
+SQL> /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           1                                                                                        
+           1                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL) FROM EMP
+  2  WHERE JOB IN ('MANAGER')
+  3* GROUP BY DEPTNO                                                        //10
+  4  /
+
+  MAX(SAL)                                                                                          
+----------                                                                                          
+      2850                                                                                          
+      2975                                                                                          
+      2450                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SAL FROM EMP
+  2  WHERE JOB IN ('MANAGER')
+  3  GROUP BY DEPTNO
+  4* HAVING MAX(SAL)
+SQL> /
+HAVING MAX(SAL)
+              *
+ERROR at line 4:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL),ENAME FROM EMP
+  2  WHERE JOB IN ('MANAGER')
+  3* GROUP BY DEPTNO
+SQL> /
+SELECT MAX(SAL),ENAME FROM EMP
+                *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL) FROM EMP
+  2  WHERE JOB IN ('MANAGER')
+  3* GROUP BY DEPTNO
+SQL> /
+
+  MAX(SAL)                                                                                          
+----------                                                                                          
+      2850                                                                                          
+      2975                                                                                          
+      2450                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO,COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING DEPTNO NOT IN 10
+SQL> /
+
+    DEPTNO COUNT(ENAME)                                                                  //12           
+---------- ------------                                                                             
+        30            6                                                                             
+        20            5                                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COMM IS NOT NULL
+SQL> /
+HAVING COMM IS NOT NULL
+       *
+ERROR at line 3:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COMM NOT NULL
+SQL> /
+HAVING COMM NOT NULL
+                *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE COMM IS NOT NULL
+  3* GROUP BY DEPTNO
+  4  /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           4                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),DEPTNO FROM EMP
+  2  WHERE COMM IS NOT NULL                                                             //13
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(ENAME)     DEPTNO                                                                             
+------------ ----------                                                                             
+           4         30                                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),DEPTNO FROM EMP
+  2  WHERE COMM IS  NULL
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(ENAME)     DEPTNO                                                                             
+------------ ----------                                                                             
+           2         30                                                                             
+           5         20                                                                             
+           3         10                                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),DEPTNO FROM EMP
+  2  WHERE COMM IS NOT  NULL
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(ENAME)     DEPTNO                                                                             
+------------ ----------                                                                             
+           4         30                                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE SAL>1600 AND JOB IS NOT 'MANAGER'
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE SAL>1600 AND JOB IS NOT 'MANAGER'
+                              *
+ERROR at line 2:
+ORA-00908: missing NULL keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE SAL>1600 AND JOB NOT ='MANAGER'                                                                      //14
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE SAL>1600 AND JOB NOT ='MANAGER'
+                           *
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE SAL>1600 AND JOB NOT IN ('MANAGER')
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           2                                                                                        
+           1                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),DEPTNO FROM EMP
+  2  WHERE SAL>1600 AND JOB NOT IN ('MANAGER')
+  3* GROUP BY DEPTNO
+SQL> /
+
+COUNT(ENAME)     DEPTNO                                                                             
+------------ ----------                                                                             
+           2         20                                                                             
+           1         10                                                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME),DEPTNO FROM EMP
+  2  WHERE SAL>1600 AND JOB NOT IN ('MANAGER')
+  3* GROUP BY DEPTNO
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+
+14 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AVG(SAL) FROM EMP E1 INNER JOIN EMP E2
+  2* ON E1.MGR=E2.EMPNO
+  3  /
+SELECT AVG(SAL) FROM EMP E1 INNER JOIN EMP E2
+           *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AVG(E1.SAL) FROM EMP E1 INNER JOIN EMP E2
+  2* ON E1.MGR=E2.EMPNO
+SQL> /
+
+AVG(E1.SAL)                                                                                         
+-----------                                                                                         
+ 1848.07692                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AVG(E1.SAL) FROM EMP E1 INNER JOIN EMP E2
+  2* ON E1.MGR=E2.EMPNO
+SQL> /                                                                              //15
+
+AVG(E1.SAL)                                                                                         
+-----------                                                                                         
+ 1848.07692                                                                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DATE)>1
+SQL> /
+HAVING COUNT(DATE)>1
+             *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DATE) > 1
+SQL> /
+HAVING COUNT(DATE) > 1
+             *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(DATE) > 1
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(HIREDATE) > 1
+SQL> /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           6                                                                                        
+           5                                                                                        
+           3                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING DISTINCT(COUNT(HIREDATE)) > 1
+SQL> /
+HAVING DISTINCT(COUNT(HIREDATE)) > 1
+       *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DISTINCT(COUNT(HIREDATE)) FROM EMP
+  2  GROUP BY DEPTNO
+  3* HAVING COUNT(HIREDATE) > 1
+SQL> /
+
+(COUNT(HIREDATE))                                                                                   
+-----------------                                                                                   
+                6                                                                                   
+                5                                                                                   
+                3                                                                                   
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL) FROM EMP
+  2  WHERE ENAME NOT LIKE 'K%'
+  3* GROUP BY JOB                                                             //18
+  4  /
+
+  MAX(SAL)                                                                                          
+----------                                                                                          
+      1300                                                                                          
+      1600                                                                                          
+      2975                                                                                          
+      3000                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MAX(SAL),JOB FROM EMP
+  2  WHERE ENAME NOT LIKE 'K%'
+  3* GROUP BY JOB
+SQL> /
+
+  MAX(SAL) JOB                                                                                      
+---------- ---------                                                                                
+      1300 CLERK                                                                                    
+      1600 SALESMAN                                                                                 
+      2975 MANAGER                                                                                  
+      3000 ANALYST                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(ENAME) FROM EMP
+  2  WHERE MGR=7839
+  3* GROUP BY DEPTNO                                                         //19
+SQL> /
+
+COUNT(ENAME)                                                                                        
+------------                                                                                        
+           1                                                                                        
+           1                                                                                        
+           1                                                                                        
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME FROM EMP
+  2  WHERE NAME LIKE IN ('A%','E%')
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE NAME LIKE IN ('A%','E%')
+                *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME FROM EMP
+  2  WHERE NAME LIKE ('A%','E%')
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE NAME LIKE ('A%','E%')
+                     *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME FROM EMP
+  2  WHERE NAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> /
+WHERE NAME LIKE ('A%')
+      *
+ERROR at line 2:
+ORA-00904: "NAME": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> /
+SELECT ENAME FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT ENAME,DEPTNO FROM EMP
+  2  WHERE ENAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> /
+SELECT ENAME,DEPTNO FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO FROM EMP
+  2  WHERE ENAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> /
+
+    DEPTNO                                                                                          
+----------                                                                                          
+        30                                                                                          
+        20                                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO,ENAME FROM EMP
+  2  WHERE ENAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> /
+SELECT DEPTNO,ENAME FROM EMP
+              *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DEPTNO,ENAME FROM EMP
+  2  WHERE ENAME LIKE ('A%')
+  3* GROUP BY DEPTNO
+SQL> SPOOL OFF

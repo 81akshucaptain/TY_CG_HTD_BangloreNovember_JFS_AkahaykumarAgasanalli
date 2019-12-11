@@ -1,0 +1,889 @@
+SQL> select * from emp
+  2  cross join dept;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+    DEPTNO DNAME          LOC           EMP_LOC                                                     
+---------- -------------- ------------- ----------                                                  
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+        10 ACCOUNTING     NEW YORK                                                                  
+                                                                                                    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+        20 RESEARCH       DALLAS                                                                    
+                                                                                                    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+        30 SALES          CHICAGO                                                                   
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------    
+    DEPTNO DNAME          LOC           EMP_LOC                                                     
+---------- -------------- ------------- ----------                                                  
+                                                                                                    
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+        30 SALES          CHICAGO                                                                   
+                                                                                                    
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE          
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE          
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE          
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE          
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE          
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE     
+        40 OPERATIONS     BOSTON                                                                    
+                                                                                                    
+
+56 rows selected.
+
+SQL> set pagesize 200
+SQL> set linesize 200
+SQL> select * from emp
+  2  crossjoin dept
+  3  /
+crossjoin dept
+          *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* crossjoin dept
+SQL> /
+crossjoin dept
+          *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp
+  2* cross join dept
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                        
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+
+56 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp , dept
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                        
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          10 ACCOUNTING     NEW YORK                                                                     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               10 ACCOUNTING     NEW YORK                                                                     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          20 RESEARCH       DALLAS                                                                       
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          20 RESEARCH       DALLAS                                                                       
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               30 SALES          CHICAGO                                                                      
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          30 SALES          CHICAGO                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          40 OPERATIONS     BOSTON                                                                       
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               40 OPERATIONS     BOSTON                                                                       
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          40 OPERATIONS     BOSTON                                                                       
+
+56 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp , dept
+  2* where emp.deptno = dept.deptno
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                        
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                       
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                     
+
+14 rows selected.
+
+SQL> set page size 300;
+SP2-0158: unknown SET option "page"
+SQL> se pagesize 300;
+SP2-0734: unknown command beginning "se pagesiz..." - rest of line ignored.
+SQL> set pagesize 300
+SQL> set linesize 300
+SQL> 
+SQL> select * from emp , dept
+  2  where emp.deptno = dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                                                                                                                            
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                                                                                                                         
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> select * from emp inner join dept
+  2  on emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                                                                                                                            
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                                                                                                                         
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp right join dept
+  2* on emp.deptno=dept.deptno
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                                                                                                                            
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                                                                                                                         
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+                                                                                                         40 OPERATIONS     BOSTON                                                                                                                                                                           
+
+15 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp left join dept
+  2* on emp.deptno=dept.deptno
+SQL> 
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC            DEPTNO DNAME          LOC           EMP_LOC                                                                                                                                                            
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- -------------- ------------- ----------                                                                                                                                                         
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD          30 SALES          CHICAGO                                                                                                                                                                          
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE               20 RESEARCH       DALLAS                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE          10 ACCOUNTING     NEW YORK                                                                                                                                                                         
+
+14 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from dept left join emp
+  2* on emp.deptno=dept.deptno
+SQL> /
+
+    DEPTNO DNAME          LOC           EMP_LOC         EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                                                                
+---------- -------------- ------------- ---------- ---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                                                                         
+        10 ACCOUNTING     NEW YORK                       7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE                                                                                                                                                          
+        10 ACCOUNTING     NEW YORK                       7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                                                                          
+        10 ACCOUNTING     NEW YORK                       7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE                                                                                                                                                          
+        20 RESEARCH       DALLAS                         7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                                                                                                                                                               
+        30 SALES          CHICAGO                        7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD                                                                                                                                                          
+        40 OPERATIONS     BOSTON                                                                                                                                                                                                                                                                            
+
+15 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from dept left join emp
+  2  on emp.deptno=dept.deptno
+  3* where emono is null
+SQL> /
+where emono is null
+      *
+ERROR at line 3:
+ORA-00904: "EMONO": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from dept left join emp
+  2  on emp.deptno=dept.deptno
+  3* where empno is null
+SQL> /
+
+    DEPTNO DNAME          LOC           EMP_LOC         EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                                                                
+---------- -------------- ------------- ---------- ---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                                                                         
+        40 OPERATIONS     BOSTON                                                                                                                                                                                                                                                                            
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from dept full join emp
+  2* on emp.deptno=dept.deptno
+SQL> /
+
+    DEPTNO DNAME          LOC           EMP_LOC         EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                                                                
+---------- -------------- ------------- ---------- ---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                                                                         
+        10 ACCOUNTING     NEW YORK                       7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE                                                                                                                                                          
+        10 ACCOUNTING     NEW YORK                       7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                                                                          
+        10 ACCOUNTING     NEW YORK                       7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE                                                                                                                                                          
+        20 RESEARCH       DALLAS                         7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                                                                                                                                                               
+        20 RESEARCH       DALLAS                         7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                                                                                                                                                               
+        30 SALES          CHICAGO                        7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                                                                          
+        30 SALES          CHICAGO                        7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD                                                                                                                                                          
+        40 OPERATIONS     BOSTON                                                                                                                                                                                                                                                                            
+
+15 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                                                                                                                   
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                                                                                                                            
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                                                                                                                                                                                                                  
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD                                                                                                                                                                                                             
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD                                                                                                                                                                                                             
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                                                                                                                  
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD                                                                                                                                                                                                             
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                                                                                                                             
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE                                                                                                                                                                                                             
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                                                                                                                                                                                                                  
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                                                                                                                             
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD                                                                                                                                                                                                             
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                                                                                                                                                                                                                  
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD                                                                                                                                                                                                             
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                                                                                                                                                                                                                  
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE                                                                                                                                                                                                             
+
+14 rows selected.
+
+SQL> select * from emp self join emp
+  2  on mgr=empno
+  3  where ename='scott' /
+  4  ;
+
+*
+ERROR at line 4:
+ORA-00936: missing expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select sal from emp self join emp
+  2  on mgr=empno
+  3* where ename='scott' 
+  4  /
+on mgr=empno
+       *
+ERROR at line 2:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select sal from emp self join emp
+  2  on emp.mgr=emp.empno
+  3* where ename='scott' 
+SQL> /
+where ename='scott' 
+      *
+ERROR at line 3:
+ORA-00918: column ambiguously defined 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select sal from emp e1 self join emp e2
+  2  on e1.mgr=e2.empno
+  3* where ename='scott' 
+SQL> /
+select sal from emp e1 self join emp e2
+                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp e1 self join emp e2
+  2* on e1.mgr=e2.empno
+  3  /
+select * from emp e1 self join emp e2
+                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select SAL FROM EMP 
+  2  WHERE EMPNO =( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> /
+
+       SAL                                                                                                                                                                                                                                                                                                  
+----------                                                                                                                                                                                                                                                                                                  
+      2975                                                                                                                                                                                                                                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE EMPNO =( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE EMPNO =( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE ename ='scott' or EMPNO = ( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE ename ='scott' or EMPNO = ( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE ename ='scott' OR EMPNO = ( SELECT MGR FROM EMP
+  3*                 WHERE ENAME='SCOTT')
+SQL> 4/
+SP2-0042: unknown command "4/" - rest of line ignored.
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE ename ='scott' OR EMPNO = ( SELECT MGR FROM EMP
+  3*                				 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select ename,SAL FROM EMP 
+  2  WHERE ename ='SCOTT' OR EMPNO = ( SELECT MGR FROM EMP
+  3*                				 WHERE ENAME='SCOTT')
+SQL> /
+
+ENAME             SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+JONES            2975                                                                                                                                                                                                                                                                                       
+SCOTT            3000                                                                                                                                                                                                                                                                                       
+
+SQL> select * from emp e1 join emp e2
+  2  on e1.mgr=e2.empno
+  3  /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC             EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE             7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                                                                                                                 
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                            
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                            
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE             7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                            
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                            
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD        7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                            
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE        7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE                                                                                                            
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE             7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                 
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                            
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE             7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                                                                                                                 
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD        7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD                                                                                                            
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE             7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                 
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE        7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE                                                                                                            
+
+13 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from emp e1 join emp e2
+  2  on e1.mgr=e2.empno
+  3* where e1.ename='SCOTT'
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC             EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC                                                                                                                  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE             7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                                                                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select e1.sal,e2.sal from emp e1 join emp e2
+  2  on e1.mgr=e2.empno
+  3* where e1.ename='SCOTT'
+SQL> /
+
+       SAL        SAL                                                                                                                                                                                                                                                                                       
+---------- ----------                                                                                                                                                                                                                                                                                       
+      3000       2975                                                                                                                                                                                                                                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select e1.sal,e1.ename,e2.sal,e2.name from emp e1 join emp e2
+  2  on e1.mgr=e2.empno
+  3* where e1.ename='SCOTT'
+SQL> /
+select e1.sal,e1.ename,e2.sal,e2.name from emp e1 join emp e2
+                              *
+ERROR at line 1:
+ORA-00904: "E2"."NAME": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select e1.sal,e1.ename,e2.sal,e2.ename from emp e1 join emp e2
+  2  on e1.mgr=e2.empno
+  3* where e1.ename='SCOTT'
+SQL> /
+
+       SAL ENAME             SAL ENAME                                                                                                                                                                                                                                                                      
+---------- ---------- ---------- ----------                                                                                                                                                                                                                                                                 
+      3000 SCOTT            2975 JONES                                                                                                                                                                                                                                                                      
+
+SQL> eed
+SP2-0042: unknown command "eed" - rest of line ignored.
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp natural join dept
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp natural join salgrade
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO LOC             GRADE      LOSAL      HISAL                                                                                                                                                                           
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---------- ---------- ----------                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                1        700       1200                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                1        700       1200                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE           1        700       1200                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                1        700       1200                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE           1        700       1200                                                                                                                                                                           
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                1        700       1200                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD           1        700       1200                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                1        700       1200                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE           1        700       1200                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                2       1201       1400                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                2       1201       1400                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE           2       1201       1400                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                2       1201       1400                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE           2       1201       1400                                                                                                                                                                           
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                2       1201       1400                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD           2       1201       1400                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                2       1201       1400                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE           2       1201       1400                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                3       1401       2000                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                3       1401       2000                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE           3       1401       2000                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                3       1401       2000                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE           3       1401       2000                                                                                                                                                                           
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                3       1401       2000                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD           3       1401       2000                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                3       1401       2000                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE           3       1401       2000                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                4       2001       3000                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                4       2001       3000                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE           4       2001       3000                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                4       2001       3000                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE           4       2001       3000                                                                                                                                                                           
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                4       2001       3000                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD           4       2001       3000                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                4       2001       3000                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE           4       2001       3000                                                                                                                                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20 PUNE                5       3001       9999                                                                                                                                                                           
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20 PUNE                5       3001       9999                                                                                                                                                                           
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10 BANGALORE           5       3001       9999                                                                                                                                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20 PUNE                5       3001       9999                                                                                                                                                                           
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10 BANGALORE           5       3001       9999                                                                                                                                                                           
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20 PUNE                5       3001       9999                                                                                                                                                                           
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30 HYDERABAD           5       3001       9999                                                                                                                                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20 PUNE                5       3001       9999                                                                                                                                                                           
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10 BANGALORE           5       3001       9999                                                                                                                                                                           
+
+70 rows selected.
+
+SQL> spool off
