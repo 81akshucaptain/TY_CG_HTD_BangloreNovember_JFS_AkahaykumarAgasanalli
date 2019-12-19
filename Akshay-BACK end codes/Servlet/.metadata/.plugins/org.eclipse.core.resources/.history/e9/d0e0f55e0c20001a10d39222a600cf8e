@@ -1,9 +1,0 @@
-package com.capgemini.mywebapp.dao;
-
-import com.capgemini.mywebapp.bean.EmployeeBean;
-
-public interface EmployeeDAO {
-	
-	public EmployeeBean searchEmployee(int empId);
-public EmployeeBean authenticate(int empId,String password);
-}

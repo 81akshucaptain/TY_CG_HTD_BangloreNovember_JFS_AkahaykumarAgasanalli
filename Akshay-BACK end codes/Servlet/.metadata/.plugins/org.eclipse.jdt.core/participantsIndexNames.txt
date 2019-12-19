@@ -1,7 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\Caption AK\Desktop\SpringsBoot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3845759333.index
-\mywebapp1\src\main\java
-C:\Users\Caption AK\Desktop\SpringsBoot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1529537237.index
-\mywebapp\src\main\resources
-C:\Users\Caption AK\Desktop\SpringsBoot\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\320810593.index
-\mywebapp\src\main\java

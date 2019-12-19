@@ -1,6 +1,0 @@
-package com.capgemini.springcore.beans;
-
-public class Hello {
-private String msg;
-
-}

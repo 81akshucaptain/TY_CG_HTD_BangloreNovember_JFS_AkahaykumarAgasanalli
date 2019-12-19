@@ -1,8 +1,0 @@
-package com.capgemini.mywebapp.services;
-
-import com.capgemini.mywebapp.bean.EmployeeBean;
-
-public interface EmployeeService {
-	public EmployeeBean searchEmployee(int empId);
-
-}

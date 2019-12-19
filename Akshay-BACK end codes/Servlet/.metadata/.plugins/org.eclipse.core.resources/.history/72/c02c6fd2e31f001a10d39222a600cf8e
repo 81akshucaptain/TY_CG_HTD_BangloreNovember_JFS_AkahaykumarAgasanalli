@@ -1,9 +1,0 @@
-package com.capgemini.mywebapp.dao;
-
-import com.capgemini.mywebapp1.beans.EmployeeInfoBean;
-
-public interface EmployeeDao {
-	
-	public EmployeeInfoBean searchEmployee(int empId);
-
-}
