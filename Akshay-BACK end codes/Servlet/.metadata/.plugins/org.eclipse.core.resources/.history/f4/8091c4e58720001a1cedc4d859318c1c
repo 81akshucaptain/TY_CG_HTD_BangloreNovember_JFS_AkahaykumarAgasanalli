@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<fieldset>
+		<legend>Login page</legend>
+		<form action="./Login" method="post">
+
+			<table>
+				<tr>
+					<td>Id</td>
+					<td>:</td>
+					<td><input type="number" name="empId" required></td>
+				</tr>
+				<tr>
+					<td>password</td>
+					<td>:</td>
+					<td><input type="password" name="passowrd" required></td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><br> <input type="submit"
+						value="Login"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+package com.capgemini.mywebapp.bean;
+
+public class EmployeeBean {
+
+}

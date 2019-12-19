@@ -1,0 +1,13 @@
+package com.capgemini.mywebapp.services;
+
+import com.capgemini.mywebapp.bean.EmployeeBean;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Override
+	public EmployeeBean searchEmployee(int empId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

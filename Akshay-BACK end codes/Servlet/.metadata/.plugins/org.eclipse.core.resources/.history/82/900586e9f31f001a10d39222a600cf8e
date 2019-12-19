@@ -1,0 +1,34 @@
+package com.capgemini.mywebapp.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CreateCookiesServlet extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		Cookie myCookie=new Cookie("empName", "akshay");
+		resp.addCookie(myCookie);
+		RequestDispatcher dispatcher=req.getRequestDispatcher("./cokkies.html");
+
+		resp.setContentType("text/html");
+		PrintWriter out=resp.getWriter();
+		out.print("<html>");
+		out.print("<body>");
+		out.print("<h2>cookie created succesfuly..! ");
+		out.print("</body>");
+		out.print("</html>");
+
+
+
+
+
+	}
+}

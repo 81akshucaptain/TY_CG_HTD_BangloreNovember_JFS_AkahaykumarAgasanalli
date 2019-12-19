@@ -1,0 +1,5 @@
+package com.capgemini.di.factory;
+
+public class AnimalFactory {
+
+}

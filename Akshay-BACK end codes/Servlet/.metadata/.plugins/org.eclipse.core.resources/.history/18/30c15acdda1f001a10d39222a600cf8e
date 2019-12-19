@@ -1,0 +1,10 @@
+package com.capgemini.mywebapp.bean;
+
+public class EmployeeBean {
+int empid;
+String name;
+String salary;
+int age;
+String password;
+String esignation;
+}

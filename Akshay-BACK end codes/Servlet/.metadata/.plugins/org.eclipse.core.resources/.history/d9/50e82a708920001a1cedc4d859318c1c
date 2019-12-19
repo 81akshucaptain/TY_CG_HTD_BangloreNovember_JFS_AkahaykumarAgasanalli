@@ -1,0 +1,41 @@
+package com.capgemini.mywebapp.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import com.capgemini.mywebapp.bean.EmployeeBean;
+
+public class EmployeeDAOImpl implements EmployeeDAO {
+	
+	EntityManagerFactory eMFactory=Persistence.createEntityManagerFactory("TestPersistence");;
+	@Override
+	public EmployeeBean searchEmployee(int empId) {
+		
+		EntityManager emManager=eMFactory.createEntityManager();
+		EmployeeBean emb=emManager.find(EmployeeBean.class, empId);
+		emManager.close();
+		return emb;
+	}
+	@Override
+	public EmployeeBean authenticate(int empId, String password) {
+		EntityManager emManager=eMFactory.createEntityManager();
+		String sql="from EmployeeBean where empid=:emp and password=:pwd ";
+		Query query=emManager.createQuery(sql);
+		query.setParameter("emp", empId);
+		query.setParameter("pwd", password);
+		EmployeeBean empbean=(EmployeeBean)query.getSingleResult();
+		try {
+			empbean=(EmployeeBean)query.getSingleResult();
+
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in authentication");
+		}
+		emManager.close();
+		return empbean;
+	}
+
+}

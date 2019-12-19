@@ -1,0 +1,5 @@
+package com.capgemini.mywebapp.servlet.jsp;
+@web
+public class SeeAllEmployeeServlet {
+
+}

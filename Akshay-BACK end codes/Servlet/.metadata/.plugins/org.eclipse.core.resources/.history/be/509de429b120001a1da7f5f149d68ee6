@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<fieldset>
+		<legend>ADD THE EMPLOYEE</legend>
+		<form action="./AddEmployee" method="post">
+			EMPLOYEE-ID: <input type="number" value="empId"><br>
+			<br> EMPLOYEE-NAME: <input type="text" value="name"><br>
+			<br> EMPLOYEE-SALARY: <input type="number" value="salary"><br>
+			<br> EMPLOYEE-AGE: <input type="number" value="age"><br>
+			<br> EMPLOYEE-PASSWORD: <input type="text" value="password"><br>
+			<br> EMPLOYEE-DESIGANTION: <input type="text" value="designation"><br>
+			<br>
+		</form>
+	</fieldset>
+</body>
+</html>
