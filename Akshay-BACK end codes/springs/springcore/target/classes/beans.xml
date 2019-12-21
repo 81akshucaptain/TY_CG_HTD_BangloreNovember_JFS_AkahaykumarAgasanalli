@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- IF WE DONT NEED SINGLETON CLASS,WE NEED DIFFERENT OBJECTS TO BE CREATED 
+		THEN,USE prototype in class class SCOPE -->
+
+	<bean id="hello" class="com.capgemini.springcore.beans.Hello">
+		<!-- init-method="init" destroy-method="destroy"> -->
+		<property name="msg" value="I love Java"></property>
+		<property name="count" value="10"></property>
+		<!-- defaultly call the hello.setMessage("I love you"); -->
+		<!-- <constructor-arg name="count" value="200"></constructor-arg> -->
+		<!-- <constructor-arg name="msg" value="I love python"></constructor-arg> -->
+	</bean>
+
+
+	<bean id="cat" class="com.capgemini.springcore.beans.Cat"
+		primary="true"></bean>
+	<bean id="animal" class="com.capgemini.springcore.beans.Dog">
+	</bean>
+	<!-- <bean id="pet" class="com.capgemini.springcore.Pet" autowire="byType"> -->
+	<bean id="pet" class="com.capgemini.springcore.Pet"
+		autowire="byName">
+
+		<!-- <bean id="pet" class="com.capgemini.springcore.Pet" autowire="constructor"> -->
+		<!-- <constructor-arg name="name" value="jimmy"></constructor-arg> -->
+		<property name="name" value="karrewwa"></property>
+		<!-- <property name="animal" ref="dog"></property> -->
+	</bean>
+	<bean id="bean"
+		class="com.capgemini.springcore.beans.BeanPostProcesserClass">
+	</bean>
+	<bean id="factoryBean"
+		class="com.capgemini.springcore.beans.BeanFactoryPostProcesserClass"></bean>
+</beans>
