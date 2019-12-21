@@ -7,16 +7,16 @@ import com.captain.Fm.bean.ContractorBean;
 import com.captain.Fm.DAO.*;
 
 public class FmApllication2 {
-	void contractor() {
+	public static void contractor() {
 		ContractorDAO cdao=ForestFactory.instanceOfContractorDAOImpl();
 		Scanner sc=new Scanner(System.in);
 		while (true) {
-			System.out.println("********************WELCOME TO CONTRACTOR HOUSE********************");
-			System.out.println("*Enter 1 to add the Contractor");
-			System.out.println("*Enter 2 to search the Contractor");
-			System.out.println("*Enter 3 to update the Contractor");
-			System.out.println("*Enter 4 to remove the Contractor");
-			System.out.println("*Enter 5 to get all the Contractor");
+			System.out.println("********************WELCOME CUSTOMER TO CONTRACT HOUSE********************");
+			System.out.println("*Enter 1 to add the Contract");
+			System.out.println("*Enter 2 to search the Contract");
+			System.out.println("*Enter 3 to update the Contract");
+			System.out.println("*Enter 4 to remove the Contract");
+			System.out.println("*Enter 5 to get all the Contract");
 System.out.println("*Enter 6 to return HOME");
 			int option=sc.nextInt();
 
@@ -37,14 +37,14 @@ System.out.println("*Enter 6 to return HOME");
 				System.out.println("enter the quantiy required: ");
 				cb.setQunatity(sc.nextInt());
 				if(cdao.addContarctor(cb)) {
-					System.out.println("Contractor added successfully..!");
+					System.out.println("Contract added successfully..!");
 				}else System.err.println("somthing went wrong buddy, try again..!");
 				break;
 			case 2:
-				System.out.println("enter the contractorID to search Contractor: ");
+				System.out.println("enter the contractID to search Contract: ");
 				int ctid=sc.nextInt();
 				ContractorBean cdetails=cdao.searchContarctor(ctid);
-				System.out.println("The details of Contractor with "+ctid+" is:");
+				System.out.println("The details of Contract with "+ctid+" is:");
 				System.out.println(cdetails);
 				break;
 			case 3:
@@ -69,7 +69,7 @@ System.out.println("*Enter 6 to return HOME");
 				}else System.err.println("Something went wrong to update..!");
 				break;
 			case 4:
-				System.out.println("Enter The Contractor ID to delete the account:");
+				System.out.println("Enter The Contract ID to delete the account:");
 				int cidToDelete=sc.nextInt();
 				boolean delete=cdao.deletecontarctor(cidToDelete);
 				break;
@@ -77,8 +77,7 @@ System.out.println("*Enter 6 to return HOME");
 				cdao.getAllContarctor();
 				break;
 			case 6:
-				MainApllication m=new MainApllication();
-				m.main(null);
+				MainApllication.mainApp();
 
 			}
 		}

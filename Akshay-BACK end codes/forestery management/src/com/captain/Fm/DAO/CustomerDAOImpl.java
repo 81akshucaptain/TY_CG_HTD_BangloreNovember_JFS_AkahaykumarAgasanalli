@@ -7,17 +7,30 @@ import java.util.Map;
 import com.captain.Fm.bean.CustomerBean;
 
 public class CustomerDAOImpl implements CustomerDAO {
-	HashMap<Integer,CustomerBean> h1=new HashMap<Integer,CustomerBean>();
-	int cid=0;
+	private static HashMap<Integer,CustomerBean> h1=new HashMap<Integer,CustomerBean>();
+	static int cid=0;
+	static CustomerBean cbToLogin=null;
 	@Override
 	public void getAllCustomer() {
 		System.out.println(h1);
 	}
 
 	@Override
-	public CustomerBean Customerlogin(String cid, String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean customerlogin(String cname, String email) {
+		try{
+			if((cbToLogin.getName().equals(cname)) &&(cbToLogin.getEmail().equals(email))) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}catch(Exception e) {
+			String msg=e.getMessage();
+			System.out.println("hello customer:"+msg);
+			System.err.println("HELLO CUSTOMER YOUR NOT PART OF THIS BUSINESS(not added to system)..!");
+			return false;
+
+		}
 	}
 
 	@Override
@@ -37,9 +50,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	public boolean addCustomer(CustomerBean customer) {
 		while(true) {
+			cbToLogin=customer;
 			++cid;
 			h1.put(cid,customer);
-			System.out.println("hello Customer your ID is : "+cid+" : please remember..! Else GOVINDA..!");
+			System.out.println("hello Customer your ID is : "+cid+"  (please remember)");
 			return true;
 		}
 	}
@@ -47,6 +61,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public CustomerBean searchCustomer(int cid) {
 		if(h1.containsKey(cid)==true) {
+			System.out.println("Customer With PID: "+cid);
 			return h1.get(cid);
 		}else {
 			return null;

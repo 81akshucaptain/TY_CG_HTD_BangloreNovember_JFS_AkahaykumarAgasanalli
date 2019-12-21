@@ -33,7 +33,7 @@ public void setCost(int cost) {
 }
 @Override
 public String toString() {
-	return "Product are : \n name=" + name + ",\n quantity=" + quantity + ",\n productClass=" + productClass + ",\n cost=" + cost
+	return "PRODUCT DETAILS ARE : \n NAME=" + name + "\n QUANTITY=" + quantity + "\n PRODUCTCLASS=" + productClass + "\n COST=" + cost
 			+ "\n======================================================================\n";
 }
 

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import com.captain.Fm.bean.*;
 public class ProductDAOImpl implements ProductDAO {
-	HashMap<Integer,ProductBean> h1=new HashMap<Integer,ProductBean>();
+	private static HashMap<Integer,ProductBean> h1=new HashMap<Integer,ProductBean>();
 	int pid=0;
 
 	@Override

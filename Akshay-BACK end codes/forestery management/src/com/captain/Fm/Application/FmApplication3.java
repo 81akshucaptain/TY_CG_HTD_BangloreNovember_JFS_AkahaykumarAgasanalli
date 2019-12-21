@@ -45,7 +45,6 @@ public class FmApplication3 {
 				System.out.println("enter the ProductID to search Product: ");
 				int pid=sc.nextInt();
 				ProductBean pdetails=cdao.searchProduct(pid);
-				System.out.println("The details of Product with "+pid+" is:");
 				System.out.println(pdetails);
 				break;
 			case 3:
@@ -74,8 +73,7 @@ public class FmApplication3 {
 				cdao.getAllProduct();
 				break;
 			case 6:
-				MainApllication m=new MainApllication();
-				m.main(null);
+				MainApllication.mainApp();
 			}
 		}
 	}

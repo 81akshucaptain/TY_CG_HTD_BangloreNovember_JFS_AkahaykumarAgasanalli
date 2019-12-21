@@ -7,7 +7,7 @@ import com.captain.Fm.bean.ContractorBean;
 import com.captain.Fm.bean.CustomerBean;
 
 public class ContractorDAOImpl implements ContractorDAO{
-	HashMap<Integer,ContractorBean> h1=new HashMap<Integer,ContractorBean>();
+	private static HashMap<Integer,ContractorBean> h1=new HashMap<Integer,ContractorBean>();
 	int ctid=0;
 
 	@Override
