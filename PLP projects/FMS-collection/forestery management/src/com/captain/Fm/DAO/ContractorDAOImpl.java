@@ -1,6 +1,8 @@
 package com.captain.Fm.DAO;
 
 import java.util.HashMap;
+import java.util.Set;
+
 import com.captain.Fm.bean.*;
 
 import com.captain.Fm.bean.ContractorBean;
@@ -9,11 +11,19 @@ import com.captain.Fm.bean.CustomerBean;
 public class ContractorDAOImpl implements ContractorDAO{
 	private static HashMap<Integer,ContractorBean> h1=new HashMap<Integer,ContractorBean>();
 	int ctid=0;
-
 	@Override
 	public void getAllContarctor() {
-		System.out.println(h1);
-		
+		if(h1.isEmpty()==false) {
+			System.out.println("                            ::::ALL CONTRACT DETAILS::::");
+			Set<Integer> s=h1.keySet();
+			for (Integer key : s) {
+				ContractorBean cb=h1.get(key);
+				System.out.println("CONTRACT-ID: "+key);
+				System.out.println(cb);
+			}
+		}else {
+			System.err.println("Currently there is no contracts..!(No customer orders)");
+		}
 	}
 
 	@Override
@@ -25,7 +35,6 @@ public class ContractorDAOImpl implements ContractorDAO{
 
 	@Override
 	public boolean deletecontarctor(int cidToDelete) {
-		System.out.println("The specified Contrcator got delated");
 		h1.remove(cidToDelete);
 		return true;
 	}
@@ -35,11 +44,14 @@ public class ContractorDAOImpl implements ContractorDAO{
 
 		while(true) {
 			++ctid;
+			//In-order to Add the generated ContractID to each objects
+			contractor.setContractId(ctid);
 			h1.put(ctid,contractor);
-			System.out.println("hello contractor your ID is : "+ctid+" please remember..! Else GOVINDA..!");
+			System.out.println("Contract with CONTRACT-ID : "+ctid+"  \n for CUSTOMER-ID "
+					+contractor.getCustomerId() +"is added succesfully (please remember )");
 			return true;
 		}	
-		}
+	}
 
 	@Override
 	public ContractorBean searchContarctor(int ctid) {

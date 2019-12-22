@@ -22,7 +22,6 @@ public class FmApplication1 {
 			System.out.println("*Enter 1 to add the customer");
 			System.out.println("*Enter 2 to search the customer");
 			System.out.println("*Enter 3 to update the customer");
-
 			System.out.println("*Enter 4 to remove the customer");
 			System.out.println("*Enter 5 to get all the customer");
 			System.out.println("*Enter 6 to Retur HOME");
@@ -105,7 +104,7 @@ public class FmApplication1 {
 					System.out.println("Enter customer Phone: ");
 					Long phone=sc.nextLong();
 					String phone1=Long.toString(phone);
-					String phoneregex = "^[0-9]{10}";
+					String phoneregex = "^[789][0-9]{9}";
 					Pattern phonepattern = Pattern.compile(phoneregex);
 					Matcher phonematcher = phonepattern.matcher(phone1);
 					if( phonematcher.matches()) {
@@ -117,8 +116,10 @@ public class FmApplication1 {
 					}
 				}
 				if(dao.addCustomer(cb)) {
-					System.out.println("Customer added successfully..!");
-				}else System.err.println("somthing went wrong buddy, try again..!");
+					System.out.println("Done with adding");
+				}else {
+					System.err.println("somthing went wrong buddy, try again..!");
+				}
 				break;
 
 			case 2:
@@ -253,7 +254,7 @@ public class FmApplication1 {
 				break;
 
 			case 6:
-				MainApllication.mainApp();
+				AdminHomeApllication.adminHome();
 			default:
 				break;
 			}

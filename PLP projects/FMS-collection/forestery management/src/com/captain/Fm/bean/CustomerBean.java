@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 public class CustomerBean implements Serializable {
 	static int cid;
-	static String name;
-	static  String town;
-	static int postal;
-	static  String email;
-	static long phone;
+	String name;
+	String town;
+	int postal;
+	String email;
+	long phone;
 
+	public  int getCid() {
+		return cid;
+	}
+	public  void setCid(int cid) {
+		CustomerBean.cid = cid;
+	}
 	public  String getName() {
 		return name;
 	}
@@ -43,9 +49,8 @@ public class CustomerBean implements Serializable {
 	@Override
 	public String toString() {
 
-		return "CUSTOMER DETAILS ARE:\n"
-				+ " NAME=" + name + "\n TOWN=" + town + "\n POSTAL=" + postal + "\n EMAIL=" + email
-				+ "\n PHONE=" + phone + "\n=================================================================\n";
+		return  " NAME=" + name + "\n TOWN=" + town + "\n POSTAL=" + postal + "\n EMAIL=" + email
+				+ "\n PHONE=" + phone + "\n=========================================================\n";
 	}
 
 }

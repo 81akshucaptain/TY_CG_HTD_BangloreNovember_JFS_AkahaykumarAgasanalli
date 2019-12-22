@@ -8,10 +8,10 @@ import com.captain.Fm.DAO.AdminDAO;
 import com.captain.Fm.DAO.AdminDAOImpl;
 import com.captain.Fm.bean.AdminBean;
 
-public class HomeApplication {
+public class AdminApplication {
 	private static final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
 
-	public static void main(String[] args) {
+	public static void adminMain(String[] args) {
 
 		AdminDAO admin=new AdminDAOImpl();
 		AdminBean ad=new AdminBean();
@@ -30,7 +30,7 @@ public class HomeApplication {
 				String pswd=sc.next();
 				boolean login= admin.adminLogin(uname, pswd,ad);
 				if(login==true) {
-					MainApllication.mainApp();
+					AdminHomeApllication.adminHome();
 				}else {
 					System.err.println("Invalid UserName or Password To Login..!");
 				}
@@ -38,7 +38,7 @@ public class HomeApplication {
 
 
 			case 2:
-				System.out.println("                            ::::REGISTRATION::::   ");
+				System.out.println("                            ::::ADMIN REGISTRATION::::   ");
 				boolean stay1=true;
 				while(stay1) {
 					System.out.println("Enter user name");
@@ -69,12 +69,15 @@ public class HomeApplication {
 						if(password.equals(password2)) {
 							ad.setPassword1(password);
 							stay2=false;
+						}else {
+							System.err.println("Password mismatch, Enter correct password");
 						}
 					}else {
 						System.err.println("Your passwird is Weak..! Enter Strong Password");
 						stay2=true;
 					}
 				} 
+				System.out.println("Registered successfully");
 				break;
 			}
 

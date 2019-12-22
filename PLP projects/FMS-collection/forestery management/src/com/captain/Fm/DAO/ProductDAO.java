@@ -4,7 +4,6 @@ import com.captain.Fm.bean.ProductBean;
 
 public interface ProductDAO {
 	public void getAllProduct();
-	public ProductBean Productlogin(String cid,String name);
 	public boolean updateProduct(int pid,ProductBean ProductToUpdate);
 	public boolean deleteProduct(int pid);
 	//create ProductBean obje and pass to insert all values

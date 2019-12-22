@@ -1,10 +1,8 @@
 package com.captain.Fm.DAO;
 
 
-import com.captain.Fm.bean.ContractorBean;
-import com.captain.Fm.bean.ProductBean;
-
 import java.util.HashMap;
+import java.util.Set;
 
 import com.captain.Fm.bean.*;
 public class ProductDAOImpl implements ProductDAO {
@@ -13,42 +11,78 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void getAllProduct() {
-		System.out.println(h1);
-		
-	}
-
-	@Override
-	public ProductBean Productlogin(String cid, String name) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			System.out.println("                            ::::ALL PRODUCTS::::");
+			Set<Integer> s=h1.keySet();
+			for (Integer key : s) {
+				System.out.println("PRODUCT-ID: "+key);
+				ProductBean cb=h1.get(key);
+				System.out.println(cb);
+			}
+		}catch (Exception e) {
+			System.err.println("There is problem in displaying all the products");
+		}
 	}
 
 	@Override
 	public boolean updateProduct(int pidToUpdate, ProductBean ProductToUpdate) {
-		h1.replace(pidToUpdate,ProductToUpdate );
-		return true;	
+		try{
+			if(h1.containsKey(pidToUpdate)) {
+				h1.replace(pidToUpdate,ProductToUpdate );
+				return true;
+			}else {
+				return false;
+			}
+		}catch (Exception e) {
+			System.err.println("There is problem in Updation..!");
+			return false;
 		}
+	}
 
 	@Override
 	public boolean deleteProduct(int pidToDelete) {
-		System.out.println("The specified Contrcator got delated");
-		h1.remove(pidToDelete);
-		return true;	}
+		try {
+			if(h1.containsKey(pidToDelete)) {
+				System.out.println("The specified product got deleted");
+				h1.remove(pidToDelete);
+				return true;
+			}else {
+				return false;
+			}
+		}catch (Exception e) {
+			System.err.println("There is problem in Deletion..!");
+			return false;
+		}
+	}
 
 	@Override
 	public boolean addProduct(ProductBean product) {
 		while(true) {
-			++pid;
-			h1.put(pid,product);
-			System.out.println("hello contractor your ID is : "+pid+" please remember..! Else GOVINDA..!");
-			return true;
-		}		}
-
+			try {
+				if(product!=null) {
+					++pid;
+					product.setPid(pid);
+					h1.put(pid,product);
+					System.out.println("Product with  PRODUCT-ID: "+pid+"  added successfully (remember this)");
+					return true;
+				}else {
+					return false;
+				}
+			}catch (Exception e) {
+				System.err.println("There is problem in Adding..!");
+			}	
+		}
+	}
 	@Override
 	public ProductBean searchProduct(int pid) {
-		if(h1.containsKey(pid)==true) {
-			return h1.get(pid);
-		}else {
+		try {
+			if(h1.containsKey(pid)==true) {
+				return h1.get(pid);
+			}else {
+				return null;
+			}
+		}catch (Exception e) {
+			System.err.println("There is problem in Searching..!");
 			return null;
 		}
 	}

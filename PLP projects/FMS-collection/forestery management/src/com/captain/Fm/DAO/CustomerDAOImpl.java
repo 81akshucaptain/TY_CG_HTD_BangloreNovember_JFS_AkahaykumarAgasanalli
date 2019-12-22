@@ -3,34 +3,43 @@ package com.captain.Fm.DAO;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import com.captain.Fm.bean.ContractorBean;
 import com.captain.Fm.bean.CustomerBean;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private static HashMap<Integer,CustomerBean> h1=new HashMap<Integer,CustomerBean>();
 	static int cid=0;
-	static CustomerBean cbToLogin=null;
+	CustomerBean cbToLogin=null;
 	@Override
 	public void getAllCustomer() {
-		System.out.println(h1);
+		System.out.println("                            ::::ALL CUSTOMER::::");
+		Set<Integer> s=h1.keySet();
+		for (Integer key : s) {
+			CustomerBean cb=h1.get(key);
+			System.out.println("CONTRACT-ID: "+key);
+			System.out.println(cb);
+		}
 	}
 
 	@Override
-	public boolean customerlogin(String cname, String email) {
-		try{
-			if((cbToLogin.getName().equals(cname)) &&(cbToLogin.getEmail().equals(email))) {
-				return true;
+	public boolean customerlogin(int cid, String name ) {
+		Set<Integer> s=h1.keySet();
+		for (Integer key : s) {
+			if(key==cid) {
+				CustomerBean cbToLogin=h1.get(key);
+				if(cbToLogin.getName().equals(name)) {
+					return true;
+				}
+				else {
+					System.err.println("Invalid user name..!please enter valid name");
+					return false;
+				}
 			}
-			else {
-				return false;
-			}
-		}catch(Exception e) {
-			String msg=e.getMessage();
-			System.out.println("hello customer:"+msg);
-			System.err.println("HELLO CUSTOMER YOUR NOT PART OF THIS BUSINESS(not added to system)..!");
-			return false;
-
 		}
+		System.err.println("HELLO CUSTOMER YOU ARE NOT PART OF THIS BUSINESS(not added to system)..!");
+		return false;
 	}
 
 	@Override
@@ -50,10 +59,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	public boolean addCustomer(CustomerBean customer) {
 		while(true) {
+			//TO VALLIDATE THE CUSTOMER-name and EMAIL 
+			//I NEED REFRENCE HENCE
 			cbToLogin=customer;
+			//In-order to add generated CUSTOMER-ID to each and
+			//every objects
 			++cid;
+			customer.setCid(cid);
 			h1.put(cid,customer);
-			System.out.println("hello Customer your ID is : "+cid+"  (please remember)");
+			System.out.println("Customer with Customer-ID is : "+cid+" added successfully. (please remember)");
 			return true;
 		}
 	}
@@ -61,7 +75,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public CustomerBean searchCustomer(int cid) {
 		if(h1.containsKey(cid)==true) {
-			System.out.println("Customer With PID: "+cid);
 			return h1.get(cid);
 		}else {
 			return null;

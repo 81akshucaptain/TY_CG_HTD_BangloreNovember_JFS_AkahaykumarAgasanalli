@@ -1,5 +1,10 @@
 package com.captain.Fm.Application;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.captain.Fm.*;
 
 import com.captain.Fm.Factory.ForestFactory;
@@ -7,7 +12,7 @@ import com.captain.Fm.bean.ContractorBean;
 import com.captain.Fm.DAO.*;
 
 public class FmApllication2 {
-	public static void contractor() {
+	public static void contract() {
 		ContractorDAO cdao=ForestFactory.instanceOfContractorDAOImpl();
 		Scanner sc=new Scanner(System.in);
 		while (true) {
@@ -17,7 +22,7 @@ public class FmApllication2 {
 			System.out.println("*Enter 3 to update the Contract");
 			System.out.println("*Enter 4 to remove the Contract");
 			System.out.println("*Enter 5 to get all the Contract");
-System.out.println("*Enter 6 to return HOME");
+			System.out.println("*Enter 6 to Logout");
 			int option=sc.nextInt();
 
 
@@ -25,59 +30,231 @@ System.out.println("*Enter 6 to return HOME");
 			case 1:
 				ContractorBean cb=new ContractorBean();
 
-				System.out.println("enter the costumer ID: ");
-				System.out.println("enter the productid");
-				cb.setProductId(sc.nextInt());
+				boolean stay4=true;
+				while(stay4) {
+					try{
+						System.out.println("enter the Customer ID: ");
+						cb.setCustomerId(sc.nextInt());
+						stay4=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stay4=true;
+					}
+				}
+
+				//				boolean stay5=true;
+				//				while(stay5) {
+				//					try{
+				//						System.out.println("enter the contract ID: ");
+				//						cb.setContractorId(sc.nextInt());
+				//						stay5=false;
+				//					}catch (Exception e) {
+				//						System.err.println("Enter The Valid Integer For Quantity");
+				//						stay5=true;
+				//					}
+				//				}
+
+				boolean stay7=true;
+				while(stay7) {
+					try{
+						System.out.println("enter the Product ID: ");
+						cb.setProductId(sc.nextInt());
+						stay7=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stay7=true;
+					}
+				}
+
+
 				System.out.println("enter the haulier ID: ");
-				cb.setHaulierId(sc.nextInt());
-				System.out.println("enter the delivery date in dd/mm/yyyy fromat: ");
-				cb.setDeliveryDate(sc.next());
-				System.out.println("enter the delivery day: ");
-				cb.setDeliveryDay(sc.next());
-				System.out.println("enter the quantiy required: ");
-				cb.setQunatity(sc.nextInt());
+				cb.setHaulierId(sc.next());
+
+				boolean stay1=true;
+				while(stay1) {
+					System.out.println("enter the delivery date in YYYY/MM/DD fromat: ");
+					String date = sc.next();
+
+					String regex = "^[0-9]{4}/(1[0-2]|0[1-9])/(3[01]"
+							+ "|[12][0-9]|0[1-9])$"; 
+					Pattern pattern = Pattern.compile(regex); 
+					Matcher matcher = pattern.matcher((CharSequence)date);
+					if(matcher.matches()) {
+						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+						LocalDateTime now = LocalDateTime.now(); 
+						String date2=dtf.format(now);
+						if(date.compareTo(date2)<0||date.compareTo(date2)==0){
+							System.err.println("Please enter the Future Date... ");
+							stay1=true;
+						}else {
+							cb.setDeliveryDate(date);
+							stay1=false;
+						}
+
+					}else {
+						System.err.println("Please Enter The Valid DATE-FORMATE..!");
+						stay1=true;
+					}
+
+				}
+
+				boolean stay2=true;
+				while(stay2) {
+					System.out.println("Enter The Delivery Day: ");
+					String DAY=sc.next();
+					if(DAY.equals("sunday")||DAY.equals("monday")||DAY.equals("tuesday")||DAY.equals("wednesday")||DAY.equals("thursday")||DAY.equals("friday")||DAY.equals("saturday")||
+							DAY.equals("SUNDAY")||DAY.equals("MONDAY")||DAY.equals("TUESDAY")||DAY.equals("WEDNESDAY")||DAY.equals("THURSDAY")||DAY.equals("FRIDAY")||DAY.equals("SATURDAY")) 
+					{
+						cb.setDeliveryDay(DAY);
+						stay2=false;
+					}else {
+						System.err.println("Please enter the valid DAY...!");
+						stay2=true;
+					}
+				}
+				boolean stay3=true;
+				while(stay3) {
+					try{
+						System.out.println("enter the quantiy required: ");
+						cb.setQunatity(sc.nextInt());
+						stay3=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stay3=true;
+					}
+				}
+
 				if(cdao.addContarctor(cb)) {
-					System.out.println("Contract added successfully..!");
-				}else System.err.println("somthing went wrong buddy, try again..!");
+					System.out.println("contract added successfully..!");
+				}else {
+					System.err.println("somthing went wrong buddy, try again..!");
+				}
 				break;
+
 			case 2:
 				System.out.println("enter the contractID to search Contract: ");
-				int ctid=sc.nextInt();
-				ContractorBean cdetails=cdao.searchContarctor(ctid);
-				System.out.println("The details of Contract with "+ctid+" is:");
-				System.out.println(cdetails);
+
+				try{
+					int ctid=sc.nextInt();
+					ContractorBean cdetails=cdao.searchContarctor(ctid);
+					System.out.println("The details of Contract with "+ctid+" is:");
+					System.out.println(cdetails);
+				}catch (Exception e) {
+					System.out.println("Please enter the valid contract ID: ");
+				}
 				break;
 			case 3:
-				System.out.println("enter the CTID to update:");
-				int cidToUpdate =sc.nextInt();
 				ContractorBean cb2=new ContractorBean();
-				System.out.println("Enter CustomerId to update:");
-				cb2.setCustomerId(sc.nextInt());
-				System.out.println("enter product ID to update: ");
-				cb2.setProductId(sc.nextInt());
-				System.out.println("enter hualier ID to update: ");
-				cb2.setHaulierId(sc.nextInt());
-				System.out.println("enter delivery DATE to update: ");
-				cb2.setDeliveryDate(sc.next());
-				System.out.println("enter delivery DAY to update: ");
-				cb2.setDeliveryDay(sc.next());
-				System.out.println("enter quantity to update: ");
-				cb2.setQunatity(sc.nextInt());
-				boolean update=cdao.updateContarctor(cidToUpdate,cb2);
-				if(update==true) {
-					System.out.println("New details added successfully..!");
-				}else System.err.println("Something went wrong to update..!");
+				int ctid = 0;
+				boolean stop5=true;
+				while(stop5) {
+					try{
+						System.out.println("enter the Contract ID To Update:: ");
+						ctid=sc.nextInt();
+						stop5=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stop5=true;
+					}
+				}
+
+				boolean stop4=true;
+				while(stop4) {
+					try{
+						System.out.println("enter the Customer ID To Update: ");
+						cb2.setCustomerId(sc.nextInt());
+						stop4=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stop4=true;
+					}
+				}
+
+
+				boolean stop7=true;
+				while(stop7) {
+					try{
+						System.out.println("enter the Product ID To Update:: ");
+						cb2.setProductId(sc.nextInt());
+						stop7=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stop7=true;
+					}
+				}
+
+
+				System.out.println("enter the haulier ID To Update: ");
+				cb2.setHaulierId(sc.next());
+
+				boolean stop1=true;
+				while(stop1) {
+					System.out.println("enter the delivery date in YYYY/MM/DD fromat To Update: ");
+					String date = sc.next();
+
+					String regex = "^[0-9]{4}/(1[0-2]|0[1-9])/(3[01]"
+							+ "|[12][0-9]|0[1-9])$"; 
+					Pattern pattern = Pattern.compile(regex); 
+					Matcher matcher = pattern.matcher((CharSequence)date);
+					if(matcher.matches()) {
+						cb2.setDeliveryDate(date);
+						stop1=false;
+					}else {
+						System.err.println("Please Enter The Valid DATE-FORMATE..!");
+						stop1=true;
+					}
+
+				}
+
+				boolean stop2=true;
+				while(stop2) {
+					System.out.println("Enter The Delivery Day To Update: ");
+					String DAY=sc.next();
+					if(DAY.equals("sunday")||DAY.equals("monday")||DAY.equals("tuesday")||DAY.equals("wednesday")||DAY.equals("thursday")||DAY.equals("friday")||DAY.equals("saturday")||
+							DAY.equals("SUNDAY")||DAY.equals("MONDAY")||DAY.equals("TUESDAY")||DAY.equals("WEDNESDAY")||DAY.equals("THURSDAY")||DAY.equals("FRIDAY")||DAY.equals("SATURDAY")) 
+					{
+						cb2.setDeliveryDay(DAY);
+						stop2=false;
+					}else {
+						System.err.println("Please enter the valid DAY...!");
+						stop2=true;
+					}
+				}
+
+				boolean stop3=true;
+				while(stop3) {
+					try{
+						System.out.println("enter the quantiy required To Update: ");
+						cb2.setQunatity(sc.nextInt());
+						stop3=false;
+					}catch (Exception e) {
+						System.err.println("Enter The Valid Integer For Quantity");
+						stop3=true;
+					}
+				}
+				cdao.updateContarctor(ctid,cb2);
 				break;
+
 			case 4:
-				System.out.println("Enter The Contract ID to delete the account:");
-				int cidToDelete=sc.nextInt();
-				boolean delete=cdao.deletecontarctor(cidToDelete);
+
+				try{
+					System.out.println("Enter The Contract ID to delete the account:");
+					int cidToDelete=sc.nextInt();
+					boolean delete=cdao.deletecontarctor(cidToDelete);
+					if(delete) {
+						System.out.println("The specified Contrcat got deleted");
+					}else {
+						System.err.println("Please enter the valid contractID, problem in deletion");
+					}
+				}catch (Exception e) {
+					System.err.println("Please enter the valid contractID:");
+				}
 				break;
 			case 5:
 				cdao.getAllContarctor();
 				break;
 			case 6:
-				MainApllication.mainApp();
+				FmHome.main(null);
 
 			}
 		}
