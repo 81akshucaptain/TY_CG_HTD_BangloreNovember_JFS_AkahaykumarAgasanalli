@@ -1,12 +1,14 @@
 package com.capgemini.foresterymanagement.application;
 import java.util.InputMismatchException;
 
+
 import java.util.Scanner;
 
 import com.capgemini.foresterymanagement.bean.ContractorBean;
 import com.capgemini.foresterymanagement.bean.CustomerBean;
-import com.capgemini.foresterymanagement.dao.*;
+import com.capgemini.foresterymanagement.dao.CustomerDAO;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
+import com.capgemini.forestmanagement.exception.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,261 +17,332 @@ import javax.management.ImmutableDescriptor;
 
 public class FmApplication1 {
 	public static void customer(){
-		CustomerDAO dao=ForestFactory.instanceOfCustomerDAOImpl();
+		CustomerDAO customerDao=ForestFactory.instanceOfCustomerDAOImpl();
 
 		Scanner sc=new Scanner(System.in);
 
 
 		while (true) {
-			System.out.println("*******************WELCOME TO CUSTOMER HOUSE*********************");
-			System.out.println("*Enter 1 to add the customer");
-			System.out.println("*Enter 2 to search the customer");
-			System.out.println("*Enter 3 to update the customer");
-			System.out.println("*Enter 4 to remove the customer");
-			System.out.println("*Enter 5 to get all the customer");
-			System.out.println("*Enter 6 to Return HOME");
+			try {
+				System.out.println("*******************WELCOME TO CUSTOMER HOUSE*********************");
+				System.out.println("*Enter 1 to add the customer");
+				System.out.println("*Enter 2 to search the customer");
+				System.out.println("*Enter 3 to update the customer");
+				System.out.println("*Enter 4 to remove the customer");
+				System.out.println("*Enter 5 to get all the customer");
+				System.out.println("*Enter 6 to Return HOME");
 
-			int option=sc.nextInt();
+				String choice1=sc.next();
+				String choice1IDregex = "^[0-9]*$";
+				Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
+				Matcher choice1IDmatcher = choice1IDpattern.matcher(choice1);
+				if( choice1IDmatcher.matches()) {
+					int	choice2=Integer.parseInt(choice1);
 
+					switch (choice2) {
+					case 1:
+						CustomerBean customerBean=new CustomerBean();
 
-			switch (option) {
-			case 1:
-				CustomerBean cb=new CustomerBean();
+						boolean stay1=true;
+						while(stay1) {
+							try {
+								System.out.println("Enter customer First Name: ");
+								String fname=sc.next();
+								System.out.println("Enter customer middle Name(if not please enter underscore): ");
+								String mname=sc.next();
+								System.out.println("Enter customer Last Name: ");
+								String lname=sc.next();
+								String fullName=fname+" "+mname+" "+lname;
+								String nameregex = "^[A-Za-z _?A-Za-z A-Za-z]*";
+								Pattern namepattern = Pattern.compile(nameregex);
+								Matcher namematcher = namepattern.matcher(fullName);
+								if( namematcher.matches()) { 
+									customerBean.setName(fullName);
+									stay1=false;
+								}else {
+									stay1=true;
+									throw new CustomerAppException("please Enter the VALID NAME..!");
+								}
+							}catch (ContractorAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
+							}	
+						} 
 
-				boolean stay1=true;
-				while(stay1) {
-					System.out.println("Enter customer Name: ");
-					String name=sc.next();
-					String nameregex = "^[A-Za-z]*";
-					Pattern namepattern = Pattern.compile(nameregex);
-					Matcher namematcher = namepattern.matcher(name);
-					if( namematcher.matches()) {
-						cb.setName(name);
-						stay1=false;
-					}else {
-						System.err.println("please Enter the VALID NAME..!");
-						stay1=true;
-					}
-				} 
-
-				boolean stay2=true;
-				while(stay2) 
-				{
-					System.out.println("Enter customer Town: ");
-					String town=sc.next();
-					String townregex = "^[A-Za-z]*";
-					Pattern townpattern = Pattern.compile(townregex);
-					Matcher townmatcher = townpattern.matcher(town);
-					if( townmatcher.matches()) {
-						cb.setTown(town);
-						stay2=false;
-					}else {
-						System.err.println("please Enter the VALID TOWN NAME..!");
-						stay2=true;
-					}
-				}
-
-				boolean stay4=true;
-				while(stay4) {
-					System.out.println("Enter customer Email: ");
-					String email=sc.next();
-					String emailregex = "^(.+)@(.+)\\.(.+)$";
-					Pattern emailpattern = Pattern.compile(emailregex);
-					Matcher emailmatcher = emailpattern.matcher((CharSequence)email);
-					if( emailmatcher.matches()) {
-						cb.setEmail(email);
-						stay4=false;
-					}else {
-						System.err.println("please Enter the VALID EMAIL ID..!");
-						stay4=true;
-					}
-				}
-
-				boolean stay3=true;
-				while(stay3) {
-					System.out.println("Enter customer Postal: ");
-					int postal=sc.nextInt();
-					String postal1=Integer.toString(postal);
-					String postalregex = "^[0-9]{6}";
-					Pattern postalpattern = Pattern.compile(postalregex);
-					Matcher postalmatcher = postalpattern.matcher(postal1);
-					if( postalmatcher.matches()) {
-						cb.setPostal(postal);
-						stay3=false;
-					}else {
-						System.err.println("please Enter the VALID POSTALCODE..!");
-						stay3=true;
-					}
-				}
-
-				boolean stay5=true;
-				while(stay5) {
-					System.out.println("Enter customer Phone: ");
-					Long phone=sc.nextLong();
-					String phone1=Long.toString(phone);
-					String phoneregex = "^[789][0-9]{9}";
-					Pattern phonepattern = Pattern.compile(phoneregex);
-					Matcher phonematcher = phonepattern.matcher(phone1);
-					if( phonematcher.matches()) {
-						cb.setPhone(phone);
-						stay5=false;
-					}else {
-						System.err.println("please Enter the VALID PHONE..!");
-						stay5=true;
-					}
-				}
-				if(dao.addCustomer(cb)) {
-					System.out.println("Done with adding");
-				}else {
-					System.err.println("somthing went wrong buddy, try again..!");
-				}
-				break;
-
-			case 2:
-
-				System.out.println("enter the cid to search customer: ");
-				int cid=sc.nextInt();
-				CustomerBean cdetails=dao.searchCustomer(cid);
-				System.out.println(cdetails);
-				break;
-			case 3:
-				CustomerBean cb2=new CustomerBean();
-				int cidToUpdate=0;
-				boolean stay10=true;
-				while(stay10) {
-
-					System.out.println("Enter customer ID to update: ");
-					try
-					{
-						int cid2=sc.nextInt();
-						cidToUpdate=cid2;
-						stay10=false;
-					}
-					catch (Exception e) {
-						String msg1=e.getMessage();
-						System.err.println(msg1+"please Enter the INTEGER value..!");
-						stay10=true;
-					}
-				} 
-
-				boolean stay11=true;
-				while(stay11) {
-					System.out.println("Enter customer Name to update: ");
-					String name2=sc.next();
-					String nameregex2 = "^[A-Za-z]*";
-					Pattern namepattern = Pattern.compile(nameregex2);
-					Matcher namematcher = namepattern.matcher(name2);
-					if( namematcher.matches()) {
-						cb2.setName(name2);
-						stay11=false;
-					}else {
-						System.err.println("please Enter the VALID NAME..!");
-						stay11=true;
-					}
-				} 
-
-				boolean stay12=true;
-				while(stay12) 
-				{
-					System.out.println("Enter customer Town to update: ");
-					String town2=sc.next();
-					String townregex = "^[A-Za-z]*";
-					Pattern townpattern = Pattern.compile(townregex);
-					Matcher townmatcher = townpattern.matcher(town2);
-					if( townmatcher.matches()) {
-
-						cb2.setTown(town2);
-						stay12=false;
-					}else {
-						System.err.println("please Enter the VALID TOWN NAME..!");
-						stay12=true;
-					}
-				}
-				boolean stay14=true;
-				while(stay14) {
-					System.out.println("Enter customer Email to update: ");
-					String email2=sc.next();
-					String emailregex = "^(.+)@(.+)\\.(.+)$";
-					Pattern emailpattern = Pattern.compile(emailregex);
-					Matcher emailmatcher = emailpattern.matcher((CharSequence)email2);
-					if( emailmatcher.matches()) {
-
-						cb2.setEmail(email2);
-						stay14=false;
-					}else {
-						System.err.println("please Enter the VALID EMAIL ID..!");
-						stay14=true;
-					}
-				}
-
-				boolean stay13=true;
-				while(stay13) {
-					System.out.println("Enter customer Postal to update: ");
-					int postal2=sc.nextInt();
-					String postal1=Integer.toString(postal2);
-					String postalregex = "^[0-9]{6}";
-					Pattern postalpattern = Pattern.compile(postalregex);
-					Matcher postalmatcher = postalpattern.matcher(postal1);
-					if( postalmatcher.matches()) {
-
-						cb2.setPostal(postal2);
-						stay13=false;
-					}else {
-						System.err.println("please Enter the VALID POSTALCODE..!");
-						stay13=true;
-					}
-				}
-
-				boolean stay15=true;
-				while(stay15) {
-					System.out.println("Enter customer Phone to update: ");
-					long ph=sc.nextLong();
-					String phone2=Long.toString(ph);
-					String phoneregex = "^[0-9]{10}";
-					Pattern phonepattern = Pattern.compile(phoneregex);
-					Matcher phonematcher = phonepattern.matcher(phone2);
-					if( phonematcher.matches()) {
-
-						cb2.setPhone(ph);
-						stay15=false;
-					}else {
-						System.err.println("please Enter the VALID PHONE..!");
-						stay15=true;
-					}
-				}
-
-				if(dao.updateCustomer(cidToUpdate, cb2)) {
-					System.out.println("Updated Successfully..!GOOD DAY");
-				}else System.err.println("somthing went wrong buddy, try again..!");
-				break;
-
-			case 4:
-				System.out.println("Enter The Customer ID to delete the account:");
-					try{
-						int cidToDelete=sc.nextInt();
-						boolean delete=dao.deleteCustomer(cidToDelete);
-						if(delete==true) {
-							System.out.println("CustomerID: "+cidToDelete+" deleted Successfully..!");
-						}else {
-							System.out.println("CID not found..!");
+						boolean stay2=true;
+						while(stay2) 
+						{
+							System.out.println("Enter customer Town: ");
+							String town=sc.next();
+							String townregex = "^[A-Za-z]*";
+							Pattern townpattern = Pattern.compile(townregex);
+							Matcher townmatcher = townpattern.matcher(town);
+							if( townmatcher.matches()) {
+								customerBean.setTown(town);
+								stay2=false;
+							}else {
+								System.err.println("please Enter the VALID TOWN NAME..!");
+								stay2=true;
+							}
 						}
-					}catch (InputMismatchException e) {
-						String msg=e.getMessage();
-						System.err.println("Eneter the correct value :"+msg);
-					}
-				
-				break;
-				case 5:
-					dao.getAllCustomer();
+
+						boolean stay4=true;
+						while(stay4) {
+							System.out.println("Enter customer Email: ");
+							String email=sc.next();
+							String emailregex = "^(.+)@(.+)\\.(.+)$";
+							Pattern emailpattern = Pattern.compile(emailregex);
+							Matcher emailmatcher = emailpattern.matcher((CharSequence)email);
+							if( emailmatcher.matches()) {
+								customerBean.setEmail(email);
+								stay4=false;
+							}else {
+								System.err.println("please Enter the VALID EMAIL ID..!");
+								stay4=true;
+							}
+						}
+
+						boolean stay3=true;
+						while(stay3) {
+							try {
+								System.out.println("Enter customer Postal: ");
+								String postal=sc.next();
+								String postalregex = "^[0-9]{6}";
+								Pattern postalpattern = Pattern.compile(postalregex);
+								Matcher postalmatcher = postalpattern.matcher(postal);
+								if( postalmatcher.matches()) {
+									Integer postal2=Integer.parseInt(postal);
+									if(postal2>0) {
+										customerBean.setPostal(postal2);
+										stay3=false;
+									}else {
+										stay3=true;
+										throw new CustomerAppException("Postal must be Greater Than Zero");
+									}
+								}else {
+									stay3=true;
+									throw new CustomerAppException("please Enter the VALID POSTAL CODE, an Integer..!");
+								}
+							}catch (CustomerAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
+							}
+						}
+
+						boolean stay5=true;
+						while(stay5) {
+							System.out.println("Enter customer Phone: ");
+							Long phone=sc.nextLong();
+							String phone1=Long.toString(phone);
+							String phoneregex = "^[789][0-9]{9}";
+							Pattern phonepattern = Pattern.compile(phoneregex);
+							Matcher phonematcher = phonepattern.matcher(phone1);
+							if( phonematcher.matches()) {
+								customerBean.setPhone(phone);
+								stay5=false;
+							}else {
+								System.err.println("please Enter the VALID PHONE..!");
+								stay5=true;
+							}
+						}
+						if(customerDao.addCustomer(customerBean)) {
+							System.out.println("Done with adding");
+						}else {
+							System.err.println("somthing went wrong buddy, try again..!");
+						}
+						break;
+
+					case 2:
+
+						try{
+							System.out.println("enter the customer ID to search Customer: ");
+							String ctidToSearch=sc.next();
+							String ctidToSearchregex = "^[0-9]*$";
+							Pattern ctidToSearchpattern = Pattern.compile(ctidToSearchregex);
+							Matcher ctidToSearchmatcher = ctidToSearchpattern.matcher(ctidToSearch);
+							if(ctidToSearchmatcher.matches()) {	
+								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
+								customerDao.searchCustomer(ctidToSearch2);
+							}
+						}catch (CustomerAppException e) {
+							String message=e.getMessage();
+							System.err.println(message);
+						}
+						break;
+
+					case 3:
+						CustomerBean customerBean2=new CustomerBean();
+
+						boolean stay10=true;
+						while(stay10) {
+							System.out.println("Enter customer ID to update: ");
+							try
+							{
+								String CostumerID=sc.next();
+								String CostumerIDregex = "^[0-9]*$";
+								Pattern CostumerIDpattern = Pattern.compile(CostumerIDregex);
+								Matcher CostumerIDmatcher = CostumerIDpattern.matcher(CostumerID);
+								if( CostumerIDmatcher.matches()) {
+									int ContractID2=Integer.parseInt(CostumerID);
+									if(ContractID2>0) {
+										customerBean2.setCid(ContractID2);
+										stay10=false;
+									}else {
+										stay10=true;
+										throw new CustomerAppException("please Enter vallid CID(greater than Zero)!");
+									}
+
+								}else {
+									stay10=true;
+									throw new CustomerAppException("please Enter the INTEGER value..!");
+								}
+							}
+							catch (CustomerAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
+							}
+						} 
+
+						boolean stay11=true;
+						while(stay11) {
+							System.out.println("Enter customer First Name to update: ");
+							String fname=sc.next();
+							System.out.println("Enter customer middle Name(if not please enter underscore): ");
+							String mname=sc.next();
+							System.out.println("Enter customer Last Name: ");
+							String lname=sc.next();
+							String fullName=fname+" "+mname+" "+lname;
+							String nameregex = "^[A-Za-z _?A-Za-z A-Za-z]*";
+							Pattern namepattern = Pattern.compile(nameregex);
+							Matcher namematcher = namepattern.matcher(fullName);
+							if( namematcher.matches()) { 
+								customerBean2.setName(fullName);
+								stay11=false;
+							}else {
+								System.err.println("please Enter the VALID NAME to update..!");
+								stay11=true;
+							}
+						} 
+
+						boolean stay12=true;
+						while(stay12) 
+						{
+							System.out.println("Enter customer Town to update: ");
+							String town2=sc.next();
+							String townregex = "^[A-Za-z]*";
+							Pattern townpattern = Pattern.compile(townregex);
+							Matcher townmatcher = townpattern.matcher(town2);
+							if( townmatcher.matches()) {
+
+								customerBean2.setTown(town2);
+								stay12=false;
+							}else {
+								System.err.println("please Enter the VALID TOWN NAME..!");
+								stay12=true;
+							}
+						}
+						boolean stay14=true;
+						while(stay14) {
+							System.out.println("Enter customer Email to update: ");
+							String email2=sc.next();
+							String emailregex = "^(.+)@(.+)\\.(.+)$";
+							Pattern emailpattern = Pattern.compile(emailregex);
+							Matcher emailmatcher = emailpattern.matcher((CharSequence)email2);
+							if( emailmatcher.matches()) {
+
+								customerBean2.setEmail(email2);
+								stay14=false;
+							}else {
+								System.err.println("please Enter the VALID EMAIL ID..!");
+								stay14=true;
+							}
+						}
+
+						boolean stay13=true;
+						while(stay13) {
+							System.out.println("Enter customer Postal: ");
+							int postal2=sc.nextInt();
+							String postal1=Integer.toString(postal2);
+							String postalregex = "^[0-9]{6}";
+							Pattern postalpattern = Pattern.compile(postalregex);
+							Matcher postalmatcher = postalpattern.matcher(postal1);
+							if( postalmatcher.matches()) {
+								if(postal2>0) {
+									customerBean2.setPostal(postal2);
+									stay13=false;
+								}else {
+									stay13=true;
+									throw new ContractorAppException("please enter the vallid Postal,greater Than zero");
+								}
+							}else {
+								System.err.println("please Enter the VALID POSTALCODE..!");
+								stay13=true;
+							}
+						}
+
+						boolean stay15=true;
+						while(stay15) {
+							System.out.println("Enter customer Phone to update: ");
+							long ph=sc.nextLong();
+							String phone2=Long.toString(ph);
+							String phoneregex = "^[0-9]{10}";
+							Pattern phonepattern = Pattern.compile(phoneregex);
+							Matcher phonematcher = phonepattern.matcher(phone2);
+							if( phonematcher.matches()) {
+
+								customerBean2.setPhone(ph);
+								stay15=false;
+							}else {
+								System.err.println("please Enter the VALID PHONE..!");
+								stay15=true;
+							}
+						}
+
+						if(customerDao.updateCustomer(customerBean2.getCid(), customerBean2)) {
+							System.out.println("Updated Successfully..!GOOD DAY");
+						}else {
+							System.err.println("somthing went wrong buddy, try again..!");
+						}
+						break;
+
+					case 4:
+						try {
+							System.out.println("enter your CID To Delete: ");
+							String ctidToDelete=sc.next();
+							String ctidToDeleteregex = "^[0-9]*$";
+							Pattern ctidToDeletepattern = Pattern.compile(ctidToDeleteregex);
+							Matcher ctidToDeletematcher = ctidToDeletepattern.matcher(ctidToDelete);
+							if(ctidToDeletematcher.matches()) {	
+								Integer ctidToSearch2=Integer.parseInt(ctidToDelete);
+								customerDao.deleteCustomer(ctidToSearch2);
+							}else {
+								throw new ContractorAppException("Please Enter The Valid CID, must be an INTEGER..!");
+							}
+						}catch (Exception e) {
+							String message=e.getMessage();
+							System.err.println(message);
+						}
+						break;
+
+					case 5:
+						customerDao.getAllCustomer();
+						break;
+
+					case 6:
+						AdminHomeApllication.adminHome();
+						break;
+					default: System.err.println("Enter the valid choice to move further");
 					break;
 
-				case 6:
-					AdminHomeApllication.adminHome();
-					break;
-				default:
-					System.err.println("Enter the valid choice..!");
-					break;
+					}
+				}else {
+					System.err.println("Please enter the valid choice, in terms of Digit..!");
 				}
+
+			}catch (Exception e) {
+				System.err.println("try again with valid input..!");
 			}
+
 		}
+	}
 }
