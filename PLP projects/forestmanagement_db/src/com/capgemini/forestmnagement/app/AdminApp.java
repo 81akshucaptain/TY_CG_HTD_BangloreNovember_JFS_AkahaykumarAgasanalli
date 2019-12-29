@@ -1,10 +1,10 @@
-package com.capgemini.fmdb.app;
+package com.capgemini.forestmnagement.app;
 
 import java.util.Scanner;
 
-import com.capgemini.fmbd.dao.ContractorDAO;
-import com.capgemini.fmbd.dao.ContractorDAOImpl;
-import com.capgemini.fmdb.factory.ForestFactoryFmDb;
+import com.capgemini.forestmnagement.dao.ContractorDAO;
+import com.capgemini.forestmnagement.dao.ContractorDAOImpl;
+import com.capgemini.forestmnagement.factory.ForestFactoryFmDb;
 
 
 public class AdminApp {

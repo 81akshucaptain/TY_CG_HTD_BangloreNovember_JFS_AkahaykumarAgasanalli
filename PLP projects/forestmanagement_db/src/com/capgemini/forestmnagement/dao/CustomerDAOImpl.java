@@ -1,4 +1,4 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
@@ -10,7 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import com.capgemini.fmdb.bean.CustomerBean;
+
+import com.capgemini.forestmnagement.bean.CustomerBean;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	Properties prop=null;
@@ -128,6 +129,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(6, customer.getPhone());
 			result=pstmt.executeUpdate();
 			if(result>0) {
+				
 				System.out.println("WELCOME "+customer.getName()+" YOUR ID IS: "+customer.getCid()+" (please Remember This) \n" );
 				System.out.println("Costumer added successfully \n");
 				return true;
@@ -148,11 +150,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void searchCustomer(int cidforSearch) {
-		/*String searchQuery="Select * from customer where CID='cidforSearch'";
-		try(Connection con=DriverManager.getConnection(prop.getProperty("dburl"), 
-				prop.getProperty("dbuser"), prop.getProperty("dbpassword"));
-				Statement stmt=con.createStatement();
-				ResultSet rs=stmt.executeQuery(searcQuery)*/
 		try(Connection con=DriverManager.getConnection(prop.getProperty("dburl"), 
 				prop.getProperty("dbuser"), prop.getProperty("dbpassword"));
 				PreparedStatement pstmt=con.prepareStatement(prop.getProperty("sQuery"));

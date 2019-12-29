@@ -1,6 +1,6 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
-import com.capgemini.fmdb.bean.LandsBean;
+import com.capgemini.forestmnagement.bean.LandsBean;
 
 public interface LandsDAO {
 	public void getAllLands();

@@ -1,4 +1,4 @@
-package com.capgemini.fmdb.bean;
+package com.capgemini.forestmnagement.bean;
 
 public class ProductBean {
 
@@ -39,7 +39,7 @@ public class ProductBean {
 	}
 	@Override
 	public String toString() {
-		return "PID=" + PID + "\nPRODUCT NAME=" + name + "\nPRODUCT CLASS=" + ProductClass + "\nPRODUCT-QANTITY=" + qantity
+		return "PRODUCT=" + PID + "\nPRODUCT NAME=" + name + "\nPRODUCT CLASS=" + ProductClass + "\nPRODUCT-QANTITY=" + qantity
 				+ "\nPRODUCT-COST=" + cost ;
 	}
 

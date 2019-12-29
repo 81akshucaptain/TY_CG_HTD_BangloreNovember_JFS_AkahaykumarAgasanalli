@@ -1,5 +1,5 @@
-package com.capgemini.fmbd.dao;
-import com.capgemini.fmdb.bean.ContractorBean;
+package com.capgemini.forestmnagement.dao;
+import com.capgemini.forestmnagement.bean.ContractorBean;
 
 public interface ContractorDAO {
 	public void getAllContarctor();

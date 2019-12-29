@@ -1,6 +1,7 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 import java.util.List;
-import com.capgemini.fmdb.bean.CustomerBean;
+
+import com.capgemini.forestmnagement.bean.CustomerBean;
 
 public interface CustomerDAO {
 	public void getAllCustomer();

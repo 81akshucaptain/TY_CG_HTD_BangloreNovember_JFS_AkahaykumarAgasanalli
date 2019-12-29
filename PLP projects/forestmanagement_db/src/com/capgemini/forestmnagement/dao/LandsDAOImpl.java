@@ -1,4 +1,4 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.capgemini.fmdb.bean.LandsBean;
-import com.capgemini.fmdb.bean.ProductBean;
+import com.capgemini.forestmnagement.bean.LandsBean;
+import com.capgemini.forestmnagement.bean.ProductBean;
 
 public class LandsDAOImpl implements LandsDAO {
 

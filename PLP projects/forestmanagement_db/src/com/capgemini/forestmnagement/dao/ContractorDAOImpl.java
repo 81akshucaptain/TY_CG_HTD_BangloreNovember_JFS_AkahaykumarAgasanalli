@@ -1,4 +1,4 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.capgemini.fmdb.bean.ContractorBean;
+import com.capgemini.forestmnagement.bean.ContractorBean;
 
 public class ContractorDAOImpl implements ContractorDAO {
 	Properties prop=null;
@@ -36,7 +36,7 @@ public class ContractorDAOImpl implements ContractorDAO {
 			ResultSet rs=pstmt.executeQuery();
 			System.out.println("============CONTRACT DEATAILS============\n");
 
-			if(rs.next()==true) {
+			if(rs!=null) {
 				while(rs.next()) {
 					System.out.println("CONTRACT-ID: "+rs.getInt(1));
 					System.out.println("CUSTOMER-ID: "+rs.getInt(2));
@@ -49,7 +49,6 @@ public class ContractorDAOImpl implements ContractorDAO {
 			}else {
 				System.err.println("There are no CONTRACTs to display..!");
 			}
-
 		}catch (Exception e) {
 			String msg=e.getMessage();
 			System.err.println("oops..!There is problem in getting all the contracts: "+msg);
@@ -152,16 +151,6 @@ public class ContractorDAOImpl implements ContractorDAO {
 			pstmt.setInt(1, cidforSearch);
 
 			ResultSet rs=pstmt.executeQuery();
-
-			//				System.out.println("============CONTRACT DEATAILS============\n");
-			//				if(rs.next()==true)  {
-			//					System.out.println("CONTRACT-ID: "+rs.getInt(1));
-			//					System.out.println("CUSTOMER-ID: "+rs.getInt(2));
-			//					System.out.println("PRODUCT-ID: "+rs.getInt(3));
-			//					System.out.println("HAULIER-ID: "+rs.getString(4));
-			//					System.out.println("DELIVERY-DATE: "+rs.getString(5));
-			//					System.out.println("DEMANDED-QUNATITY: "+rs.getInt(6));
-			//					System.out.println(".......................................\n");	
 			if(rs.next()==true)  {
 				ContractorBean coBean=new ContractorBean();
 				coBean.setContractId(rs.getInt(1));

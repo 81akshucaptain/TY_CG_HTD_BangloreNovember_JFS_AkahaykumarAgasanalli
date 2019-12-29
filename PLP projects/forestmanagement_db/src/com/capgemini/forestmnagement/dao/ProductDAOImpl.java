@@ -1,4 +1,4 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.capgemini.fmdb.bean.ProductBean;
+import com.capgemini.forestmnagement.bean.ProductBean;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -37,14 +37,14 @@ public class ProductDAOImpl implements ProductDAO {
 				PreparedStatement pstmt=con.prepareStatement(prop.getProperty("getQuery"));
 				) {
 			ResultSet rs=pstmt.executeQuery();
-			System.out.println("============PRODUCT DEATAILS============\n");
+			System.out.println("=============PRODUCT DEATAILS============\n");
 			if(rs!=null){
 				while(rs.next()) {
-					System.out.println("PRODUCT-ID: "+rs.getInt("PID"));
-					System.out.println("PRODUCT-NAME: "+rs.getString("name"));
-					System.out.println("PRODUCT-QUANTITY: "+rs.getInt("quantity"));
-					System.out.println("PRODUCT-CLASS: "+rs.getString("productClass"));
-					System.out.println("CUSTOMER-COST: "+rs.getInt("cost"));
+					System.out.println(" PRODUCT-ID: "+rs.getInt("PID"));
+					System.out.println(" PRODUCT-NAME: "+rs.getString("name"));
+					System.out.println(" PRODUCT-QUANTITY: "+rs.getInt("quantity"));
+					System.out.println(" PRODUCT-CLASS: "+rs.getString("productClass"));
+					System.out.println(" CUSTOMER-COST: "+rs.getInt("cost"));
 					System.out.println(".......................................\n");
 				}
 			}else {

@@ -1,6 +1,6 @@
-package com.capgemini.fmbd.dao;
+package com.capgemini.forestmnagement.dao;
 
-import com.capgemini.fmdb.bean.ProductBean;
+import com.capgemini.forestmnagement.bean.ProductBean;
 
 public interface ProductDAO {
 	public void getAllProduct();

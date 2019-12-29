@@ -1,4 +1,4 @@
-package com.capgemini.fmdb.bean;
+package com.capgemini.forestmnagement.bean;
 
 public class ContractorBean {
 	
