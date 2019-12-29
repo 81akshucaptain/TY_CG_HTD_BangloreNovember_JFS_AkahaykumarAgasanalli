@@ -1,9 +1,10 @@
 package com.capgemini.foresterymanagement.application;
 import com.capgemini.foresterymanagement.bean.ProductBean;
 
+
 import com.capgemini.foresterymanagement.dao.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
-
+import com.capgemini.foresterymanagement.exception.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,8 +12,8 @@ import java.util.regex.Pattern;
 public class FmApplication3 {
 	public void product() {
 
-		ProductDAO cdao=ForestFactory.insatnceOfProductDAOImpl();
-		Scanner sc=new Scanner(System.in);
+		ProductDAO productDao=ForestFactory.insatnceOfProductDAOImpl();
+		Scanner scanner=new Scanner(System.in);
 		while (true) {
 			try {			
 				System.out.println("*******************WELCOME TO PRODUCT HOUSE*******************");
@@ -22,7 +23,7 @@ public class FmApplication3 {
 				System.out.println("*Enter 4 to remove the Product");
 				System.out.println("*Enter 5 to get all the Product");
 				System.out.println("*Enter 6 to return HOME");
-				String choice1=sc.next();
+				String choice1=scanner.next();
 				String choice1IDregex = "^[0-9]*$";
 				Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
 				Matcher choice1IDmatcher = choice1IDpattern.matcher(choice1);
@@ -31,18 +32,18 @@ public class FmApplication3 {
 
 					switch (choice2) {
 					case 1:
-						ProductBean cb3=new ProductBean();
+						ProductBean productBean=new ProductBean();
 
 						//				boolean stay5=true;
 						//				while(stay5) {
 						//					System.out.println("Enter Product Name: ");
-						//					String name=sc.next();
+						//					String name=scanner.next();
 						//					String name1=name.toString();
 						//					String nameregex = "^[0-9]*";
 						//					Pattern namepattern = Pattern.compile(nameregex);
 						//					Matcher namematcher = namepattern.matcher(name1);
 						//					if( namematcher.matches()) {
-						//						cb3.setName(name);
+						//						productBean.setName(name);
 						//						stay5=false;
 						//					}else {
 						//						System.err.println("please Enter the VALID Name..!");
@@ -53,12 +54,12 @@ public class FmApplication3 {
 						boolean stay1=true;
 						while(stay1) {
 							System.out.println("Enter Product Name: ");
-							String name=sc.next();
+							String name=scanner.next();
 							String nameregex = "^[A-Za-z]*";
 							Pattern namepattern = Pattern.compile(nameregex);
 							Matcher namematcher = namepattern.matcher(name);
 							if( namematcher.matches()) {
-								cb3.setName(name);
+								productBean.setName(name);
 								stay1=false;
 							}else {
 								System.err.println("please Enter the VALID NAME..!");
@@ -68,31 +69,42 @@ public class FmApplication3 {
 
 						boolean stay3=true;
 						while(stay3) {
-							System.out.println("Enter Quantity of Product: ");
-							Integer quantity=sc.nextInt();
-							String quantity1=quantity.toString();
-							String nameregex = "^[0-9]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(quantity1);
-							if( namematcher.matches()) {
-								cb3.setQuantity(quantity);
-								stay3=false;
-							}else {
-								System.err.println("please Enter the VALID Quantity (An Integer)..!");
-								stay3=true;
+							try{
+								System.out.println("Enter Product Quantity: ");
+								String quantity1=scanner.next();
+								String quantityregex = "^[0-9]*";
+								Pattern quantitypattern = Pattern.compile(quantityregex);
+								Matcher quantitymatcher = quantitypattern.matcher(quantity1);
+								if( quantitymatcher.matches()) {
+									Integer quantity=Integer.parseInt(quantity1); 
+									if(quantity>0) {
+										productBean.setQuantity(quantity);
+										stay3=false;
+									}else {
+										stay3=true;
+										throw new com.capgemini.foresterymanagement.exception.
+										ProductAppException("please Enter the greater than zero values..!");
+									}
+								}else {
+									System.err.println("please Enter the VALID QUANTITY..!");
+									stay3=true;
+								}
+							}catch(ProductAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
 							}
-						} 				
+						}			
 
 
 						boolean stay2=true;
 						while(stay2) {
 							System.out.println("Enter Product Class(A/B/C/D/E): ");
-							String pclass=sc.next();
+							String pclass=scanner.next();
 							String nameregex = "^[A-Z]{1}$";
 							Pattern namepattern = Pattern.compile(nameregex);
 							Matcher namematcher = namepattern.matcher(pclass);
 							if( namematcher.matches()) {
-								cb3.setProductClass(pclass);
+								productBean.setProductClass(pclass);
 								stay2=false;
 							}else {
 								System.err.println("please Enter the VALID Class..!");
@@ -100,133 +112,185 @@ public class FmApplication3 {
 							}
 						} 
 
-						boolean stay4=true;
-						while(stay4) {
-							System.out.println("Enter Product Cost: ");
-							Integer cost=sc.nextInt();
-							String cost1=cost.toString();
-							String nameregex = "^[0-9]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(cost1);
-							if( namematcher.matches()) {
-								cb3.setCost(cost);
-								stay4=false;
-							}else {
-								System.err.println("please Enter the VALID Cost (An Integer)..!");
-								stay4=true;
+						boolean stay5=true;
+						while(stay5) {
+							try{
+								System.out.println("Enter Product Cost: ");
+								String product1=scanner.next();
+								String productregex = "^[0-9]*";
+								Pattern productpattern = Pattern.compile(productregex);
+								Matcher phonematcher = productpattern.matcher(product1);
+								if( phonematcher.matches()) {
+									Integer cost=Integer.parseInt(product1);
+									if(cost>0) {
+										productBean.setCost(cost);
+										stay5=false;
+									}else {
+										stay5=true;
+										throw new ProductAppException("Enter the cost, must be more than zero");
+									}
+								}else {
+									System.err.println("please Enter the VALID COST..!");
+									stay5=true;
+								}
+							}catch(ProductAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
 							}
-						} 
+						}
 
-						boolean isAdded=cdao.addProduct(cb3);
+						boolean isAdded=productDao.addProduct(productBean);
 						if(isAdded) {
 							System.out.println("Done with Addition of product");
 						}else {
-							System.err.println("Problem with Addition, try again..!");
+							System.err.println("Problem with Addition of product, try again..!");
 						}
 						break;
 
 
 					case 2:
 						try{
-							System.out.println("enter the ProductID to search Product: ");
-							int pid=sc.nextInt();
-							ProductBean product= cdao.searchProduct(pid);
-							if(product!=null) {
-								System.out.println(product);
-							}else {
-								System.err.println("There is Product with mentioned ID");
+							System.out.println("enter the productID to search product: ");
+							String ctidToSearch=scanner.next();
+							String ctidToSearchregex = "^[0-9]*$";
+							Pattern ctidToSearchpattern = Pattern.compile(ctidToSearchregex);
+							Matcher ctidToSearchmatcher = ctidToSearchpattern.matcher(ctidToSearch);
+							if(ctidToSearchmatcher.matches()) {	
+								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
+								ProductBean poBean=productDao.searchProduct(ctidToSearch2);
+								if(poBean!=null) {
+									System.out.println(poBean);
+								}else {
+									throw new ContractorAppException("No such products,please try another CTID");
+								}
 							}
-						}catch (Exception e) {
-							System.out.println("Please enter the vallid input");
+						}catch (ContractorAppException e) {
+							String message=e.getMessage();
+							System.err.println(message);
 						}
 						break;
+
 					case 3:
-						ProductBean cb4=new ProductBean();
-						boolean stay6=true;
-						while(stay6) {
-							System.out.println("Enter Product CID To Update: ");
-							Integer pid2=sc.nextInt();
-							String pid3=pid2.toString();
-							String nameregex = "^[0-9]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(pid3);
-							if( namematcher.matches()) {
-								cb4.setPid(pid2);
-								stay6=false;
-							}else {
-								System.err.println("please Enter the VALID PID To Update (An Integer..!");
-								stay6=true;
-							}
-						} 	
-
-						boolean stay7=true;
-						while(stay7) {
-							System.out.println("Enter Product Name To Update: ");
-							String name3=sc.next();
-							String nameregex = "^[A-Za-z]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(name3);
-							if( namematcher.matches()) {
-								cb4.setName(name3);
-								stay7=false;
-							}else {
-								System.err.println("please Enter the VALID NAME To Update..!");
-								stay7=true;
-							}
-						} 				
-
-						boolean stay8=true;
-						while(stay8) {
-							System.out.println("Enter Quantity of Product To Update: ");
-							Integer quantity2=sc.nextInt();
-							String quantity1=quantity2.toString();
-							String nameregex = "^[0-9]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(quantity1);
-							if( namematcher.matches()) {
-								cb4.setQuantity(quantity2);
-								stay8=false;
-							}else {
-								System.err.println("please Enter the VALID Quantity To Update (An Integer)..!");
-								stay8=true;
-							}
-						} 				
-
-
-						boolean stay9=true;
-						while(stay9) {
-							System.out.println("Enter Product Class(A/B/C/D/E) To Update: ");
-							String class2=sc.next();
-							String nameregex = "^[A-Z]{1}$";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(class2);
-							if( namematcher.matches()) {
-								cb4.setProductClass(class2);
-								stay9=false;
-							}else {
-								System.err.println("please Enter the VALID Class To Update..!");
-								stay9=true;
-							}
-						} 
-
+						ProductBean productBean2=new ProductBean();
 						boolean stay10=true;
 						while(stay10) {
-							System.out.println("Enter Product COST To Update: ");
-							Integer cost2=sc.nextInt();
-							String cost1=cost2.toString();
-							String nameregex = "^[0-9]*";
-							Pattern namepattern = Pattern.compile(nameregex);
-							Matcher namematcher = namepattern.matcher(cost1);
-							if( namematcher.matches()) {
-								cb4.setCost(cost2);
-								stay10=false;
-							}else {
-								System.err.println("please Enter the VALID Cost To Update (An Integer)..!");
-								stay10=true;
+							System.out.println("Enter Product ID to update: ");
+							try
+							{
+								String productID=scanner.next();
+								String productIDregex = "^[0-9]*$";
+								Pattern productIDpattern = Pattern.compile(productIDregex);
+								Matcher productIDmatcher = productIDpattern.matcher(productID);
+								if( productIDmatcher.matches()) {
+									int ContractID2=Integer.parseInt(productID);
+									if(ContractID2>0) {
+										productBean2.setPid(ContractID2);
+										stay10=false;
+									}else {
+										stay10=true;
+										throw new ProductAppException("please Enter vallid PID(greater than Zero)!");
+									}
+
+								}else {
+									stay10=true;
+									throw new ProductAppException("please Enter the INTEGER value..!");
+								}
+							}
+							catch (ProductAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
 							}
 						} 
 
-						boolean isUpdated=cdao.updateProduct(cb4.getPid(),cb4);
+						boolean stay11=true;
+						while(stay11) {
+							System.out.println("Enter Product Name to Update: ");
+							String pname=scanner.next();
+							String nameregex = "^[A-Za-z]*";
+							Pattern namepattern = Pattern.compile(nameregex);
+							Matcher namematcher = namepattern.matcher(pname);
+							if( namematcher.matches()) {
+								productBean2.setName(pname);
+								stay11=false;
+							}else {
+								System.err.println("please Enter the VALID NAME..!");
+								stay11=true;
+							}
+						} 
+
+						boolean stay12=true;
+						while(stay12) 
+						{
+							System.out.println("Enter Product Class(A-Z) to Update: ");
+							String productClass=scanner.next();
+							String productClassgex = "^[A-Z]{1}$";
+							Pattern productPattern = Pattern.compile(productClassgex);
+							Matcher productMatcher = productPattern.matcher(productClass);
+							if( productMatcher.matches()) {
+
+								productBean2.setProductClass(productClass);
+								stay12=false;
+							}else {
+								System.err.println("please Enter the VALID PRODCUT CLASS NAME..!");
+								stay12=true;
+							}
+						}
+
+						boolean stay13=true;
+						while(stay13) {
+							try{
+								System.out.println("Enter Product Quantity to update: ");
+								String quantity1=scanner.next();
+								String quantityregex = "^[0-9]*";
+								Pattern quantitypattern = Pattern.compile(quantityregex);
+								Matcher quantitymatcher = quantitypattern.matcher(quantity1);
+								if( quantitymatcher.matches()) {
+									Integer quantity=Integer.parseInt(quantity1); 
+									if(quantity>0) {
+										productBean2.setQuantity(quantity);
+										stay13=false;
+									}else {
+										stay13=true;
+										throw new ProductAppException("please Enter the greater than zero values..!");
+									}
+								}else {
+									System.err.println("please Enter the VALID QUANTITY..!");
+									stay13=true;
+								}
+							}catch(ProductAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
+							}
+						}
+
+
+						boolean stay15=true;
+						while(stay15) {
+							try{
+								System.out.println("Enter Product Cost: ");
+								String product1=scanner.next();
+								String productregex = "^[0-9]*";
+								Pattern productpattern = Pattern.compile(productregex);
+								Matcher phonematcher = productpattern.matcher(product1);
+								if( phonematcher.matches()) {
+									Integer cost=Integer.parseInt(product1);
+									if(cost>0) {
+										productBean2.setCost(cost);
+										stay15=false;
+									}else {
+										stay15=true;
+										throw new ProductAppException("Enter the cost, must be more than zero");
+									}
+								}else {
+									System.err.println("please Enter the VALID COST..!");
+									stay15=true;
+								}
+							}catch(ProductAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
+							}
+						}
+						boolean isUpdated=productDao.updateProduct(productBean2.getPid(),productBean2);
 						if(isUpdated==true) {
 							System.out.println("Product updated successfully..!");
 						}else {
@@ -234,21 +298,25 @@ public class FmApplication3 {
 						}
 						break;
 					case 4:
-						System.out.println("Enter The Product ID to delete the account:");
 						try {
-							int pidToDelete=sc.nextInt();
-							boolean isDeleted=cdao.deleteProduct(pidToDelete);
-							if(isDeleted) {
-								System.out.println("The product with PRODUCT-ID: "+pidToDelete+" deleted successfully");
+							System.out.println("enter your productID To Delete: ");
+							String pidToDelete=scanner.next();
+							String pidToDeleteregex = "^[0-9]*$";
+							Pattern pidToDeletepattern = Pattern.compile(pidToDeleteregex);
+							Matcher pidToDeletematcher = pidToDeletepattern.matcher(pidToDelete);
+							if(pidToDeletematcher.matches()) {	
+								Integer pidToSearch2=Integer.parseInt(pidToDelete);
+								productDao.deleteProduct(pidToSearch2);
 							}else {
-								System.err.println("Product-ID not found..!");
+								throw new ProductAppException("Please Enter The Valid PID, an INTEGER..!");
 							}
-						}catch (Exception e) {
-							System.err.println("Please enter the valid input..!");
+						}catch (ProductAppException e) {
+							String message=e.getMessage();
+							System.err.println(message);
 						}
 						break;
 					case 5:
-						cdao.getAllProduct();
+						productDao.getAllProduct();
 						break;
 					case 6:
 						AdminHomeApllication.adminHome();

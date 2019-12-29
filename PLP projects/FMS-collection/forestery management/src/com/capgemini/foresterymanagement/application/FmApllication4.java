@@ -1,25 +1,30 @@
 package com.capgemini.foresterymanagement.application;
 
 import java.util.Scanner;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.capgemini.foresterymanagement.bean.LandsBean;
 import com.capgemini.foresterymanagement.dao.LandsDAO;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
+import com.capgemini.foresterymanagement.exception.*;
 
 public class FmApllication4 {
+
 	public static void land() {
 		try {		
-			LandsDAO land=ForestFactory.InstanceOfLandDAOImpl();
-			Scanner sc=new Scanner(System.in);
-			System.out.println("1.Enter one to Add land details");
-			System.out.println("2.Enter two to Search land details");
-			System.out.println("3.Enter three to Update land details");
-			System.out.println("4.Enter four to Delete land details");
-			System.out.println("5.Enter five to get All land details");
+			LandsDAO landDao=ForestFactory.InstanceOfLandDAOImpl();
+			Scanner scanner=new Scanner(System.in);
+
+			System.out.println("1.Enter one to Add landDao details");
+			System.out.println("2.Enter two to Search landDao details");
+			System.out.println("3.Enter three to Update landDao details");
+			System.out.println("4.Enter four to Delete landDao details");
+			System.out.println("5.Enter five to get All landDao details");
 			System.out.println("6.Enter six to return home");
-			String choice1=sc.next();
+
+			String choice1=scanner.next();
 			String choice1IDregex = "^[0-9]*$";
 			Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
 			Matcher choice1IDmatcher = choice1IDpattern.matcher(choice1);
@@ -27,36 +32,47 @@ public class FmApllication4 {
 				int	choice2=Integer.parseInt(choice1);
 
 				switch (choice2) {
+
 				case 1:
-					LandsBean land1=new LandsBean();
+					LandsBean landBean=new LandsBean();
 
 					boolean stay1=true;
 					while(stay1) {
-						System.out.println("Enter ID of Land: ");
-						Integer landId=sc.nextInt();
-						String landId1=landId.toString();
-						String sizeregex = "^[0-9]*";
-						Pattern sizepattern = Pattern.compile(sizeregex);
-						Matcher sizematcher = sizepattern.matcher(landId1);
-						if( sizematcher.matches()) {
-							land1.setLandId(landId);
-							stay1=false;
-						}else {
-							System.err.println("please Enter the VALID land-Id (An Integer)..!");
-							stay1=true;
+						try{
+							System.out.println("Enter ID of Land: ");
+							String landDaoId1=scanner.next();
+							String sizeregex = "^[0-9]*";
+							Pattern sizepattern = Pattern.compile(sizeregex);
+							Matcher sizematcher = sizepattern.matcher(landDaoId1);
+							if( sizematcher.matches()) {
+								Integer landDaoId=Integer.parseInt(landDaoId1);
+								if(landDaoId>0) {
+									landBean.setLandId(landDaoId);
+									stay1=false;
+								}else {
+									throw new LandsAppException("Enter the value which must be greater than zero..!");
+								}
+							}else {
+								System.err.println("please Enter the VALID landDao-Id (An Integer)..!");
+								stay1=true;
+							}
+						}catch(LandsAppException e) {
+							String message=e.getMessage();
+							System.err.println(message);
 						}
 					} 				
+
 
 
 					boolean stay2=true;
 					while(stay2) {
 						System.out.println("Enter Land size (In-acres): ");
-						String size=sc.next();
+						String size=scanner.next();
 						String sizeregex = "^[0-9]*";
 						Pattern sizepattern = Pattern.compile(sizeregex);
 						Matcher sizematcher = sizepattern.matcher(size);
 						if( sizematcher.matches()) {
-							land1.setLandSize(size);
+							landBean.setLandSize(size);
 							stay2=false;
 						}else {
 							System.err.println("please Enter the VALID Land size..!");
@@ -67,69 +83,89 @@ public class FmApllication4 {
 					boolean stay3=true;
 					while(stay3) {
 						System.out.println("Enter Land Resources: ");
-						String resources=sc.next();
+						String resources=scanner.next();
 						String resourcesregex = "^[A-Za-z]*";
 						Pattern resourcespattern = Pattern.compile(resourcesregex);
 						Matcher resourcesmatcher = resourcespattern.matcher(resources);
 						if( resourcesmatcher.matches()) {
-							land1.setLandResources(resources);
+							landBean.setLandResources(resources);
 							stay3=false;
 						}else {
 							System.err.println("please Enter the VALID Resources..!");
 							stay3=true;
 						}
 					} 
+
+					boolean add=landDao.addLands(landBean);
+					if(add) {
+						System.out.println("Added..successfully..!");
+					}else {
+						System.err.println("failed to add land details ");
+					}
+
+
 					break;
 
 				case 2:
 					boolean s_stay=true;
-					while(s_stay) {
-						try{
-							System.out.println("enter the LandsID to search Lands: ");
-							int pid=sc.nextInt();
-							LandsBean Lands= land.searchLands(pid);
-							if(Lands!=null) {
-								System.out.println(Lands);
+					try{
+						System.out.println("enter the LandID to search Lnad: ");
+						String LandToSearch=scanner.next();
+						String LandToSearchregex = "^[0-9]*$";
+						Pattern LandToSearchpattern = Pattern.compile(LandToSearchregex);
+						Matcher LandToSearchmatcher = LandToSearchpattern.matcher(LandToSearch);
+						if(LandToSearchmatcher.matches()) {
+							Integer LandToSearch2=Integer.parseInt(LandToSearch);
+							if(LandToSearch2>0) {
+								landDao.searchLands(LandToSearch2);
 							}else {
-								System.err.println("There is Lands with mentioned ID");
+								s_stay=true;
+								throw new ProductAppException("Enter vallid Land Id to search, must be positive");
 							}
-							s_stay=false;
-						}catch (Exception e) {
-							System.out.println("Please enter the valid input");
+						}else {
 							s_stay=true;
+							throw new ProductAppException("Enter vallid Land Id to search,must be an Integer");
 						}
+					}catch (ProductAppException e) {
+						String message=e.getMessage();
+						System.err.println(message);
 					}
-					break;
+					break;	
+
 				case 3:
-					LandsBean land2=new LandsBean();
+					LandsBean landBean2=new LandsBean();
 
 					boolean stay4=true;
 					while(stay4) {
 						System.out.println("Enter ID of Land to update: ");
-						Integer landId=sc.nextInt();
-						String landId1=landId.toString();
+						String landId1=scanner.next();
 						String sizeregex = "^[0-9]*";
 						Pattern sizepattern = Pattern.compile(sizeregex);
 						Matcher sizematcher = sizepattern.matcher(landId1);
 						if( sizematcher.matches()) {
-							land2.setLandId(landId);
-							stay4=false;
+							Integer landId=Integer.parseInt(landId1);
+							if(landId>0) {
+								landBean2.setLandId(landId);
+								stay4=false;
+							}else {
+								System.err.println("enter the Positive value, must be greater than zero..!");
+							}
 						}else {
 							System.err.println("please Enter the VALID land-Id (An Integer)..!");
 							stay4=true;
 						}
-					} 				
+					} 			
 
 
 					boolean stay5=true;
 					while(stay5) {
 						System.out.println("Enter Land size (In-acres) to update: ");
-						String size=sc.next();
+						String size=scanner.next();
 						String sizeregex = "^[0-9]*";
 						Pattern sizepattern = Pattern.compile(sizeregex);
 						Matcher sizematcher = sizepattern.matcher(size);
 						if( sizematcher.matches()) {
-							land2.setLandSize(size);
+							landBean2.setLandSize(size);
 							stay5=false;
 						}else {
 							System.err.println("please Enter the VALID Land size..!");
@@ -140,39 +176,57 @@ public class FmApllication4 {
 					boolean stay6=true;
 					while(stay6) {
 						System.out.println("Enter Land Resources to update: ");
-						String resources=sc.next();
+						String resources=scanner.next();
 						String resourcesregex = "^[A-Za-z]*";
 						Pattern resourcespattern = Pattern.compile(resourcesregex);
 						Matcher resourcesmatcher = resourcespattern.matcher(resources);
 						if( resourcesmatcher.matches()) {
-							land2.setLandResources(resources);
+							landBean2.setLandResources(resources);
 							stay6=false;
 						}else {
 							System.err.println("please Enter the VALID Resources..!");
 							stay6=true;
 						}
 					} 
-					break;
 
-				case 4:
-					System.out.println("Enter The Land-ID to delete land:");
-					try {
-						int lidToDelete=sc.nextInt();
-						boolean isDeleted=land.deleteLands(lidToDelete);
-						if(isDeleted) {
-							System.out.println("The Land with Lands-ID: "+lidToDelete+" deleted successfully");
-						}else {
-							System.err.println("Land-ID not found..!");
-						}
-					}catch (Exception e) {
-						System.err.println("Please enter the valid input..!");
+					boolean update=landDao.updateLands(landBean2.getLandId(), landBean2);
+					if(update) {
+						System.out.println("Updated..GOOD DAY");
+					}else {
+						System.out.println("Failed to update");
 					}
 					break;
+
+
+				case 4:
+					try {
+						System.out.println("Enter The Land-ID to delete land:");
+						String landToDelete=scanner.next();
+						String landToDeleteregex = "^[0-9]*$";
+						Pattern landToDeletepattern = Pattern.compile(landToDeleteregex);
+						Matcher landToDeletematcher = landToDeletepattern.matcher(landToDelete);
+						if(landToDeletematcher.matches()) {	
+							Integer landToSearch2=Integer.parseInt(landToDelete);
+							if(landDao.deleteLands(landToSearch2)) {
+								System.out.println("Done with deletion..!");	
+							}else {
+								System.err.println("No such LandId,try again");
+							}
+						}else {
+							throw new LandsAppException("Please Enter The Valid landId, an INTEGER..!");
+						}
+					}catch (LandsAppException e) {
+						String message=e.getMessage();
+						System.err.println(message);
+					}
+					break;
+
 				case 5:
-					land.getAllLands();
+					landDao.getAllLands();
 					break;
 				case 6:
 					AdminHomeApllication.adminHome();
+					
 				default: System.err.println("Enter the valid choice to move further");
 				break;
 

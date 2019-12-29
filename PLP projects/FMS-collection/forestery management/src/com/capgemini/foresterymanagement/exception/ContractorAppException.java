@@ -1,4 +1,4 @@
-package com.capgemini.forestmanagement.exception;
+package com.capgemini.foresterymanagement.exception;
 
 public class ContractorAppException extends RuntimeException {
 	String message;

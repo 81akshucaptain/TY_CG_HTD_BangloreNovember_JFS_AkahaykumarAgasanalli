@@ -7,19 +7,17 @@ import java.util.Scanner;
 import com.capgemini.foresterymanagement.bean.ContractorBean;
 import com.capgemini.foresterymanagement.bean.CustomerBean;
 import com.capgemini.foresterymanagement.dao.CustomerDAO;
+import com.capgemini.foresterymanagement.exception.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
-import com.capgemini.forestmanagement.exception.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.management.ImmutableDescriptor;
 
 public class FmApplication1 {
 	public static void customer(){
 		CustomerDAO customerDao=ForestFactory.instanceOfCustomerDAOImpl();
 
-		Scanner sc=new Scanner(System.in);
+		Scanner scanner=new Scanner(System.in);
 
 
 		while (true) {
@@ -32,7 +30,7 @@ public class FmApplication1 {
 				System.out.println("*Enter 5 to get all the customer");
 				System.out.println("*Enter 6 to Return HOME");
 
-				String choice1=sc.next();
+				String choice1=scanner.next();
 				String choice1IDregex = "^[0-9]*$";
 				Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
 				Matcher choice1IDmatcher = choice1IDpattern.matcher(choice1);
@@ -47,11 +45,11 @@ public class FmApplication1 {
 						while(stay1) {
 							try {
 								System.out.println("Enter customer First Name: ");
-								String fname=sc.next();
-								System.out.println("Enter customer middle Name(if not please enter underscore): ");
-								String mname=sc.next();
+								String fname=scanner.next();
+								System.out.println("Enter customer middle Name(if not please enter underscannerore): ");
+								String mname=scanner.next();
 								System.out.println("Enter customer Last Name: ");
-								String lname=sc.next();
+								String lname=scanner.next();
 								String fullName=fname+" "+mname+" "+lname;
 								String nameregex = "^[A-Za-z _?A-Za-z A-Za-z]*";
 								Pattern namepattern = Pattern.compile(nameregex);
@@ -73,7 +71,7 @@ public class FmApplication1 {
 						while(stay2) 
 						{
 							System.out.println("Enter customer Town: ");
-							String town=sc.next();
+							String town=scanner.next();
 							String townregex = "^[A-Za-z]*";
 							Pattern townpattern = Pattern.compile(townregex);
 							Matcher townmatcher = townpattern.matcher(town);
@@ -89,7 +87,7 @@ public class FmApplication1 {
 						boolean stay4=true;
 						while(stay4) {
 							System.out.println("Enter customer Email: ");
-							String email=sc.next();
+							String email=scanner.next();
 							String emailregex = "^(.+)@(.+)\\.(.+)$";
 							Pattern emailpattern = Pattern.compile(emailregex);
 							Matcher emailmatcher = emailpattern.matcher((CharSequence)email);
@@ -106,7 +104,7 @@ public class FmApplication1 {
 						while(stay3) {
 							try {
 								System.out.println("Enter customer Postal: ");
-								String postal=sc.next();
+								String postal=scanner.next();
 								String postalregex = "^[0-9]{6}";
 								Pattern postalpattern = Pattern.compile(postalregex);
 								Matcher postalmatcher = postalpattern.matcher(postal);
@@ -132,7 +130,7 @@ public class FmApplication1 {
 						boolean stay5=true;
 						while(stay5) {
 							System.out.println("Enter customer Phone: ");
-							Long phone=sc.nextLong();
+							Long phone=scanner.nextLong();
 							String phone1=Long.toString(phone);
 							String phoneregex = "^[789][0-9]{9}";
 							Pattern phonepattern = Pattern.compile(phoneregex);
@@ -156,7 +154,7 @@ public class FmApplication1 {
 
 						try{
 							System.out.println("enter the customer ID to search Customer: ");
-							String ctidToSearch=sc.next();
+							String ctidToSearch=scanner.next();
 							String ctidToSearchregex = "^[0-9]*$";
 							Pattern ctidToSearchpattern = Pattern.compile(ctidToSearchregex);
 							Matcher ctidToSearchmatcher = ctidToSearchpattern.matcher(ctidToSearch);
@@ -178,7 +176,7 @@ public class FmApplication1 {
 							System.out.println("Enter customer ID to update: ");
 							try
 							{
-								String CostumerID=sc.next();
+								String CostumerID=scanner.next();
 								String CostumerIDregex = "^[0-9]*$";
 								Pattern CostumerIDpattern = Pattern.compile(CostumerIDregex);
 								Matcher CostumerIDmatcher = CostumerIDpattern.matcher(CostumerID);
@@ -206,11 +204,11 @@ public class FmApplication1 {
 						boolean stay11=true;
 						while(stay11) {
 							System.out.println("Enter customer First Name to update: ");
-							String fname=sc.next();
-							System.out.println("Enter customer middle Name(if not please enter underscore): ");
-							String mname=sc.next();
+							String fname=scanner.next();
+							System.out.println("Enter customer middle Name(if not please enter underscannerore): ");
+							String mname=scanner.next();
 							System.out.println("Enter customer Last Name: ");
-							String lname=sc.next();
+							String lname=scanner.next();
 							String fullName=fname+" "+mname+" "+lname;
 							String nameregex = "^[A-Za-z _?A-Za-z A-Za-z]*";
 							Pattern namepattern = Pattern.compile(nameregex);
@@ -228,7 +226,7 @@ public class FmApplication1 {
 						while(stay12) 
 						{
 							System.out.println("Enter customer Town to update: ");
-							String town2=sc.next();
+							String town2=scanner.next();
 							String townregex = "^[A-Za-z]*";
 							Pattern townpattern = Pattern.compile(townregex);
 							Matcher townmatcher = townpattern.matcher(town2);
@@ -244,7 +242,7 @@ public class FmApplication1 {
 						boolean stay14=true;
 						while(stay14) {
 							System.out.println("Enter customer Email to update: ");
-							String email2=sc.next();
+							String email2=scanner.next();
 							String emailregex = "^(.+)@(.+)\\.(.+)$";
 							Pattern emailpattern = Pattern.compile(emailregex);
 							Matcher emailmatcher = emailpattern.matcher((CharSequence)email2);
@@ -261,7 +259,7 @@ public class FmApplication1 {
 						boolean stay13=true;
 						while(stay13) {
 							System.out.println("Enter customer Postal: ");
-							int postal2=sc.nextInt();
+							int postal2=scanner.nextInt();
 							String postal1=Integer.toString(postal2);
 							String postalregex = "^[0-9]{6}";
 							Pattern postalpattern = Pattern.compile(postalregex);
@@ -283,7 +281,7 @@ public class FmApplication1 {
 						boolean stay15=true;
 						while(stay15) {
 							System.out.println("Enter customer Phone to update: ");
-							long ph=sc.nextLong();
+							long ph=scanner.nextLong();
 							String phone2=Long.toString(ph);
 							String phoneregex = "^[0-9]{10}";
 							Pattern phonepattern = Pattern.compile(phoneregex);
@@ -308,7 +306,7 @@ public class FmApplication1 {
 					case 4:
 						try {
 							System.out.println("enter your CID To Delete: ");
-							String ctidToDelete=sc.next();
+							String ctidToDelete=scanner.next();
 							String ctidToDeleteregex = "^[0-9]*$";
 							Pattern ctidToDeletepattern = Pattern.compile(ctidToDeleteregex);
 							Matcher ctidToDeletematcher = ctidToDeletepattern.matcher(ctidToDelete);
