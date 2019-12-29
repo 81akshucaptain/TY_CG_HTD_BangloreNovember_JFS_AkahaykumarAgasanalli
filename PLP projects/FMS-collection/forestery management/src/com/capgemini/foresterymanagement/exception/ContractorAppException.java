@@ -11,6 +11,6 @@ public class ContractorAppException extends RuntimeException {
 	}
 	 @Override
 	public String getMessage() {
-		return super.getMessage();
+		return message;
 	}
 }

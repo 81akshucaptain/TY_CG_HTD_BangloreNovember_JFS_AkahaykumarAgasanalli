@@ -12,14 +12,14 @@ import com.capgemini.foresterymanagement.dao.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
 import com.capgemini.foresterymanagement.exception.*;
 
-public class FmApllication2 {
+public class FmContractorApp2 {
 	public static void contract(int cidAuto) {
 		ContractorDAO contractorDao=ForestFactory.instanceOfContractorDAOImpl();
 		ProductDAO proBean=new ProductDAOImpl();
 		Scanner scanner=new Scanner(System.in);
 		while (true) {
 			try {			
-				System.out.println("********************WELCOME CUSTOMER TO CONTRACT HOUSE********************");
+				System.out.println("\n********************WELCOME CUSTOMER TO CONTRACT HOUSE********************");
 				System.out.println("*Enter 1 to add the Contract");
 				System.out.println("*Enter 2 to search the Contract");
 				System.out.println("*Enter 3 to update the Contract");
@@ -73,7 +73,7 @@ public class FmApllication2 {
 								if(ProductIDmatcher.matches()) {
 									int ProductID2=Integer.parseInt(ProductID);
 									if(ProductID2==00000) {
-										FmApllication2.contract(cidAuto);
+										FmContractorApp2.contract(cidAuto);
 									}
 									boolean product=proBean.isThereProductId(ProductID2);
 									if(product) {
@@ -82,11 +82,15 @@ public class FmApllication2 {
 
 									}else {
 										System.err.println("Ooops!! This product is out of Stock, try other product-Id's");
+										stay7=true;
 									}
+								}else {
+									stay7=true;
+									throw new ContractorAppException("Enter the valid ProductID");
 								}
-							}catch (Exception e) {
-								System.err.println("Enter The Valid Integer For Quantity");
-								stay7=true;
+							}catch (ContractorAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
 							}
 						}
 
@@ -194,9 +198,9 @@ public class FmApllication2 {
 								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
 								ContractorBean coBean=contractorDao.searchContarctor(ctidToSearch2);
 								if(coBean==null) {
-									throw new ContractorAppException("No such Contracts,please try another CTID");
+									throw new ContractorAppException("No such Contracts,please try another CTID\n");
 								}else {
-									System.out.println(coBean);
+									System.out.println(coBean+"\n");
 								}
 							}
 						}catch (ContractorAppException e) {
@@ -252,7 +256,7 @@ public class FmApllication2 {
 								if(ProductIDmatcher.matches()) {
 									int ProductID2=Integer.parseInt(ProductID);
 									if(ProductID2==00000) {
-										FmApllication2.contract(cidAuto);
+										FmContractorApp2.contract(cidAuto);
 									}
 									boolean product=proBean.isThereProductId(ProductID2);
 									if(product) {
@@ -264,10 +268,13 @@ public class FmApllication2 {
 										throw new com.capgemini.foresterymanagement.exception.
 										ContractorAppException("Ooops!! This product is out of Stock, try other product-Id's");
 									}
+								}else {
+									stop7=true;
+									throw new ContractorAppException("Please enter the valid Input..!");
 								}
-							}catch (Exception e) {
-								System.err.println("Enter The Valid Integer For Quantity");
-								stop7=true;
+							}catch (ContractorAppException e) {
+								String message=e.getMessage();
+								System.err.println(message);
 							}
 						}
 
@@ -325,26 +332,35 @@ public class FmApllication2 {
 						//						stop2=true;
 						//					}
 						//				}
-
-						boolean stop9=true;
-						while(stop9) {
-							System.out.println("enter the delivery date in YYYY/MM/DD fromat To Update: ");
-							String date = scanner.next();
-
-							String regex = "^[0-9]{4}/(1[0-2]|0[1-9])/(3[01]"
-									+ "|[12][0-9]|0[1-9])$"; 
-							Pattern pattern = Pattern.compile(regex); 
-							Matcher matcher = pattern.matcher((CharSequence)date);
-							if(matcher.matches()) {
-								contractorBean2.setDeliveryDate(date);
-								stop9=false;
-							}else {
-								System.err.println("Please Enter The Valid DATE-FORMATE to update..!");
-								stop9=true;
+						boolean stay10=true;
+						while(stay10) {
+							try{
+								System.out.println("Enter the quantiy required to update: ");
+								String quantity=scanner.next();
+								String quantityregex = "^[0-9]*$";
+								Pattern quantitypattern = Pattern.compile(quantityregex);
+								Matcher quantitymatcher = quantitypattern.matcher(quantity);
+								if(quantitymatcher.matches()) {
+									int quantity2=Integer.parseInt(quantity);
+									contractorBean2.setQunatity(quantity2);
+									stay10=false;
+								}else {
+									System.err.println("please Enter the VALID Integer for quantity..!");
+									stay10=true;
+								}
+							}catch (ContractorAppException e) {
+								System.err.println("please try again for Quantity");
+								stay10=true;
 							}
-
 						}
-						contractorDao.updateContarctor(contractorBean2.getContractId(),contractorBean2);
+
+
+						Boolean isUpdated=contractorDao.updateContarctor(contractorBean2.getContractId(),contractorBean2);
+						if(isUpdated) {
+							System.out.println("Updated successfully..!\n");
+						}else {
+							System.err.println("Upadation failed..!\n");
+						}
 						break;
 
 					case 4:
@@ -359,25 +375,30 @@ public class FmApllication2 {
 							if(ctidToDeletematcher.matches()) {	
 								Integer ctidToSearch2=Integer.parseInt(ctidToDelete);
 								contractBean3.setContractId(ctidToSearch2);
-								contractorDao.deletecontarctor(contractBean3.getContractId());
+								boolean isDeleted=contractorDao.deletecontarctor(contractBean3.getContractId());
+								if(isDeleted) {
+									System.out.println("Specified Contract got deleted..\n");
+								}else {
+									System.err.println("Contrct not found..!");
+								}
 							}else {
-								throw new ContractorAppException("Please Enter The Valid CTID, an INTEGER..!");
+								throw new ContractorAppException("Please Enter The Valid CTID, an INTEGER..!\n");
 							}
 						}catch (Exception e) {
 							String message=e.getMessage();
 							System.err.println(message);
 						}
 						break;					
-						
+
 					case 5:
-							contractorDao.getAllContarctor();
-							break;
-						
-					case 6:
-							FmHome.main(null);
-						
-					default: System.err.println("Enter the valid choice to move further");
+						contractorDao.getAllContarctor();
 						break;
+
+					case 6:
+						FmHome.main(null);
+
+					default: System.err.println("Enter the valid choice to move further");
+					break;
 
 					}
 				}else {

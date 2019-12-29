@@ -12,14 +12,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private static HashMap<Integer,CustomerBean> h1=new HashMap<Integer,CustomerBean>();
 	static int cid=0;
 	CustomerBean cbToLogin=null;
+	
 	@Override
 	public void getAllCustomer() {
 		System.out.println("                            ::::ALL CUSTOMER::::");
+		if(!(h1.isEmpty())) {
 		Set<Integer> s=h1.keySet();
 		for (Integer key : s) {
 			CustomerBean cb=h1.get(key);
 			System.out.println("CUSTOMER-ID: "+key);
 			System.out.println(cb);
+		}
+		}else {
+			System.err.println("Currently there are no customers..!");
 		}
 	}
 

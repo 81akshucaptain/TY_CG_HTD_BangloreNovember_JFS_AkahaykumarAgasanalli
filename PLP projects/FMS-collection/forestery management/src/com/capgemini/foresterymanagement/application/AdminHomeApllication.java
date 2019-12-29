@@ -29,16 +29,16 @@ public class AdminHomeApllication {
 
 					switch (choice2) {
 					case 1:
-						FmApplication1.customer();
+						FmCustomerApp1.customer();
 						break;
 
 					case 2:
-						FmApplication3 f3=new FmApplication3();
+						FmProductApp3 f3=new FmProductApp3();
 						f3.product();
 						break;
 
 					case 3:
-						FmApllication4.land();
+						FmLandsApp4.land();
 						break;
 
 					case 4:

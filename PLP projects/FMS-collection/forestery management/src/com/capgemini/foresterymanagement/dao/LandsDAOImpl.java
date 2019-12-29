@@ -52,9 +52,13 @@ public class LandsDAOImpl implements LandsDAO {
 	}
 
 	@Override
-	public LandsBean searchLands(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+	public LandsBean searchLands(int lid) {
+		if(h1.containsKey(lid)==true) {
+			return h1.get(lid);
+		}else {
+			System.err.println("No such land Exist..!");
+			return null;
+		}	
 	}
 
 }

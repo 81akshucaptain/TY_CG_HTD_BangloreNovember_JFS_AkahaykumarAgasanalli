@@ -13,7 +13,7 @@ import com.capgemini.foresterymanagement.factory.ForestFactory;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FmApplication1 {
+public class FmCustomerApp1 {
 	public static void customer(){
 		CustomerDAO customerDao=ForestFactory.instanceOfCustomerDAOImpl();
 
@@ -130,13 +130,13 @@ public class FmApplication1 {
 						boolean stay5=true;
 						while(stay5) {
 							System.out.println("Enter customer Phone: ");
-							Long phone=scanner.nextLong();
-							String phone1=Long.toString(phone);
-							String phoneregex = "^[789][0-9]{9}";
+							String phone=scanner.next();
+							String phoneregex = "^[6789][0-9]{9}";
 							Pattern phonepattern = Pattern.compile(phoneregex);
-							Matcher phonematcher = phonepattern.matcher(phone1);
+							Matcher phonematcher = phonepattern.matcher(phone);
 							if( phonematcher.matches()) {
-								customerBean.setPhone(phone);
+								Long phone2=Long.parseLong(phone);
+								customerBean.setPhone(phone2);
 								stay5=false;
 							}else {
 								System.err.println("please Enter the VALID PHONE..!");
@@ -160,7 +160,12 @@ public class FmApplication1 {
 							Matcher ctidToSearchmatcher = ctidToSearchpattern.matcher(ctidToSearch);
 							if(ctidToSearchmatcher.matches()) {	
 								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
-								customerDao.searchCustomer(ctidToSearch2);
+								CustomerBean cbBean=customerDao.searchCustomer(ctidToSearch2);
+								if(cbBean!=null) {
+									System.out.println(cbBean);
+								}else {
+									throw new CustomerAppException("Customer Not found,try again with other ID");
+								}
 							}
 						}catch (CustomerAppException e) {
 							String message=e.getMessage();

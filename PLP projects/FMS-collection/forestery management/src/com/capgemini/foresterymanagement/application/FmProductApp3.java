@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FmApplication3 {
+public class FmProductApp3 {
 	public void product() {
 
 		ProductDAO productDao=ForestFactory.insatnceOfProductDAOImpl();
@@ -98,7 +98,7 @@ public class FmApplication3 {
 
 						boolean stay2=true;
 						while(stay2) {
-							System.out.println("Enter Product Class(A/B/C/D/E): ");
+							System.out.println("Enter Product Class(A-Z): ");
 							String pclass=scanner.next();
 							String nameregex = "^[A-Z]{1}$";
 							Pattern namepattern = Pattern.compile(nameregex);
@@ -158,13 +158,13 @@ public class FmApplication3 {
 							if(ctidToSearchmatcher.matches()) {	
 								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
 								ProductBean poBean=productDao.searchProduct(ctidToSearch2);
-								if(poBean!=null) {
-									System.out.println(poBean);
+								if(poBean==null) {
+									throw new ProductAppException("No such products,please try another CTID");
 								}else {
-									throw new ContractorAppException("No such products,please try another CTID");
+									System.out.println(poBean);
 								}
 							}
-						}catch (ContractorAppException e) {
+						}catch (ProductAppException e) {
 							String message=e.getMessage();
 							System.err.println(message);
 						}

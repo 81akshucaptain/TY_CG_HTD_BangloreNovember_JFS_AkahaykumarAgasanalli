@@ -81,6 +81,7 @@ public class ProductDAOImpl implements ProductDAO {
 			if(h1.containsKey(pid)==true) {
 				return h1.get(pid);
 			}else {
+				System.err.println("No such Product exist..!");
 				return null;
 			}
 		}catch (Exception e) {

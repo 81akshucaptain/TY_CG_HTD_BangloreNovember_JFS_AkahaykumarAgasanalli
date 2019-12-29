@@ -40,7 +40,7 @@ public class FmHome {
 						String email=scanner.next();
 						boolean log=dao.customerLogin(cid, email);
 						if(log==true) {
-							FmApllication2.contract(cid);
+							FmContractorApp2.contract(cid);
 						}else {
 							System.err.println("Wrong credentials...!");
 						}
