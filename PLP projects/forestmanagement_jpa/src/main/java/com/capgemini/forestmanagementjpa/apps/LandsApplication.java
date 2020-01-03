@@ -256,9 +256,9 @@ public void lands() {
 					case 5:
 						land.getAllLands();
 						break;
-//					case 6:
-//						AdminApp app=new AdminApp();
-//						app.adminMain();
+					case 6:
+						AdminApp app=new AdminApp();
+						app.adminMain();
 					default: System.err.println("Enter the valid choice to move further");
 					break;
 

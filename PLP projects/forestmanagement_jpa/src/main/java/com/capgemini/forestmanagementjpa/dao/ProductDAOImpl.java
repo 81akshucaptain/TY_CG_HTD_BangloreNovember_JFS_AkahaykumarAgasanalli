@@ -23,11 +23,11 @@ public class ProductDAOImpl implements ProductDAO {
 			Query query=emManager.createQuery(jpql);
 			List<ProductBean> records=query.getResultList();
 			for (ProductBean productBean : records) {
-				System.out.println("PRODUCT-ID="+productBean.getPID());
-				System.out.println("PRODUCT-NAME="+productBean.getName());
+				System.out.println("PRODUCT-ID      ="+productBean.getPID());
+				System.out.println("PRODUCT-NAME    ="+productBean.getName());
 				System.out.println("PRODUCT-QUANTITY="+productBean.getQantity());
-				System.out.println("PRODUCT-CLASS="+productBean.getProductClass());
-				System.out.println("PRODUCT-COST="+productBean.getCost());
+				System.out.println("PRODUCT-CLASS   ="+productBean.getProductClass());
+				System.out.println("PRODUCT-COST    ="+productBean.getCost());
 				System.out.println("===============================================");
 			}
 		}catch (Exception e) {
@@ -61,20 +61,20 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There is problem in updating the record, try again"+message);
+			System.out.println("There is problem in updating the product, try again"+message);
 			etTransaction.rollback();
 			return false;
 		}
 	}
 
 	@Override
-	public boolean deleteProduct(int cid) {
+	public boolean deleteProduct(int pid) {
 		try{
 			eFactory=Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager=eFactory.createEntityManager();
 			etTransaction=emManager.getTransaction();
 			etTransaction.begin();
-			ProductBean cbBean=emManager.find(ProductBean.class, cid);
+			ProductBean cbBean=emManager.find(ProductBean.class, pid);
 			emManager.remove(cbBean);
 			etTransaction.commit();
 			return true;
@@ -96,7 +96,7 @@ public class ProductDAOImpl implements ProductDAO {
 			return true;
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("Failed to add product,Product may exist, try again: "+message);
+			System.out.println("Failed to add product,Product may already exist, try again: "+message);
 			return false;
 		}
 	}
@@ -115,10 +115,15 @@ public class ProductDAOImpl implements ProductDAO {
 			//			System.out.println("PRODUCT-CLASS="+productBean.getProductClass());
 			//			System.out.println("PRODUCT-COST="+productBean.getCost());
 			etTransaction.commit();
-			return productBean;
+			if(productBean!=null) {
+				return productBean;
+			}else {
+				System.out.println("Product Not found..!");
+				return null;
+			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("Problem in finding the productId, Not found, Try again");
+			System.out.println("Problem in finding the productId, Data not found, Try again"+message);
 			return null;
 		}
 	}
@@ -139,7 +144,7 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("Problem in finding the productId, Not found, Try again"+message);
+			System.out.println("Problem In Finding The productId In Inventory Try Again:"+message);
 			return false;
 		}
 

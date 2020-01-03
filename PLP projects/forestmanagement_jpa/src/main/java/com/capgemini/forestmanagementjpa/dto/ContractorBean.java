@@ -60,8 +60,13 @@ public class ContractorBean {
 	}
 	@Override
 	public String toString() {
-		return ":::::::::CONTRACT DETAILS::::::: \n"+" \n CUSTOMERID=" + customerId + "\n PRODUCTID=" + productId
-				+ "\n HAULIERID=" + haulierId + "\n DELIVERY-DATE=" + deliveryDate + "\n QUNATITY=" + qunatity + 
-				"\n=========================================================\n";
+		return "\n                     :::::::::CONTRACT DETAILS::::::: \n"
+	+"\nCONTRACT-ID  ="+contractId+
+	"\n CUSTOMER-ID  =" + customerId +
+	"\n PRODUCT-ID   =" + productId+
+	"\n HAULIER-ID   =" + haulierId + 
+	"\n DELIVERY-DATE=" + deliveryDate + 
+	"\n QUNATITY     =" + qunatity + 
+	"\n=========================================================\n";
 	}
 }

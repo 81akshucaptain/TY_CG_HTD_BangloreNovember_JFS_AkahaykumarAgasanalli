@@ -14,7 +14,7 @@ public class FmDbHome {
 		Scanner scanner=new Scanner(System.in);
 		CustomerDAO dao=ForestFactoryFmJpa.createInstanceOfCustomerDAOImpl();
 
-		System.out.println("                            :::WELCOME TO FORESTER MANAGEMENT PORTAL::::");
+		System.out.println("                               :::WELCOME TO FORESTER MANAGEMENT PORTAL::::");
 
 		while(true) {
 			try {

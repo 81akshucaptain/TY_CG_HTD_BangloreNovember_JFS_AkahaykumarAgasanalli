@@ -323,7 +323,7 @@ public class ContractorApplication {
 						break;
 
 					case 5:
-						contractDao.getAllContarctor();
+						contractDao.getAllContarctor(cid);
 						break;
 
 					case 6:

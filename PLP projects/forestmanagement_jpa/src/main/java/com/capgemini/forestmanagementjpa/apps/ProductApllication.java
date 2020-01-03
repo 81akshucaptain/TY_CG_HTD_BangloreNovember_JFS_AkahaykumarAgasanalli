@@ -170,10 +170,10 @@ public class ProductApllication {
 							if(ctidToSearchmatcher.matches()) {	
 								Integer ctidToSearch2=Integer.parseInt(ctidToSearch);
 								ProductBean prBean=productDao.searchProduct(ctidToSearch2);
-								if(prBean!=null) {
-									System.out.println(prBean);
-								}else {
+								if(prBean==null) {
 									throw new ContractorAppException("Product Not Found, try again");
+								}else {
+									System.out.println(prBean);
 								}
 							}
 						}catch (ContractorAppException e) {

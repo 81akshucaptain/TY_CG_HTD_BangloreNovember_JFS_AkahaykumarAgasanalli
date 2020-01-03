@@ -3,6 +3,7 @@ package com.capgemini.forestmanagementjpa.dao;
 import com.capgemini.forestmanagementjpa.dto.ContractorBean;
 
 public interface ContractorDAO {
+	public void getAllContarctor(int customerID);
 	public void getAllContarctor();
 	public boolean updateContarctor(int cid,ContractorBean contarctorToUpdate);
 	public boolean deletecontarctor(int cid);

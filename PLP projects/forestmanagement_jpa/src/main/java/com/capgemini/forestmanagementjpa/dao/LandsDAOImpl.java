@@ -27,7 +27,7 @@ public class LandsDAOImpl implements LandsDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("No data for Products,try again..!");
+			System.out.println("No data for Lands,try again..!");
 		}
 	}
 
@@ -57,7 +57,7 @@ public class LandsDAOImpl implements LandsDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There is problem in updating the record, try again"+message);
+			System.out.println("There is problem in updating the Land details, try again"+message);
 			etTransaction.rollback();
 			return false;
 		}
@@ -106,10 +106,15 @@ public class LandsDAOImpl implements LandsDAO{
 			etTransaction.begin();
 			LandsBean landsBean=emManager.find(LandsBean.class, lid);
 			etTransaction.commit();
-			return landsBean;
+			if(landsBean!=null) {
+				return landsBean;
+			}else {
+				System.out.println("Land details not found..!");
+				return null;
+			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("Problem in finding the productId, Not found, Try again");
+			System.out.println("Problem in finding the Land details, Not found, Try again:"+message);
 			return null;
 		}
 	}

@@ -20,14 +20,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 			EntityManager emManager=emFactory.createEntityManager();
 			Query query=emManager.createQuery(jpql);
 			List<CustomerBean> record=query.getResultList();
-			System.out.println("        ::::CUSTOMER DETAILS ARE::::");
+			System.out.println("                   ::::CUSTOMER DETAILS ARE::::");
 			for (CustomerBean customer : record) {
-				System.out.println("CID= "+customer.getCid());
-				System.out.println("NAME= "+customer.getName());
-				System.out.println("TOWN= "+customer.getTown());
-				System.out.println("POSTAL= "+customer.getPostal());
-				System.out.println("EMIAL= "+customer.getEmail());
-				System.out.println("PHONE= "+customer.getPhone());
+				System.out.println("CUSTOMER-ID= "+customer.getCid());
+				System.out.println("NAME       = "+customer.getName());
+				System.out.println("TOWN       = "+customer.getTown());
+				System.out.println("POSTAL     = "+customer.getPostal());
+				System.out.println("EMIAL      = "+customer.getEmail());
+				System.out.println("PHONE      = "+customer.getPhone());
+				System.out.println("==================================================");
 			}
 			emManager.close();
 		}catch (Exception e) {
@@ -82,7 +83,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			EntityManager emManager=emFactory.createEntityManager();
 			EntityTransaction etTransaction=emManager.getTransaction();
 			etTransaction.begin();
-			String jpql="Delete from CustomerBean where cid=cid";
+			String jpql="Delete from CustomerBean where cid=:cid";
 			Query query=emManager.createQuery(jpql);
 			query.setParameter("cid", cidTodelete);
 			int result=query.executeUpdate();
@@ -132,11 +133,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 			if(cbBean!=null) {
 			System.out.println("        ::::CUSTOMER DETAILS ARE::::");
 			System.out.println("CUSTOMER-ID= "+cbBean.getCid());
-			System.out.println("NAME= "+cbBean.getName());
-			System.out.println("TOWN= "+cbBean.getTown());
-			System.out.println("POSTAL= "+cbBean.getPostal());
-			System.out.println("EMIAL= "+cbBean.getEmail());
-			System.out.println("PHONE= "+cbBean.getPhone());
+			System.out.println("NAME       = "+cbBean.getName());
+			System.out.println("TOWN       = "+cbBean.getTown());
+			System.out.println("POSTAL     = "+cbBean.getPostal());
+			System.out.println("EMIAL      = "+cbBean.getEmail());
+			System.out.println("PHONE      = "+cbBean.getPhone());
 			}else {
 				System.out.println("Customer Not Found..! try again");
 			}
