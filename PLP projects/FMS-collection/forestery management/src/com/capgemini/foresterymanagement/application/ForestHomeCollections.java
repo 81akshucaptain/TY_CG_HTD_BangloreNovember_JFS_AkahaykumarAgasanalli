@@ -6,8 +6,9 @@ import java.util.regex.Pattern;
 
 import com.capgemini.foresterymanagement.dao.CustomerDAO;
 import com.capgemini.foresterymanagement.dao.CustomerDAOImpl;
+import com.capgemini.foresterymanagement.exception.CustomerAppException;
 
-public class FmHome {
+public class ForestHomeCollections {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
 		CustomerDAO dao=new CustomerDAOImpl();
@@ -18,7 +19,7 @@ public class FmHome {
 			try {
 				System.out.println("1.Admin ");
 				System.out.println("2.Customer");
-				System.out.println("2.Schedular");
+				System.out.println("3.Schedular");
 
 				String choice1=scanner.next();
 				String choice1IDregex = "^[0-9]*$";
@@ -29,20 +30,26 @@ public class FmHome {
 
 					switch (choice2) {
 					case 1:
-						AdminApplication.adminMain(null);
+						AdminApplication.adminMain();
 						break;
 
 					case 2:
-						System.out.println("                            :::CUSTOMER LOGIN::::");
-						System.out.println("Enter your UniqueCstomerID:");
-						int cid=scanner.nextInt();
-						System.out.println("Enter your emailId:");
-						String email=scanner.next();
-						boolean log=dao.customerLogin(cid, email);
-						if(log==true) {
-							FmContractorApp2.contract(cid);
-						}else {
-							System.err.println("Wrong credentials...!");
+						try{
+							System.out.println("                            :::CUSTOMER LOGIN::::");
+							System.out.println("Enter your UniqueCstomerID:");
+							int cid=scanner.nextInt();
+							System.out.println("Enter your password:");
+							String password=scanner.next();
+							boolean log=dao.customerLogin(cid, password);
+							if(log==true) {
+								System.out.println("successfully logged in..!");
+								ContractorApp.contract(cid);
+							}else {
+								System.err.println("Wrong credentials...!");
+							}
+						}catch (CustomerAppException e) {
+							String message=e.getMessage();
+							System.err.println(message);
 						}
 						break;
 

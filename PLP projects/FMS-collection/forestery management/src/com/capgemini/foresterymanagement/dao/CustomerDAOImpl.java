@@ -7,27 +7,22 @@ import java.util.Set;
 
 import com.capgemini.foresterymanagement.bean.ContractorBean;
 import com.capgemini.foresterymanagement.bean.CustomerBean;
+import com.capgemini.foresterymanagement.exception.CustomerAppException;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private static HashMap<Integer,CustomerBean> h1=new HashMap<Integer,CustomerBean>();
 	static int cid=0;
 	CustomerBean cbToLogin=null;
-	
+
 	@Override
-	public void getAllCustomer() {
-		System.out.println("                            ::::ALL CUSTOMER::::");
-		if(!(h1.isEmpty())) {
-		Set<Integer> s=h1.keySet();
-		for (Integer key : s) {
-			CustomerBean cb=h1.get(key);
-			System.out.println("CUSTOMER-ID: "+key);
-			System.out.println(cb);
+	public HashMap<Integer, CustomerBean> getAllCustomer() {
+		if(h1.isEmpty()==false) {
+			return h1;
 		}
-		}else {
-			System.err.println("Currently there are no customers..!");
+		else {
+			throw new CustomerAppException("No Data Found for Customers..!");
 		}
 	}
-
 	@Override
 	public boolean customerLogin(int cid, String email ) {
 		Set<Integer> s=h1.keySet();
@@ -38,26 +33,31 @@ public class CustomerDAOImpl implements CustomerDAO {
 					return true;
 				}
 				else {
-					System.err.println("Invalid USEREMAIL-ID or UNIQUECUSTOMER-ID..! please enter valid credentials");
 					return false;
 				}
 			}
 		}
-		System.err.println("HELLO CUSTOMER YOU ARE NOT PART OF THIS BUSINESS(not added to system)..!");
-		return false;
+		throw new CustomerAppException("HELLO CUSTOMER YOU ARE NOT PART OF THIS BUSINESS(not added to system)..!");
+
 	}
 
 	@Override
 	public boolean updateCustomer(int cidToUpdate,CustomerBean cutomerToUpdate) {
-		h1.replace(cidToUpdate,cutomerToUpdate );
-		return true;
+		if(h1.replace(cidToUpdate,cutomerToUpdate )!=null) {
+			return true;
+		}else{
+			throw new CustomerAppException("Customer Not Found, Problem in updating try again..!");
+		}
 	}
 
 	@Override
 	public boolean deleteCustomer(int cidToDelete) {
-		System.out.println("The specified Customer got delated");
-		h1.remove(cidToDelete);
-		return true;
+		if(h1.remove(cidToDelete)!=null) {
+			return true;
+		}
+		else {
+			throw new CustomerAppException("Customer Not Found..!");
+		}
 	}
 
 	@Override
@@ -71,9 +71,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 			//every objects
 			++cid;
 			customer.setCid(cid);
-			h1.put(cid,customer);
-			System.out.println("Customer with Customer-ID is : "+cid+" added successfully. (please remember)");
-			return true;
+			try
+			{
+				h1.put(cid,customer);
+				return true;
+			}catch (Exception e) {
+				throw new CustomerAppException("Dumplicate Customer ID, please try again..!");
+			}
 		}
 	}
 

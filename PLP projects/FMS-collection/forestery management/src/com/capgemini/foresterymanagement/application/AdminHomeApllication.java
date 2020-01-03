@@ -29,16 +29,16 @@ public class AdminHomeApllication {
 
 					switch (choice2) {
 					case 1:
-						FmCustomerApp1.customer();
+						CustomerApp.customer();
 						break;
 
 					case 2:
-						FmProductApp3 f3=new FmProductApp3();
+						ProductApp f3=new ProductApp();
 						f3.product();
 						break;
 
 					case 3:
-						FmLandsApp4.land();
+						LandsApp.land();
 						break;
 
 					case 4:
@@ -50,7 +50,7 @@ public class AdminHomeApllication {
 						break;
 
 					case 5: 
-						FmHome.main(null);
+						ForestHomeCollections.main(null);
 						break;
 
 					default: System.err.println("Enter the valid choice to move further");

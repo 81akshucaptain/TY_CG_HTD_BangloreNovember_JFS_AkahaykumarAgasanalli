@@ -10,20 +10,14 @@ public class ProductDAOImpl implements ProductDAO {
 	int pid=0;
 	ProductBean toContractPage=null;
 	@Override
-	public void getAllProduct() {
-		try{
-			System.out.println("                            ::::ALL PRODUCTS::::");
-			Set<Integer> s=h1.keySet();
-			for (Integer key : s) {
-				System.out.println("PRODUCT-ID: "+key);
-				ProductBean cb=h1.get(key);
-				System.out.println(cb);
-			}
-		}catch (Exception e) {
-			System.err.println("There is problem in displaying all the products");
+	public HashMap<Integer, ProductBean> getAllProduct() {
+		if(h1.isEmpty()==false) {
+			return h1;
+		}
+		else {
+			return null;
 		}
 	}
-
 	@Override
 	public boolean updateProduct(int pidToUpdate, ProductBean ProductToUpdate) {
 		try{

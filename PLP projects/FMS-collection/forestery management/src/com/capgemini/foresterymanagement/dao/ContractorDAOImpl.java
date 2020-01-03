@@ -1,55 +1,61 @@
 package com.capgemini.foresterymanagement.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import com.capgemini.foresterymanagement.bean.*;
+import com.capgemini.foresterymanagement.exception.ContractorAppException;
+import com.capgemini.foresterymanagement.exception.CustomerAppException;
 
 public class ContractorDAOImpl implements ContractorDAO{
 	private static HashMap<Integer,ContractorBean> h1=new HashMap<Integer,ContractorBean>();
 	int ctid=0;
+
 	@Override
-	public void getAllContarctor() {
+	public HashMap<Integer, ContractorBean> getAllContarctor() {
 		if(h1.isEmpty()==false) {
-			System.out.println("                            ::::ALL CONTRACT DETAILS::::");
-			Set<Integer> s=h1.keySet();
-			for (Integer key : s) {
-				ContractorBean cb=h1.get(key);
-				System.out.println("CONTRACT-ID: "+key);
-				System.out.println(cb);
-			}
-		}else {
-			System.err.println("Currently there is no contracts..!(No customer orders)");
+			return h1;
+		}
+		else {
+			return null;
 		}
 	}
 
 	@Override
 	public boolean updateContarctor(int cidToUpdate, ContractorBean contarctorToUpdate) {
-		h1.replace(cidToUpdate,contarctorToUpdate );
-		return true;
-
+		if(h1.replace(cidToUpdate,contarctorToUpdate )!=null) {
+			return true;
+		}else{
+			throw new ContractorAppException("Contract Not Found, Problem in updating try again..!");
+		}
 	}
+
 
 	@Override
 	public boolean deletecontarctor(int cidToDelete) {
-		h1.remove(cidToDelete);
-		return true;
+		if(h1.remove(cidToDelete)!=null) {
+			return true;
+		}
+		else {
+			throw new ContractorAppException("Contract Not Found..!");
+		}
 	}
-
 	@Override
 	public boolean addContarctor(ContractorBean contractor) {
-
 		while(true) {
 			++ctid;
 			//In-order to Add the generated ContractID to each objects
 			contractor.setContractId(ctid);
-			h1.put(ctid,contractor);
-			System.out.println("Contract with CONTRACT-ID : "+ctid+"  \n for CUSTOMER-ID "
-					+contractor.getCustomerId() +"is added succesfully (please remember )");
-			return true;
-		}	
+			try
+			{
+				h1.put(ctid,contractor);
+				throw new ContractorAppException("Contract Added Successfully with CTID: "+ctid);
+			}catch (Exception e) {
+				throw new ContractorAppException("Dumplicate Customer ID, please try again..!");
+			}
+		}
 	}
-
 	@Override
 	public ContractorBean searchContarctor(int ctid) {
 		if(h1.containsKey(ctid)==true) {

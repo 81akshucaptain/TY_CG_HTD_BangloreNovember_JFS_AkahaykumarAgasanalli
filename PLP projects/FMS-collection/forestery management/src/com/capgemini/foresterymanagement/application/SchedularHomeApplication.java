@@ -60,7 +60,7 @@ public class SchedularHomeApplication {
 							System.err.println("REQUESTED CONTRACT FOR PRODUCTS WILL BE DELAYED DUE TO\n "
 									+ "INSUFFICIENT STOCKS, DELIVERED AS SOON AS POSIIBLE..");
 						}
-					case 4: FmHome.main(null);
+					case 4: ForestHomeCollections.main(null);
 					default: System.err.println("Enter the valid choice to move further");
 					break;
 

@@ -1,13 +1,12 @@
-package com.capgemini.foresterymanagement.dao;
+package com.capgemini.foresterymanagement.services;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.capgemini.foresterymanagement.bean.CustomerBean;
 
 
-public interface CustomerDAO {
-	public HashMap<Integer, CustomerBean> getAllCustomer();
+public interface CustomerServices {
+	public void getAllCustomer();
 	public boolean customerLogin(int id,String email);
 	public boolean updateCustomer(int cid,CustomerBean CustomerToUpdate);
 	public boolean deleteCustomer(int cid);

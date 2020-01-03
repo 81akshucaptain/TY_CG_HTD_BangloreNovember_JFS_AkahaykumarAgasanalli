@@ -9,7 +9,14 @@ public class CustomerBean implements Serializable {
 	int postal;
 	String email;
 	long phone;
+	String password;
 
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public  int getCid() {
 		return cid;
 	}

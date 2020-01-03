@@ -10,6 +10,8 @@ import com.capgemini.foresterymanagement.dao.LandsDAO;
 import com.capgemini.foresterymanagement.dao.LandsDAOImpl;
 import com.capgemini.foresterymanagement.dao.ProductDAO;
 import com.capgemini.foresterymanagement.dao.ProductDAOImpl;
+import com.capgemini.foresterymanagement.dao.SchedularDAO;
+import com.capgemini.foresterymanagement.dao.SchedularDAOImpl;
 
 public class ForestFactory {
 public static CustomerDAO instanceOfCustomerDAOImpl() {
@@ -26,5 +28,8 @@ public static AdminDAO insatnceOfAdminDAOImpl() {
 }
 public static LandsDAO InstanceOfLandDAOImpl() {
 	return new LandsDAOImpl();
+}
+public static SchedularDAO InstanceOfSchedularDAOImpl() {
+	return new SchedularDAOImpl();
 }
 }

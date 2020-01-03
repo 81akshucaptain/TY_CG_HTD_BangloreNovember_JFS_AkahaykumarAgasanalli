@@ -10,18 +10,13 @@ public class LandsDAOImpl implements LandsDAO {
 	int lid=0;
 
 	@Override
-	public void getAllLands() {
-		try{
-			System.out.println("                            ::::ALL LANDS::::");
-			Set<Integer> s=h1.keySet();
-			for (Integer key : s) {
-				System.out.println("LAND-ID: "+key);
-				LandsBean cb=h1.get(key);
-				System.out.println(cb);
-			}
-		}catch (Exception e) {
-			System.err.println("There is problem in displaying all the lands");
-		}		
+	public HashMap<Integer, LandsBean> getAllLands() {
+		if(h1.isEmpty()==false) {
+			return h1;
+		}
+		else {
+			return null;
+		}
 	}
 
 

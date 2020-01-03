@@ -2,7 +2,9 @@ package com.capgemini.foresterymanagement.application;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +14,7 @@ import com.capgemini.foresterymanagement.dao.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
 import com.capgemini.foresterymanagement.exception.*;
 
-public class FmContractorApp2 {
+public class ContractorApp {
 	public static void contract(int cidAuto) {
 		ContractorDAO contractorDao=ForestFactory.instanceOfContractorDAOImpl();
 		ProductDAO proBean=new ProductDAOImpl();
@@ -73,7 +75,7 @@ public class FmContractorApp2 {
 								if(ProductIDmatcher.matches()) {
 									int ProductID2=Integer.parseInt(ProductID);
 									if(ProductID2==00000) {
-										FmContractorApp2.contract(cidAuto);
+										ContractorApp.contract(cidAuto);
 									}
 									boolean product=proBean.isThereProductId(ProductID2);
 									if(product) {
@@ -256,7 +258,7 @@ public class FmContractorApp2 {
 								if(ProductIDmatcher.matches()) {
 									int ProductID2=Integer.parseInt(ProductID);
 									if(ProductID2==00000) {
-										FmContractorApp2.contract(cidAuto);
+										ContractorApp.contract(cidAuto);
 									}
 									boolean product=proBean.isThereProductId(ProductID2);
 									if(product) {
@@ -391,11 +393,18 @@ public class FmContractorApp2 {
 						break;					
 
 					case 5:
-						contractorDao.getAllContarctor();
+						HashMap<Integer,ContractorBean>	allContracts=contractorDao.getAllContarctor();
+						System.out.println("                        ::::ALL CONTRACTS::::");
+						Set<Integer> keys=allContracts.keySet();
+						for (Integer key : keys) {
+							ContractorBean conBean=allContracts.get(key);
+							System.out.println("PRODUCT-ID = "+key);
+							System.out.println(conBean);
+						}
 						break;
 
 					case 6:
-						FmHome.main(null);
+						ForestHomeCollections.main(null);
 
 					default: System.err.println("Enter the valid choice to move further");
 					break;

@@ -1,17 +1,19 @@
 package com.capgemini.foresterymanagement.application;
 
 import java.awt.print.PrinterAbortException;
+import java.util.HashMap;
 import java.util.Scanner;
-
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.capgemini.foresterymanagement.bean.CustomerBean;
 import com.capgemini.foresterymanagement.bean.LandsBean;
 import com.capgemini.foresterymanagement.dao.LandsDAO;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
 import com.capgemini.foresterymanagement.exception.*;
 
-public class FmLandsApp4 {
+public class LandsApp {
 
 	public static void land() {
 		while(true)
@@ -262,7 +264,15 @@ public class FmLandsApp4 {
 						break;
 
 					case 5:
-						landDao.getAllLands();
+						
+						HashMap<Integer,LandsBean>	allContracts=landDao.getAllLands();
+						System.out.println("                        ::::ALL LANDS::::");
+						Set<Integer> keys=allContracts.keySet();
+						for (Integer key : keys) {
+							LandsBean conBean=allContracts.get(key);
+							System.out.println("LAND-ID = "+key);
+							System.out.println(conBean);
+						}
 						break;
 					case 6:
 						AdminHomeApllication.adminHome();

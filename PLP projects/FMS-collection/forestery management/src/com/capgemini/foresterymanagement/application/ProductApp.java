@@ -1,15 +1,19 @@
 package com.capgemini.foresterymanagement.application;
+import com.capgemini.foresterymanagement.bean.CustomerBean;
 import com.capgemini.foresterymanagement.bean.ProductBean;
 
 
 import com.capgemini.foresterymanagement.dao.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
 import com.capgemini.foresterymanagement.exception.*;
+
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FmProductApp3 {
+public class ProductApp {
 	public void product() {
 
 		ProductDAO productDao=ForestFactory.insatnceOfProductDAOImpl();
@@ -316,8 +320,16 @@ public class FmProductApp3 {
 						}
 						break;
 					case 5:
-						productDao.getAllProduct();
-						break;
+						HashMap<Integer,ProductBean>	allContracts=productDao.getAllProduct();
+
+						System.out.println("                        ::::ALL PRODUCTS::::");
+						Set<Integer> keys=allContracts.keySet();
+						for (Integer key : keys) {
+							ProductBean conBean=allContracts.get(key);
+							System.out.println("PRODUCT-ID = "+key);
+							System.out.println(conBean);
+						}
+						break;					
 					case 6:
 						AdminHomeApllication.adminHome();
 					default: System.err.println("Enter the valid choice to move further");

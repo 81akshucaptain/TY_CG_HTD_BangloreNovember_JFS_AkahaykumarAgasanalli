@@ -1,15 +1,12 @@
-package com.capgemini.foresterymanagement.dao;
-
-import java.util.HashMap;
-import java.util.List;
+package com.capgemini.foresterymanagement.services;
 
 import com.capgemini.foresterymanagement.bean.ContractorBean;
 
-public interface ContractorDAO {
-	public HashMap<Integer, ContractorBean> getAllContarctor();
+public interface ContractorServices {
+	public void getAllContarctor();
 	public boolean updateContarctor(int cid,ContractorBean contarctorToUpdate);
 	public boolean deletecontarctor(int cid);
-	//create contarctorBean object and pass to insert all values
+	//create contarctorBean obje and pass to insert all values
 	public boolean addContarctor(ContractorBean contractor);
 	public ContractorBean searchContarctor(int cid);
 

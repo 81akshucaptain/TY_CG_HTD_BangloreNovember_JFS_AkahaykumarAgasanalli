@@ -1,12 +1,10 @@
-package com.capgemini.foresterymanagement.dao;
-
-import java.util.HashMap;
+package com.capgemini.foresterymanagement.services;
 
 import com.capgemini.foresterymanagement.bean.ProductBean;
 
-public interface ProductDAO {
+public interface ProductServices {
 	public boolean isThereProductId(int pid);
-	public HashMap<Integer, ProductBean> getAllProduct();
+	public void getAllProduct();
 	public boolean updateProduct(int pid,ProductBean ProductToUpdate);
 	public boolean deleteProduct(int pid);
 	//create ProductBean obje and pass to insert all values

@@ -8,7 +8,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public boolean adminLogin(String uname, String password,AdminBean admin) {
 		try{
 			String adminName="admin";
-			String adminPassword="admin";
+			String adminPassword="admin@Ak123";
 			if((adminName.equals(uname)) &&(adminPassword.equals(password))) {
 				return true;
 			}

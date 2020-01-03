@@ -1,11 +1,9 @@
-package com.capgemini.foresterymanagement.dao;
-
-import java.util.HashMap;
+package com.capgemini.foresterymanagement.services;
 
 import com.capgemini.foresterymanagement.bean.LandsBean;
 
-public interface LandsDAO {
-	public HashMap<Integer, LandsBean> getAllLands();
+public interface LandsServices {
+	public void getAllLands();
 	public boolean updateLands(int cid,LandsBean landToUpdate);
 	public boolean deleteLands(int cid);
 	//create LandsBean obje and pass to insert all values

@@ -11,7 +11,7 @@ import com.capgemini.foresterymanagement.dao.AdminDAOImpl;
 public class AdminApplication {
 	private static final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
 
-	public static void adminMain(String[] args) {
+	public static void adminMain() {
 
 		AdminDAO admin=new AdminDAOImpl();
 		AdminBean ad=new AdminBean();
