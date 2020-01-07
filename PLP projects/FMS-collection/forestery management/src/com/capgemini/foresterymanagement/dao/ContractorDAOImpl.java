@@ -10,7 +10,7 @@ import com.capgemini.foresterymanagement.exception.CustomerAppException;
 
 public class ContractorDAOImpl implements ContractorDAO{
 	private static HashMap<Integer,ContractorBean> h1=new HashMap<Integer,ContractorBean>();
-	int ctid=0;
+	static int ctid=0;
 
 	@Override
 	public HashMap<Integer, ContractorBean> getAllContarctor() {
@@ -50,7 +50,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			try
 			{
 				h1.put(ctid,contractor);
-				throw new ContractorAppException("Contract Added Successfully with CTID: "+ctid);
+				return true;
 			}catch (Exception e) {
 				throw new ContractorAppException("Dumplicate Customer ID, please try again..!");
 			}

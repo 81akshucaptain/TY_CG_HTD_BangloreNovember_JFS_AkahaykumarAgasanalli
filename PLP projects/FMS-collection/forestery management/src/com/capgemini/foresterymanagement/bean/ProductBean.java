@@ -39,9 +39,12 @@ public class ProductBean {
 	}
 	@Override
 	public String toString() {
-		return "PRODUCT DETAILS ARE : \n NAME=" + name + "\n QUANTITY=" + quantity + "\n PRODUCTCLASS=" + productClass + "\n COST=" + cost
+		return "            ::::PRODUCT DETAILS :::: "+
+				"\n PRODUCT-ID  = " + pid + 
+				"\n NAME        = " + name + 
+				"\n QUANTITY    = " + quantity + 
+				"\n PRODUCTCLASS= " + productClass +
+				"\n COST        = " + cost
 				+ "\n=========================================================\n";
 	}
-
-
 }

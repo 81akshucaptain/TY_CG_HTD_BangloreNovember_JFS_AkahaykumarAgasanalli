@@ -32,9 +32,12 @@ public class LandsBean {
 
 	@Override
 	public String toString() {
-		return "       ::::LAND DETAILS:::  \nLAND ID=" + landId + 
-				"\nLAND LOCATION="+landLocation+
-				"\nLAND SIZE=" + landSize + "\nLAND RESOURCES=" + landResources;
+		return "              ::::LAND DETAILS:::  "
+				+"\nLAND ID      =" + landId + 
+				"\nLAND LOCATION ="+landLocation+
+				"\nLAND SIZE     =" + landSize + 
+				"\nLAND RESOURCES=" + landResources+
+				"\n==================================================";
 
 	}
 

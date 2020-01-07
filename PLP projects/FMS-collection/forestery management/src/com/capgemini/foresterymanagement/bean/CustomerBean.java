@@ -56,8 +56,14 @@ public class CustomerBean implements Serializable {
 	@Override
 	public String toString() {
 
-		return  " NAME=" + name + "\n TOWN=" + town + "\n POSTAL=" + postal + "\n EMAIL=" + email
-				+ "\n PHONE=" + phone + "\n=========================================================\n";
+		return "            ::::CUSTOMER DETAILS::::"+ 
+		        "\n CUSTOMER-ID = "+cid+
+			  "\n NAME        = " + name + 
+			  "\n TOWN        = " + town + 
+			  "\n POSTAL      = " + postal + 
+			  "\n EMAIL       = " + email+
+			  "\n PHONE       = " + phone + 
+				"\n=========================================================\n";
 	}
 
 }

@@ -29,7 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		for (Integer key : s) {
 			if(key==cid) {
 				CustomerBean cbToLogin=h1.get(key);
-				if((cbToLogin.getEmail().equals(email))) {
+				if((cbToLogin.getPassword().equals(email))) {
 					return true;
 				}
 				else {

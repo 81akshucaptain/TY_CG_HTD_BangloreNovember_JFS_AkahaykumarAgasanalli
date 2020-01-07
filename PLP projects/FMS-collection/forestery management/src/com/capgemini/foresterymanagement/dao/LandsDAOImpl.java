@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.capgemini.foresterymanagement.bean.LandsBean;
+import com.capgemini.foresterymanagement.exception.LandsAppException;
 
 public class LandsDAOImpl implements LandsDAO {
 	private static HashMap<Integer,LandsBean> h1=new HashMap<Integer,LandsBean>();
-	int lid=0;
+	static int lid=0;
 
 	@Override
 	public HashMap<Integer, LandsBean> getAllLands() {
@@ -19,18 +20,22 @@ public class LandsDAOImpl implements LandsDAO {
 		}
 	}
 
-
 	@Override
 	public boolean updateLands(int lid, LandsBean landToUpdate) {
-		h1.replace(lid,landToUpdate );
-		return true;
+		if(h1.replace(lid,landToUpdate )!=null) {
+			return true;
+		}else {
+			throw new LandsAppException("Lnad Id not Found, Please Try Again");
+		}
 	}
 
 	@Override
 	public boolean deleteLands(int cid) {
-		System.out.println("The specified Land got delated");
-		h1.remove(cid);
-		return true;
+		if(h1.remove(cid)!=null) {
+			return true;
+		}else {
+			throw new LandsAppException("Land Id Not Found, Please Try Again");
+		}
 	}
 
 	@Override
@@ -40,9 +45,12 @@ public class LandsDAOImpl implements LandsDAO {
 			//every objects
 			++lid;
 			Land.setLandId(lid);
-			h1.put(lid,Land);
-			System.out.println("Land with LAND-ID is : "+lid+", added successfully. (please remember)");
-			return true;
+			try{
+				h1.put(lid,Land);
+				return true;
+			}catch (Exception e) {
+				throw new LandsAppException("Land ID May Exist, Please Try Again");
+			}
 		}	
 	}
 
@@ -51,7 +59,6 @@ public class LandsDAOImpl implements LandsDAO {
 		if(h1.containsKey(lid)==true) {
 			return h1.get(lid);
 		}else {
-			System.err.println("No such land Exist..!");
 			return null;
 		}	
 	}

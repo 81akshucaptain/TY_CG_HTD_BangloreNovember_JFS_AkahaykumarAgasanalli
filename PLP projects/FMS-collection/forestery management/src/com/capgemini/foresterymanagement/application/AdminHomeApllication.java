@@ -1,11 +1,15 @@
 package com.capgemini.foresterymanagement.application;
 
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.capgemini.foresterymanagement.bean.ContractorBean;
 import com.capgemini.foresterymanagement.dao.ContractorDAO;
 import com.capgemini.foresterymanagement.dao.ContractorDAOImpl;
+import com.capgemini.foresterymanagement.factory.ForestFactory;
 
 public class AdminHomeApllication {
 	static void adminHome() {
@@ -42,14 +46,19 @@ public class AdminHomeApllication {
 						break;
 
 					case 4:
-						try{
-							dao.getAllContarctor();
-						}catch (Exception e) {
-							System.err.println("Currently there is problem with Contrcats..!");
-						}
-						break;
+						ContractorDAO contractorDao=ForestFactory.instanceOfContractorDAOImpl();
+						HashMap<Integer, ContractorBean> allContracts = contractorDao.getAllContarctor();
 
-					case 5: 
+						if(allContracts!=null) {
+							Set<Integer> keys = allContracts.keySet();
+							for (Integer key : keys) {
+								ContractorBean conBean = allContracts.get(key);
+								System.out.println(conBean);
+							}
+						}else {
+							System.err.println("Currentlly There Are No Contracts..!");
+						}
+						break;					case 5: 
 						ForestHomeCollections.main(null);
 						break;
 

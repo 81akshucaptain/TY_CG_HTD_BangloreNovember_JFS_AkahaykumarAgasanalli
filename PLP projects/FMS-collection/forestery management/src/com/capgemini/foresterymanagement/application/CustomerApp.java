@@ -102,7 +102,7 @@ public class CustomerApp {
 							try {
 								System.out.println("Enter customer Postal: ");
 								String postal=scanner.next();
-								if(Validations.numberValidation(postal)) {
+								if(Validations.postalValidation(postal)) {
 									Integer postal2=Integer.parseInt(postal);
 									if(postal2>0) {
 										customerBean.setPostal(postal2);
@@ -136,7 +136,7 @@ public class CustomerApp {
 						try{
 							if(customerDao.addCustomer(customerBean)) {
 								System.out.println("Customer Added Successfully with CustomerID: "+customerBean.getCid());
-								password=customerBean.getCid()+customerBean.getTown()+customerBean.getPostal();
+								password=customerBean.getCid()+customerBean.getTown()+"@"+customerBean.getPostal();
 								customerBean.setPassword(password);
 								System.out.println("Your Password is: "+password+ " Please Record It For Future Usage\n");
 							}
@@ -259,9 +259,9 @@ public class CustomerApp {
 						boolean stay13=true;
 						while(stay13) {
 							try {
-								System.out.println("Enter customer Postalto Update: ");
+								System.out.println("Enter customer Postal to Update: ");
 								String postal=scanner.next();
-								if(Validations.numberValidation(postal)) {
+								if(Validations.postalValidation(postal)) {
 									Integer postal2=Integer.parseInt(postal);
 									if(postal2>0) {
 										customerBean2.setPostal(postal2);
@@ -309,7 +309,7 @@ public class CustomerApp {
 							if(Validations.numberValidation(ctidToDelete)){	
 								Integer ctidToSearch2=Integer.parseInt(ctidToDelete);
 								if(customerDao.deleteCustomer(ctidToSearch2)) {
-									System.out.println("Customer Deleted Successfully..!");
+									System.out.println("Customer Deleted Successfully..!");									
 								}
 							}
 						}catch (Exception e) {
@@ -321,11 +321,10 @@ public class CustomerApp {
 					case 5:
 						try {
 							HashMap<Integer,CustomerBean>	allContracts=customerDao.getAllCustomer();
-							System.out.println("                        ::::ALL CUSTOMERS::::");
 							Set<Integer> keys=allContracts.keySet();
 							for (Integer key : keys) {
 								CustomerBean conBean=allContracts.get(key);
-								System.out.println("CUSTOMER-ID = "+key);
+								conBean.setCid(key);
 								System.out.println(conBean);
 							}
 						}catch (CustomerAppException e) {
