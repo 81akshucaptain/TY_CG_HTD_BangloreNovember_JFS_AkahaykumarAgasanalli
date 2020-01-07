@@ -1,0 +1,42 @@
+<div class="alert alert-danger" *ngIf='message'>{{message}}</div>
+<ul class="list-group">
+
+    <li *ngFor='let lc of lateComers' class="list-group-item" [ngClass]='{
+        "list-group-item-success" : lc.charAt(0) === "j",
+        "list-group-item-danger" : lc.charAt(0) === "b"
+    }' 
+    
+    [ngStyle]='{
+        "fontSize": lc.length <= 5 ? "25px" : "50px"
+    }'>
+    
+        {{lc}}
+        <button class="btn btn-outline-success float-right" 
+        (click)='deleteLateComers(lc)'>Dlelete</button>
+    </li>
+</ul>
+
+
+<div *ngIf='flag'>
+    Flag is true
+</div>
+<div *ngIf='flag; then trueBlock else falseBlock'></div>
+<ng-template #trueBlock>
+    <h1 class=" bg-success text-centre">
+        this is true block
+    </h1>
+</ng-template>
+
+<ng-template #falseBlock>
+    <h1 class=" bg-danger text-centre">
+        this is false block
+    </h1>
+</ng-template>
+
+
+<div [ngSwitch]='person'>
+    <div *ngSwitchCase='"jack"'> Jack is selected</div>
+    <div *ngSwitchCase='"barbosa"'> barbosa is selected</div>
+    <div *ngSwitchCase='"elizebet"'> elizebet is selected</div>
+    <div *ngSwitchDefualt> defaukt selected</div>
+</div>

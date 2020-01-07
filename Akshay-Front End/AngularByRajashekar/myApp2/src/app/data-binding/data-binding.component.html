@@ -1,0 +1,33 @@
+<p>data-binding works!</p>
+<!-- PROPERTY BINDING -->
+<img [src]="imgURL" alt="jacky">
+
+<!-- STYLE BINDING -->
+<p [style.background]='flag ? "green": "red"'
+[style.color]='flag ? "blue": "yelllow
+"'> Captain Jack Sparrow</p>
+<h1>{{name}}</h1>
+
+<!-- CLASS BINDING -->
+
+<!-- <p [class.display-3]="flag" -->
+    <!-- [class.h1]="!flag"> -->
+
+<p [class.captain]="flag"
+ [class.mowna]="flag">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+     Qui similique sed quia, asperiores libero tenetur quasi reprehenderit enim 
+     illum null
+    a sunt iure dolore quaerat vero dignissimos quam soluta sapiente molestias.
+</p>
+
+<!-- EVENT BINDING -->
+
+<!-- //TEMPLATE REFFRENCE VARIABLE -->
+<!-- <input type="text" name="myInput" #myInput> -->
+
+<!-- TWO WAY DATA BINDING -->
+<input type="text" name="twoWayData" [(ngModel)]='twoWayData'>
+{{twoWayData}}
+<!-- <button (click)='clickMe(myInput)' class="btn btn-outline-primary">CLICK ME</button> -->
+<button (click)='printDetails()' class="btn btn-outline-primary">CLICK ME</button>

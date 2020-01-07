@@ -1,0 +1,22 @@
+<div class="alert alert-danger" *ngIf='message'>{{message}}</div>
+<table class="table table-bordered tbale-hover" >
+    <thead>
+        <tr>
+            <th appColor>Index</th>
+            <th>Name</th>
+            <th>IMG url</th>
+            <th>price</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr appColor *ngFor='let product of products; index as i'>
+        <td >{{i+1}}</td>
+        <td> {{product.name}}</td>
+        <td>{{product.image}}</td>
+        <td>{{product.price}}</td>
+        <td> <button class="btn btn-outline-success float-right" 
+            (click)='deleteProduct(product)'>Dlelete</button></td>
+        </tr>
+    </tbody>
+</table>

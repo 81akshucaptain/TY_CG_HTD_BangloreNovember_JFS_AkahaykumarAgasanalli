@@ -1,0 +1,20 @@
+<div class="bg-dark text-white">Child Component</div>
+<div *ngIf='dataFromParent'>
+    <div>
+        {{dataFromParent.name}}
+    </div>
+    <div>
+        {{dataFromParent.age}}
+    </div>
+    <div>
+        {{dataFromParent.marks}}
+    </div>
+<input type="text" name="name" #name
+class="form-control col-md-4 offset-4">
+<div class="text-center">
+    <button class="btn btn-primary" (click)='sendData(name.value)'>
+        Send Data
+    </button>
+</div> 
+
+</div>
