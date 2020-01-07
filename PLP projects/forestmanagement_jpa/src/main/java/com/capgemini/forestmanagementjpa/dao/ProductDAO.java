@@ -1,9 +1,11 @@
 package com.capgemini.forestmanagementjpa.dao;
 
+import java.util.List;
+
 import com.capgemini.forestmanagementjpa.dto.ProductBean;
 
 public interface ProductDAO {
-	public void getAllProduct();
+	public List<ProductBean> getAllProduct();
 	public boolean updateProduct(ProductBean ProductToUpdate);
 	public boolean deleteProduct(int cid);
 	//create ProductBean obje and pass to insert all values

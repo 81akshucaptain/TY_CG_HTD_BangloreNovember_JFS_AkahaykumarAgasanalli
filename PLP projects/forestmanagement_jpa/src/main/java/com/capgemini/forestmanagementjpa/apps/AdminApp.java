@@ -1,9 +1,11 @@
 package com.capgemini.forestmanagementjpa.apps;
 
+import java.util.List;
 import java.util.Scanner;
-import com.capgemini.forestmanagementjpa.dto.*;
-import com.capgemini.forestmanagementjpa.dao.*;
-import com.capgemini.forestmanagementjpa.factory.*;
+
+import com.capgemini.forestmanagementjpa.dao.ContractorDAO;
+import com.capgemini.forestmanagementjpa.dto.ContractorBean;
+import com.capgemini.forestmanagementjpa.factory.ForestFactoryFmJpa;
 
 public class AdminApp {
 	public  void adminMain(){
@@ -33,16 +35,22 @@ public class AdminApp {
 				break;
 
 			case 3:
-				coDao.getAllContarctor();
+				List<ContractorBean> contractBeans = coDao.getAllContarctor();
+				if (contractBeans != null) {
+					for (ContractorBean contracts : contractBeans) {
+						System.out.println(contracts);
+					}
+				} else {
+					System.out.println("Currently No Contracts..!");
+				}
 				break;
-
 			case 4:
 				LandsApplication laApplication=new LandsApplication();
 				laApplication.lands();
 				break;
 				
 			case 5: 
-				FmDbHome.main(null);
+				ForestHomeJpa.main(null);
 				break;
 
 			default: System.err.println("Enter the correct value...!");

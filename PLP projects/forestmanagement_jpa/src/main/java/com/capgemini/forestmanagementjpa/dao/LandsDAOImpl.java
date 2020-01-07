@@ -15,19 +15,22 @@ public class LandsDAOImpl implements LandsDAO{
 	EntityManagerFactory eFactory=null;
 	EntityTransaction etTransaction=null;
 	@Override
-	public void getAllLands() {
+	public List<LandsBean> getAllLands() {
 		try{
 			String jpql="from LandsBean";
 			eFactory=Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager=eFactory.createEntityManager();
 			Query query=emManager.createQuery(jpql);
 			List<LandsBean> records=query.getResultList();
-			for (LandsBean landBean : records) {
-				System.out.println(landBean);
-			}
+		if(records!=null) {
+			return records;
+		}else {
+			return null;
+		}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("No data for Lands,try again..!");
+			System.out.println("No data for Lands,try again..! "+message);
+			return null;
 		}
 	}
 
@@ -109,7 +112,6 @@ public class LandsDAOImpl implements LandsDAO{
 			if(landsBean!=null) {
 				return landsBean;
 			}else {
-				System.out.println("Land details not found..!");
 				return null;
 			}
 		}catch (Exception e) {

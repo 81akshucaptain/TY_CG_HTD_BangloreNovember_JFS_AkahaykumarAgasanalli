@@ -23,7 +23,15 @@ public class CustomerBean implements Serializable {
 	private String email;
 	@Column
 	private String phone;
+	@Column
+	private String password;
 
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getCid() {
 		return cid;
 	}
@@ -60,6 +68,16 @@ public class CustomerBean implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+	@Override
+	public String toString() {
 
+		return "            ::::CUSTOMER DETAILS::::"+ 
+		        "\n CUSTOMER-ID = "+cid+
+			  "\n NAME        = " + name + 
+			  "\n TOWN        = " + town + 
+			  "\n POSTAL      = " + postal + 
+			  "\n EMAIL       = " + email+
+			  "\n PHONE       = " + phone + 
+				"\n=========================================================\n";
+	}
 }

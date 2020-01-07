@@ -17,25 +17,21 @@ public class ContractorDAOImpl implements ContractorDAO{
 	EntityManagerFactory eFactory=null;
 	EntityTransaction etTransaction=null;
 
-	public void getAllContarctor() {
+	public List<ContractorBean> getAllContarctor() {
 		try{
 			String jpql="from ContractorBean";
 			EntityManagerFactory emFactory=Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager=emFactory.createEntityManager();
 			Query query=emManager.createQuery(jpql);
 			List<ContractorBean> record=query.getResultList();
-			System.out.println("                               ::::CONTRACTOR DETAILS ARE::::");
-			for (ContractorBean contractor : record) {
-				System.out.println("CONTRACT-ID     = "+contractor.getContractId());
-				System.out.println("CUSTOMER-ID     ="+contractor.getCustomerId());
-				System.out.println("PRODUCT-ID      ="+contractor.getProductId());
-				System.out.println("DELIVEY-DATE    ="+contractor.getDeliveryDate());
-				System.out.println("PRODUCT-QUANTITY= "+contractor.getQunatity());
-				System.out.println("HUALIER-ID      = "+contractor.getHaulierId());
-				System.out.println("===========================================================");
-			}
+			if(record!=null) {
+				return record;
+			}else
+				return null;
 		}catch (Exception e) {
-			System.out.println("No data found for Contracts..!try again");
+			String message=e.getMessage();
+			System.out.println("No data found for Contracts..!try again: "+message);
+			return null;
 		}
 
 	}
@@ -43,7 +39,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 
 	@Override
 	//ACCESSED BY ONLY PARTICULAR CUSTOMER
-	public void getAllContarctor(int customerId) {
+	public List<ContractorBean> getAllContarctor(int customerId) {
 		try{
 			String jpql="from ContractorBean where customerId=:cid";
 			EntityManagerFactory emFactory=Persistence.createEntityManagerFactory("TestPersistence");
@@ -51,22 +47,15 @@ public class ContractorDAOImpl implements ContractorDAO{
 			Query query=emManager.createQuery(jpql);
 			query.setParameter("cid", customerId);
 			List<ContractorBean> record=query.getResultList();
-			System.out.println("                ::::CONTRACTOR DETAILS FOR CUSTOMER_ID = "+customerId+"::::");
 			if(record!=null) {
-				for (ContractorBean contractor : record) {
-					System.out.println("CONTRACT-ID= "+contractor.getContractId());
-					System.out.println("CUSTOMER-ID="+contractor.getCustomerId());
-					System.out.println("PRODUCT-ID="+contractor.getProductId());
-					System.out.println("DELIVEY-DATE="+contractor.getDeliveryDate());
-					System.out.println("DEMANDED-QUANTITY= "+contractor.getQunatity());
-					System.out.println("HUALIER-ID= "+contractor.getHaulierId());
-					System.out.println("===========================================================");
-				}
+				return record;
 			}else {
-				System.out.println("No Contract Deatils Found For Customer_Id: "+customerId);
+				return null;
 			}
 		}catch (Exception e) {
-			System.out.println("No data found for Contracts..!try again");
+			String message=e.getMessage();
+			System.out.println("No data found for Contracts..!try again: "+message);
+			return null;
 		}
 
 	}
@@ -124,7 +113,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There is problem in deleting contract: "+message);
+			System.out.println("There Is No Such Contract-Id: "+message);
 			return false;
 		}
 	}
@@ -141,7 +130,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			//to deal with overall transaction we need   this line and respective methods
 			transactiont=entityManager.getTransaction();
 			transactiont.begin();
-			//TO INSERT RECORD WE HAVE TO PASS THE obj reff.
+			//to insert record we have to pass the object reference.
 			entityManager.persist(contractor);
 			System.out.println("Done with Adding");
 			transactiont.commit();
@@ -150,7 +139,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 		}catch (Exception e) {
 			String message=e.getMessage();
 			System.out.println("Failed to Add new Contract Details..! ContractID may exist, try again :"+message);
-			//TO ROLL BACK THE DATA ENTERD TO THE DB IF SOMETHIG BAD HAPPENCE
+			//to roll back the data entered to the db if something bad happense
 			transactiont.rollback();
 			return false;
 		}
@@ -171,7 +160,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("Problem in finding the Contract,Try again:"+message);
+			System.out.println("There Is No Such Contract Id,Try again:"+message);
 			return null;
 		}
 	}
