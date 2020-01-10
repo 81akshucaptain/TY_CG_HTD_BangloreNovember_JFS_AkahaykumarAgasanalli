@@ -1,11 +1,9 @@
-package com.capgemini.foresterymangement.validation;
+package com.capgemini.forestmanagementjpa.validations;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.bind.ValidationException;
-
-import com.capgemini.foresterymanagement.exception.VallidationExceptionFMS;
+import com.capgemini.forestmanagementjpa.exceptions.VallidationExceptionFMS;
 
 public class Validations {
 	public static boolean fullNameValidation(String fullName)  {
@@ -30,7 +28,7 @@ public class Validations {
 		}
 	}
 	public static boolean emailValidation(String email)   {
-		String emailregex = "^(.+)@(.+)\\.(.+)$";
+		String emailregex = "^(.+)@([a-zA-Z]*)\\.([a-zA-Z]*)$";
 		Pattern emailpattern = Pattern.compile(emailregex);
 		Matcher emailmatcher = emailpattern.matcher((CharSequence)email);
 		if( emailmatcher.matches()) {
@@ -81,16 +79,15 @@ public class Validations {
 		}
 	}
 	public static boolean postalValidation(String number) {
-		String numberregex = "^[0-9]*";
+		String numberregex = "^[0-9]{6}";
 		Pattern numberpattern = Pattern.compile(numberregex);
 		Matcher numbermatcher = numberpattern.matcher(number);
 		if( numbermatcher.matches()) {
 			return true;
 		}else {
-			throw new VallidationExceptionFMS("Please Enter The Valid Input, Must be Number..!");
+			throw new VallidationExceptionFMS("Please Enter The Valid Input, Must be Number And Length Should Be 6..!");
 		}
 	}
-	
 	public static boolean passwordValidation(String password) {
 		String passwordregex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,20}$";
 		Pattern passwordpattern = Pattern.compile(passwordregex);
@@ -101,8 +98,26 @@ public class Validations {
 			throw new VallidationExceptionFMS("Please Enter The Valid Password \n Minimum one(lower and upper case,special symbol,digit) And characters..!");
 		}
 	}
-	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

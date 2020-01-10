@@ -90,5 +90,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 
 	}
+	@Override
+	public CustomerBean searchPassword(int cid) {
+		if(h1.containsKey(cid)==true) {
+			return h1.get(cid);
+		}else {
+			return null;
+		}	
+	}
+	
+	@Override
+	public boolean updatePassword(CustomerBean beanForUpdatePssword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

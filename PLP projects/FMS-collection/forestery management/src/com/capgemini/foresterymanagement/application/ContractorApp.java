@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.capgemini.foresterymanagement.bean.ContractorBean;
+import com.capgemini.foresterymanagement.bean.CustomerBean;
 import com.capgemini.foresterymanagement.bean.ProductBean;
 import com.capgemini.foresterymanagement.dao.*;
 import com.capgemini.foresterymanagement.factory.ForestFactory;
@@ -19,6 +20,7 @@ import com.capgemini.foresterymanagement.exception.*;
 public class ContractorApp {
 	public static void contract(int cidAuto) {
 		ContractorDAO contractorDao = ForestFactory.instanceOfContractorDAOImpl();
+		CustomerDAO customerDAO = ForestFactory.instanceOfCustomerDAOImpl();
 		ProductDAO proBean = new ProductDAOImpl();
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
@@ -29,7 +31,8 @@ public class ContractorApp {
 				System.out.println("*Enter 3 to update the Contract");
 				System.out.println("*Enter 4 to remove the Contract");
 				System.out.println("*Enter 5 to get all the Contract");
-				System.out.println("*Enter 6 to Logout");
+				System.out.println("*Enter 6 to update the Password");
+				System.out.println("*Enter 7 to Logout");
 				String choice1 = scanner.next();
 				String choice1IDregex = "^[0-9]*$";
 				Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
@@ -192,9 +195,10 @@ public class ContractorApp {
 
 									} else {
 										stop7 = true;
-										throw new ContractorAppException("Ooops!! This product is out of Stock, try other product-Id's");
+										throw new ContractorAppException(
+												"Ooops!! This product is out of Stock, try other product-Id's");
 									}
-								} 
+								}
 							} catch (Exception e) {
 								String message = e.getMessage();
 								System.err.println(message);
@@ -206,7 +210,7 @@ public class ContractorApp {
 							try {
 								System.out.println("enter the haulier ID to update:(ex: KA-25-FB-4512) ");
 								String haulier = scanner.next();
-								if(Validations.haulierIdVallidation(haulier)){
+								if (Validations.haulierIdVallidation(haulier)) {
 									contractorBean2.setHaulierId(haulier);
 									stop6 = false;
 								} else {
@@ -221,15 +225,15 @@ public class ContractorApp {
 
 						boolean stop1 = true;
 						while (stop1) {
-							try{
+							try {
 								System.out.println("enter the delivery date in YYYY/MM/DD fromat To Update: ");
 								String date = scanner.next();
 
-								if(Validations.dateValidation(date)) {
+								if (Validations.dateValidation(date)) {
 									contractorBean2.setDeliveryDate(date);
 									stop1 = false;
 								}
-							}catch (VallidationExceptionFMS e) {
+							} catch (VallidationExceptionFMS e) {
 								String message = e.getMessage();
 								System.err.println(message);
 							}
@@ -240,24 +244,24 @@ public class ContractorApp {
 							try {
 								System.out.println("Enter the quantiy required to update: ");
 								String quantity = scanner.next();
-								if(Validations.numberValidation(quantity)) {
+								if (Validations.numberValidation(quantity)) {
 									int quantity2 = Integer.parseInt(quantity);
 									contractorBean2.setQunatity(quantity2);
 									stay10 = false;
-								} 
+								}
 							} catch (VallidationExceptionFMS e) {
 								String message = e.getMessage();
 								System.err.println(message);
 							}
 						}
 
-						try{
-							Boolean isUpdated = contractorDao.updateContarctor(contractorBean2.getContractId(),contractorBean2);
+						try {
+							Boolean isUpdated = contractorDao.updateContarctor(contractorBean2.getContractId(),
+									contractorBean2);
 							if (isUpdated) {
 								System.out.println("Updated successfully..!\n");
-							} 
-						}
-						catch (CustomerAppException e) {
+							}
+						} catch (CustomerAppException e) {
 							String message = e.getMessage();
 							System.err.println(message);
 						}
@@ -269,7 +273,7 @@ public class ContractorApp {
 						try {
 							System.out.println("enter your CTID To Delete: ");
 							String ctidToDelete = scanner.next();
-							if(Validations.numberValidation(ctidToDelete)) {
+							if (Validations.numberValidation(ctidToDelete)) {
 								Integer ctidToSearch2 = Integer.parseInt(ctidToDelete);
 								contractBean3.setContractId(ctidToSearch2);
 								boolean isDeleted = contractorDao.deletecontarctor(contractBean3.getContractId());
@@ -288,19 +292,55 @@ public class ContractorApp {
 					case 5:
 						HashMap<Integer, ContractorBean> allContracts = contractorDao.getAllContarctor();
 
-						if(allContracts!=null) {
+						if (allContracts != null) {
 							Set<Integer> keys = allContracts.keySet();
 							for (Integer key : keys) {
 								ContractorBean conBean = allContracts.get(key);
 								conBean.setContractId(key);
 								System.out.println(conBean);
 							}
-						}else {
+						} else {
 							System.err.println("No Data Fund For All Contracts..!");
 						}
 						break;
 
 					case 6:
+						boolean staypsw = true;
+						while (staypsw) {
+							try{
+								System.out.println("Enter The Existing Password :");
+							String existingPassword = scanner.next();
+							CustomerBean beanForChangePssword = customerDAO.searchPassword(cidAuto);
+							
+							if (beanForChangePssword.getPassword().equals(existingPassword)) {
+								System.out.println("Enter The New Password:");
+								String newPassword = scanner.next();
+								beanForChangePssword.setPassword(newPassword);
+								
+								if(Validations.passwordValidation(newPassword)) {
+									boolean passwordUpdated = customerDAO.updateCustomer(cidAuto, beanForChangePssword);
+									
+									if (passwordUpdated) {
+										System.out.println("New Password Updated Successfully..!");
+										staypsw = false;
+									} else {
+										System.out.println("Failed To Update New Password..!");
+										break;
+									}
+									
+								} else {
+									System.out.println("Invalid Existing Password..!");
+									staypsw = true;
+								}
+							}
+							}catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
+								System.err.println(message);
+							}
+						}
+						break;
+
+					case 7:
 						ForestHomeCollections.main(null);
 
 					default:

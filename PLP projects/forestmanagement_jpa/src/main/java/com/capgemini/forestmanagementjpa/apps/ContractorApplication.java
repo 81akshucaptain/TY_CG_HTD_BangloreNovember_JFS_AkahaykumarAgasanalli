@@ -1,16 +1,15 @@
 package com.capgemini.forestmanagementjpa.apps;
 
 import java.time.LocalDateTime;
-
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.capgemini.forestmanagementjpa.dao.ContractorDAO;
+import com.capgemini.forestmanagementjpa.dao.CustomerDAO;
 import com.capgemini.forestmanagementjpa.dao.ProductDAO;
 import com.capgemini.forestmanagementjpa.dto.ContractorBean;
+import com.capgemini.forestmanagementjpa.dto.CustomerBean;
 import com.capgemini.forestmanagementjpa.exceptions.ContractorAppException;
 import com.capgemini.forestmanagementjpa.exceptions.HaulierAddException;
 import com.capgemini.forestmanagementjpa.exceptions.VallidationExceptionFMS;
@@ -21,6 +20,7 @@ public class ContractorApplication {
 	void contractor(int cid) {
 		ContractorDAO contractDao = ForestFactoryFmJpa.createInstanceOfContractorDAOImpl();
 		ProductDAO productDao = ForestFactoryFmJpa.createInstanceOfProductDAOImpl();
+		CustomerDAO customerDAO = ForestFactoryFmJpa.createInstanceOfCustomerDAOImpl();
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			try {
@@ -30,7 +30,9 @@ public class ContractorApplication {
 				System.out.println("*Enter 3 to update the Contractor");
 				System.out.println("*Enter 4 to remove the Contractor");
 				System.out.println("*Enter 5 to get all the Contractor");
-				System.out.println("*Enter 6 to Logout");
+				System.out.println("*Enter 6 to Update Password");
+				System.out.println("*Enter 7 to Logout");
+
 				String choice1 = scanner.next();
 				if (Validations.numberValidation(choice1)) {
 					int choice2 = Integer.parseInt(choice1);
@@ -153,10 +155,10 @@ public class ContractorApplication {
 								if (coBean == null) {
 									throw new ContractorAppException("No such Contracts,please try another CTID");
 								} else {
-									if(coBean.getCustomerId()==cid) {
-									System.out.println(coBean);
-									}else {
-										System.out.println("There Is No Contracts For CustomerID: "+cid);
+									if (coBean.getCustomerId() == cid) {
+										System.out.println(coBean);
+									} else {
+										System.out.println("There Is No Contracts For CustomerID: " + cid);
 									}
 								}
 							}
@@ -314,7 +316,43 @@ public class ContractorApplication {
 							System.err.println(message);
 						}
 						break;
+
 					case 6:
+						
+						boolean staypsw = true;
+						while (staypsw) {
+							try {
+								System.out.println("Enter The Existing Password :");
+								String existingPassword = scanner.next();
+								CustomerBean beanForChangePssword = customerDAO.searchCustomer(cid);
+
+								if (beanForChangePssword.getPassword().equals(existingPassword)) {
+									System.out.println("Enter The New Password:");
+									String newPassword = scanner.next();
+									beanForChangePssword.setPassword(newPassword);
+
+									if (Validations.passwordValidation(newPassword)) {
+										boolean passwordUpdated = customerDAO.updateCustomer(beanForChangePssword);
+
+										if (passwordUpdated) {
+											System.out.println("New Password Updated Successfully..!");
+											staypsw = false;
+										} else {
+											System.out.println("Failed To Update New Password..!");
+											break;
+										}
+
+									} else {
+										System.out.println("Invalid Existing Password..!");
+										staypsw = true;
+									}
+								}
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
+								System.err.println(message);
+							}
+						}
+					case 7:
 						ForestHomeJpa.main(null);
 						break;
 					default:

@@ -14,5 +14,6 @@ public interface CustomerDAO {
 	//create CustomerBean obje and pass to insert all values
 	public boolean addCustomer(CustomerBean customer);
 	public CustomerBean searchCustomer(int cid);
-
+	public CustomerBean searchPassword(int cid);
+	public boolean updatePassword(CustomerBean cbBean);
 }
