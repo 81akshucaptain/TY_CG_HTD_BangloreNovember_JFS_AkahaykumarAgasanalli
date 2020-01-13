@@ -30,7 +30,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 				return null;
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("No data found for Contracts..!try again: "+message);
+			System.out.println("No data found for Contracts..!try again ");
 			return null;
 		}
 
@@ -47,14 +47,14 @@ public class ContractorDAOImpl implements ContractorDAO{
 			Query query=emManager.createQuery(jpql);
 			query.setParameter("cid", customerId);
 			List<ContractorBean> record=query.getResultList();
-			if(record!=null) {
+			if(record.isEmpty()!=true) {
 				return record;
 			}else {
 				return null;
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("No data found for Contracts..!try again: "+message);
+			System.out.println("No data found for Contracts..!try again ");
 			return null;
 		}
 
@@ -69,13 +69,15 @@ public class ContractorDAOImpl implements ContractorDAO{
 			etTransaction=emManager.getTransaction();
 			etTransaction.begin();
 			String jpql="update ContractorBean set customerId=:cid,productId=:pid,"
-					+ "haulierId=:hid,deliveryDate=:ddate,qunatity=:qty where contractId=:ctid";
+					+ "haulierId=:hid,deliveryDate=:ddate,qunatity=:qty,status=:status "
+					+ "where contractId=:ctid";
 			Query query=emManager.createQuery(jpql);
 			query.setParameter("cid",contarctorToUpdate.getCustomerId());
 			query.setParameter("pid",contarctorToUpdate.getProductId());
 			query.setParameter("hid", contarctorToUpdate.getHaulierId());
 			query.setParameter("ddate",contarctorToUpdate.getDeliveryDate());
 			query.setParameter("qty", contarctorToUpdate.getQunatity());
+			query.setParameter("status", contarctorToUpdate.getStatus());
 			query.setParameter("ctid",cid);
 			int result=query.executeUpdate();
 			etTransaction.commit();
@@ -87,7 +89,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There is problem in updating the contract, try again:"+message);
+			System.out.println("There is problem in updating the contract, try again:");
 			etTransaction.rollback();
 			return false;
 		}
@@ -113,7 +115,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There Is No Such Contract-Id: "+message);
+			System.out.println("There Is No Such Contract-Id: ");
 			return false;
 		}
 	}
@@ -153,14 +155,14 @@ public class ContractorDAOImpl implements ContractorDAO{
 			etTransaction.begin();
 			ContractorBean contractBean=emManager.find(ContractorBean.class, contractIdToSearch);
 			etTransaction.commit();
-			if(contractBean!=null) {
-				return contractBean;
-			}else {
+			if(contractBean.equals(null)) {
 				return null;
+			}else {
+				return contractBean;
 			}
 		}catch (Exception e) {
 			String message=e.getMessage();
-			System.out.println("There Is No Such Contract Id,Try again:"+message);
+			System.out.println("There Is No Such Contract Id,Try again..!");
 			return null;
 		}
 	}

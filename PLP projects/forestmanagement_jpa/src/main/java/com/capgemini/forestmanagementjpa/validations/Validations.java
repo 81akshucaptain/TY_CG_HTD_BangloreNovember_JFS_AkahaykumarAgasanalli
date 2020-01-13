@@ -95,7 +95,7 @@ public class Validations {
 		if( passwordmatcher.matches()) {
 			return true;
 		}else {
-			throw new VallidationExceptionFMS("Please Enter The Valid Password \n Minimum one(lower and upper case,special symbol,digit) And characters..!");
+			throw new VallidationExceptionFMS("Please Enter The Valid Password \n Minimum one(lower and upper case,special symbol,digit) And 8 characters..!");
 		}
 	}
 

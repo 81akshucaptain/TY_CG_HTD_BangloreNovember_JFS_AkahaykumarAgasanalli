@@ -37,36 +37,36 @@ public class CustomerApplication {
 						CustomerBean customerBean=new CustomerBean();
 						String password;
 
-						boolean stay=true;
-						while(stay) {
-
-							System.out.println("Enter customer ID: ");
-							try
-							{
-								String CostumerID=scanner.next();
-								String CostumerIDregex = "^[0-9]*$";
-								Pattern CostumerIDpattern = Pattern.compile(CostumerIDregex);
-								Matcher CostumerIDmatcher = CostumerIDpattern.matcher(CostumerID);
-								if( CostumerIDmatcher.matches()) {
-									int ContractID2=Integer.parseInt(CostumerID);
-									if(ContractID2>0) {
-										customerBean.setCid(ContractID2);
-										stay=false;
-									}else {
-										stay=true;
-										throw new CustomerAppException("please Enter vallid CID(greater than Zero)!");
-									}
-
-								}else {
-									stay=true;
-									throw new CustomerAppException("please Enter the INTEGER value..!");
-								}
-							}
-							catch (CustomerAppException e) {
-								String message=e.getMessage();
-								System.err.println(message);
-							}
-						} 
+//						boolean stay=true;
+//						while(stay) {
+//
+//							System.out.println("Enter customer ID: ");
+//							try
+//							{
+//								String CostumerID=scanner.next();
+//								String CostumerIDregex = "^[0-9]*$";
+//								Pattern CostumerIDpattern = Pattern.compile(CostumerIDregex);
+//								Matcher CostumerIDmatcher = CostumerIDpattern.matcher(CostumerID);
+//								if( CostumerIDmatcher.matches()) {
+//									int ContractID2=Integer.parseInt(CostumerID);
+//									if(ContractID2>0) {
+//										customerBean.setCid(ContractID2);
+//										stay=false;
+//									}else {
+//										stay=true;
+//										throw new CustomerAppException("please Enter vallid CID(greater than Zero)!");
+//									}
+//
+//								}else {
+//									stay=true;
+//									throw new CustomerAppException("please Enter the INTEGER value..!");
+//								}
+//							}
+//							catch (CustomerAppException e) {
+//								String message=e.getMessage();
+//								System.err.println(message);
+//							}
+//						} 
 
 						
 						boolean stay1=true;
@@ -154,7 +154,7 @@ public class CustomerApplication {
 								System.err.println(message);
 							}
 						}
-						password=customerBean.getCid()+customerBean.getTown()+"@"+customerBean.getPostal();
+						password=customerBean.getEmail()+customerBean.getTown()+"@"+customerBean.getPostal();
 						customerBean.setPassword(password);
 						try{
 							if(customerDao.addCustomer(customerBean)) {

@@ -11,6 +11,7 @@ import com.capgemini.forestmanagementjpa.dao.ProductDAO;
 import com.capgemini.forestmanagementjpa.dao.ProductDAOImpl;
 import com.capgemini.forestmanagementjpa.dto.ContractorBean;
 import com.capgemini.forestmanagementjpa.dto.ProductBean;
+import com.capgemini.forestmanagementjpa.validations.Validations;
 
 public class SchedularApp {
 	public void schedularHome() {
@@ -20,17 +21,16 @@ public class SchedularApp {
 		ProductDAO proDao = new ProductDAOImpl();
 		while (true) {
 			try {
-				System.out.println("///////////////////////WELCOME TO FORESTERY MANAGMENT\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
+				System.out.println(
+						"==========================WELCOME TO FORESTERY MANAGMENT============================");
 				System.out.println("                            ::::SCHEDULAR HOME::::");
-				System.out.println("1.View all contracts");
-				System.out.println("2.View all prodcts");
-				System.out.println("3.Schedule the order ");
-				System.out.println("4.Logout ");
+				System.out.println("1.View all Contracts");
+				System.out.println("2.View all Prodcts");
+				System.out.println("3.Schedule the Order ");
+				System.out.println("4.List Of Scheduled Contracts ");
+				System.out.println("5.Logout ");
 				String choice1 = sc.next();
-				String choice1IDregex = "^[0-9]*$";
-				Pattern choice1IDpattern = Pattern.compile(choice1IDregex);
-				Matcher choice1IDmatcher = choice1IDpattern.matcher(choice1);
-				if (choice1IDmatcher.matches()) {
+				if (Validations.numberValidation(choice1)) {
 					int choice2 = Integer.parseInt(choice1);
 
 					switch (choice2) {
@@ -42,7 +42,7 @@ public class SchedularApp {
 									System.out.println(contracts);
 								}
 							} else {
-								System.out.println("Currently No Contracts..!");
+								System.out.println("Currently There Are No Contracts..!");
 							}
 						} catch (Exception e) {
 							String message = e.getMessage();
@@ -53,7 +53,7 @@ public class SchedularApp {
 					case 2:
 						List<ProductBean> productBeans = proDao.getAllProduct();
 						if (productBeans != null) {
-							System.out.println(":::PRODUCT DETTAILS:::");
+							System.out.println(":::::PRODUCT DETTAILS::::::");
 							for (ProductBean productBean3 : productBeans) {
 								System.out.println(productBean3);
 							}
@@ -70,26 +70,51 @@ public class SchedularApp {
 							System.out.println(coBean);
 							// String contractFields=coBean.toString();
 							System.out.println("=========================================================");
-							System.out.println("Enter The Demanded PRODUCT-ID Of For Verification And Delivery: ");
+							System.out.println("Enter The Demanded PRODUCT-ID For Inventory Check ");
 							int pid = sc.nextInt();
 							ProductBean prBean = proDao.searchProduct(pid);
 							System.out.println(prBean);
 							// String productFields=prBean.toString();
 
 							if (coBean.getQunatity() < prBean.getQantity()) {
-								System.out.println("VERIFICATION DONE WITH PRODUCT STOCKS, DEMANDED PRODUCT \n"
+								coBean.setStatus("ordered");
+								System.out.println("                   ::::::::STATUS::::::::\n"
+										+ "VERIFICATION DONE WITH PRODUCT STOCKS, REQUESTED PRODUCT WITH \n"
 										+ "QUANTITY WILL BE DELIVERED ON DATE: " + coBean.getDeliveryDate()
-										+ "\n Sending confiramtion mail to customer with CUSTOMER-ID: " + ""
+										+ "\n SENDING CONFIRAMTION MAIL TO CUSTOMER WITH CUSTOMER-ID: " + ""
 										+ coBean.getCustomerId() + "\n");
 							} else {
-								System.err.println("REQUESTED CONTRACT FOR PRODUCTS WILL BE DELAYED DUE TO\n "
-										+ "INSUFFICIENT STOCKS, DELIVERED AS SOON AS POSIIBLE..");
+								System.out.println("                   ::::::::STATUS::::::::\n"
+										+ "SENDDING MAIL:REQUESTED CONTRACT FOR PRODUCTS WILL BE DELAYED DUE TO\n "
+										+ "INSUFFICIENT STOCKS, WILL NOTIFY YOU AS SOON AS POSSIBLE");
 							}
 						} else {
 							System.out.println("Contract ID Not Exist..!");
 						}
 						break;
 					case 4:
+						try {
+							List<ContractorBean> contractBeans = conDao.getAllContarctor();
+							if (contractBeans != null) {
+								boolean isOrder=false;
+								for (ContractorBean contracts : contractBeans) {
+									if ((contracts.getStatus()).equals("ordered")) {
+										System.out.println(contracts);
+										isOrder=true;
+									}
+								}
+								if(isOrder==false) {
+									System.out.println("No Ordered Contracts");
+								}
+							} else {
+								System.out.println("Currently There Are No Contracts..!");
+							}
+						} catch (Exception e) {
+							String message = e.getMessage();
+							System.err.println(message);
+						}
+						break;
+					case 5:
 						ForestHomeJpa.main(null);
 
 					default:

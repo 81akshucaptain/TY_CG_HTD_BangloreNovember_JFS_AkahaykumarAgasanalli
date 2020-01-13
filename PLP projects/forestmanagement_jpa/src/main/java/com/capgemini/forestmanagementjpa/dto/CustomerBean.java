@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 public class CustomerBean implements Serializable {
 	@Id
 	@Column
+	@GeneratedValue
 	private int cid;
 	@Column
 	private String name;

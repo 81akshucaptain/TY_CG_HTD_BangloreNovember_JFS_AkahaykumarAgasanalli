@@ -2,6 +2,7 @@ package com.capgemini.forestmanagementjpa.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 public class ContractorBean {
 	@Id
 	@Column
+	@GeneratedValue
 	int contractId;
 	@Column
 	int customerId;
@@ -21,7 +23,15 @@ public class ContractorBean {
 	String deliveryDate;
 	@Column
 	int qunatity;
+	@Column
+	String status;
 
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getContractId() {
 		return contractId;
 	}
@@ -67,6 +77,7 @@ public class ContractorBean {
 	"\n HAULIER-ID   =" + haulierId + 
 	"\n DELIVERY-DATE=" + deliveryDate + 
 	"\n QUNATITY     =" + qunatity + 
+	"\n STATUS     =" + status + 
 	"\n=========================================================\n";
 	}
 }

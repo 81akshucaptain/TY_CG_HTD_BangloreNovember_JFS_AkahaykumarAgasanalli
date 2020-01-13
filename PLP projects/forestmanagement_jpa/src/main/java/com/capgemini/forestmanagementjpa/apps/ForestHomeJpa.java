@@ -70,7 +70,7 @@ public class ForestHomeJpa {
 
 						} catch (Exception e) {
 							String message = e.getMessage();
-							System.err.println(message);
+							System.out.println(message);
 						}
 						break;
 

@@ -42,22 +42,22 @@ public class ContractorApplication {
 						ContractorBean contractBean = new ContractorBean();
 
 						contractBean.setCustomerId(cid);
-
-						boolean stay5 = true;
-						while (stay5) {
-							try {
-								System.out.println("enter the Contractor ID: ");
-								String ContractID = scanner.next();
-								if (Validations.numberValidation(ContractID)) {
-									int ContractID2 = Integer.parseInt(ContractID);
-									contractBean.setContractId(ContractID2);
-									stay5 = false;
-								}
-							} catch (VallidationExceptionFMS e) {
-								String message = e.getMessage();
-								System.out.println(message);
-							}
-						}
+						contractBean.setStatus("schedule");
+//						boolean stay5 = true;
+//						while (stay5) {
+//							try {
+//								System.out.println("enter the Contractor ID: ");
+//								String ContractID = scanner.next();
+//								if (Validations.numberValidation(ContractID)) {
+//									int ContractID2 = Integer.parseInt(ContractID);
+//									contractBean.setContractId(ContractID2);
+//									stay5 = false;
+//								}
+//							} catch (VallidationExceptionFMS e) {
+//								String message = e.getMessage();
+//								System.out.println(message);
+//							}
+//						}
 
 						boolean stay7 = true;
 						while (stay7) {
@@ -179,12 +179,20 @@ public class ContractorApplication {
 								String ContractID = scanner.next();
 								if (Validations.numberValidation(ContractID)) {
 									int ContractID2 = Integer.parseInt(ContractID);
-									contractBean2.setContractId(ContractID2);
-									stay15 = false;
+									ContractorBean coBean = contractDao.searchContarctor(ContractID2);
+									if (coBean == null) {
+										System.out.println("CTID Not Exist..!");
+										stay15 = true;	
+									} else {
+										contractBean2.setContractId(ContractID2);
+										contractBean2.setStatus(coBean.getStatus());
+										stay15 = false;
+									}
 								}
-							} catch (VallidationExceptionFMS e) {
-								String message = e.getMessage();
-								System.out.println(message);
+							} catch (Exception e) {
+								System.out.println("Try With Vallid CTID");
+								stay15 = true;
+								break;
 							}
 						}
 
@@ -318,7 +326,7 @@ public class ContractorApplication {
 						break;
 
 					case 6:
-						
+
 						boolean staypsw = true;
 						while (staypsw) {
 							try {
@@ -329,9 +337,10 @@ public class ContractorApplication {
 								if (beanForChangePssword.getPassword().equals(existingPassword)) {
 									System.out.println("Enter The New Password:");
 									String newPassword = scanner.next();
-									beanForChangePssword.setPassword(newPassword);
 
 									if (Validations.passwordValidation(newPassword)) {
+										beanForChangePssword.setPassword(newPassword);
+										System.out.println("New Password is :" + beanForChangePssword.getPassword());
 										boolean passwordUpdated = customerDAO.updateCustomer(beanForChangePssword);
 
 										if (passwordUpdated) {
@@ -341,11 +350,10 @@ public class ContractorApplication {
 											System.out.println("Failed To Update New Password..!");
 											break;
 										}
-
-									} else {
-										System.out.println("Invalid Existing Password..!");
-										staypsw = true;
 									}
+								} else {
+									System.err.println("Invalid Existing Password...! Please Try Again");
+									staypsw = true;
 								}
 							} catch (VallidationExceptionFMS e) {
 								String message = e.getMessage();

@@ -40,15 +40,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
 
-			String jpql = "update CustomerBean set name=:name,town=:town,postal=:postal,email=:email,phone=:phone where cid=:cid";
-			Query q = emManager.createQuery(jpql);
-			q.setParameter("name", CustomerToUpdate.getName());
-			q.setParameter("town", CustomerToUpdate.getTown());
-			q.setParameter("postal", CustomerToUpdate.getPostal());
-			q.setParameter("email", CustomerToUpdate.getEmail());
-			q.setParameter("phone", CustomerToUpdate.getPhone());
-			q.setParameter("cid", CustomerToUpdate.getCid());
-			int result = q.executeUpdate();
+			String jpql = "update CustomerBean set name=:name,town=:town,postal=:postal,email=:email"
+					+ ",phone=:phone,password=:pswd where cid=:cid";
+			Query query = emManager.createQuery(jpql);
+			query.setParameter("name", CustomerToUpdate.getName());
+			query.setParameter("town", CustomerToUpdate.getTown());
+			query.setParameter("postal", CustomerToUpdate.getPostal());
+			query.setParameter("email", CustomerToUpdate.getEmail());
+			query.setParameter("phone", CustomerToUpdate.getPhone());
+			query.setParameter("pswd", CustomerToUpdate.getPassword());
+			query.setParameter("cid", CustomerToUpdate.getCid());
+			int result = query.executeUpdate();
 			etTransaction.commit();
 			emManager.close();
 
