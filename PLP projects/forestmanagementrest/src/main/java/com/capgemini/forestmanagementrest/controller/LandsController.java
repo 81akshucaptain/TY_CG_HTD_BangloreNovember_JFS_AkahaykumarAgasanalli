@@ -36,7 +36,10 @@ public class LandsController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("land with same ID already exists");
+			response.setDescription("FAILED TO ADD LAND : Might be-  \"\r\n" + 
+					"					+ \"1.Invalid Land Resources (must be alphabets)  \"\r\n" + 
+					"					+ \"2.Invalid landSize (must be 6 digits)  \"\r\n" + 
+					"					+ \"3.Invalid Land Location (must be alphabets)  \"\r\n" );
 		}
 		return response;
 	}
@@ -53,8 +56,10 @@ public class LandsController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("land id does not exist");
+			response.setDescription("1.LandId does not found OR "
+					+ "2.Invalid LandId (must be digit > 0)");
 		}
+
 		return response;
 	}
 	
@@ -86,8 +91,10 @@ public class LandsController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("land not found");
+			response.setDescription("1.LandId does not found OR "
+					+ "2.Invalid LandId (must be digit > 0)");
 		}
+
 		return response;
 	}
 	
@@ -101,7 +108,11 @@ public class LandsController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("Land not found");
+			response.setDescription("FAILED TO UPDATE LAND : Might be-  \"\r\n" + 
+					"					+ \"1.Invalid Land Resources (must be alphabets)  \"\r\n" + 
+					"					+ \"2.Invalid landSize (must be number > 0)  \"\r\n" + 
+					"					+ \"3.Invalid Land Location (must be alphabets)  \"\r\n"
+					+ "4.Invalid LandID (must be number >0" );
 		}
 		return response;
 	}

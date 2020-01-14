@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.forestmanagementrest.dao.ProductDAO;
 import com.capgemini.forestmanagementrest.dto.ProductBean;
+import com.capgemini.forestmanagementrest.exceptions.VallidationExceptionFMS;
+import com.capgemini.forestmanagementrest.util.Validations;
 
 @Service
 public class ProductServicesImpl implements ProductServices {
@@ -19,33 +21,74 @@ public class ProductServicesImpl implements ProductServices {
 	}
 
 	@Override
-	public boolean deleteProduct(int cid) {
-		// TODO Auto-generated method stub
-		return productDao.deleteProduct(cid);
+	public boolean deleteProduct(int pid) {
+		try {
+			if (Validations.numberValidation(pid)) {
+				return productDao.deleteProduct(pid);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
-	public boolean addProduct(ProductBean Product) {
-		// TODO Auto-generated method stub
-		return productDao.addProduct(Product);
+	public boolean addProduct(ProductBean product) {
+		try {
+			if (Validations.numberValidation(product.getCost()) 
+					&& Validations.numberValidation(product.getQantity())
+					&& Validations.alphabetsValidation(product.getName())
+					&& Validations.alphabetsValidation(product.getProductClass())) {
+				return productDao.addProduct(product);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean checkIsTherePID(int pid) {
-		// TODO Auto-generated method stub
-		return productDao.checkIsTherePID(pid);
+		try {
+			if (Validations.numberValidation(pid)) {
+				return productDao.checkIsTherePID(pid);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean updateProduct(ProductBean ProductToUpdate) {
-		// TODO Auto-generated method stub
-		return productDao.updateProduct(ProductToUpdate);
+		try {
+			if (Validations.numberValidation(ProductToUpdate.getPID())&&
+					Validations.numberValidation(ProductToUpdate.getCost()) 
+					&& Validations.numberValidation(ProductToUpdate.getQantity())
+					&& Validations.alphabetsValidation(ProductToUpdate.getName())
+					&& Validations.alphabetsValidation(ProductToUpdate.getProductClass())) {
+				return productDao.updateProduct(ProductToUpdate);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
-	public ProductBean searchProduct(int cid) {
-		// TODO Auto-generated method stub
-		return productDao.searchProduct(cid);
+	public ProductBean searchProduct(int pid) {
+		try {
+			if (Validations.numberValidation(pid)) {
+				return productDao.searchProduct(pid);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return null;
 	}
-
 }

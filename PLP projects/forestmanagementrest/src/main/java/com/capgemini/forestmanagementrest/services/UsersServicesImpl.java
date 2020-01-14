@@ -15,5 +15,4 @@ public class UsersServicesImpl implements UsersServices {
 	public boolean usersLogin(String userName, String password) {
 		return userDao.userLogin(userName, password);
 	}
-
 }

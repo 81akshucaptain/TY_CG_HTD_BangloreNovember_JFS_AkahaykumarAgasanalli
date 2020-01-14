@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.forestmanagementrest.dao.ContractorDAO;
 import com.capgemini.forestmanagementrest.dto.ContractorBean;
+import com.capgemini.forestmanagementrest.exceptions.VallidationExceptionFMS;
+import com.capgemini.forestmanagementrest.util.Validations;
 
 @Service
 public class ContractorServicesImpl implements ContractorServices {
-	
+
 	@Autowired
 	ContractorDAO contractDao;
-	
+
 	@Override
 	public List<ContractorBean> getAllContarctor() {
 		return contractDao.getAllContarctor();
@@ -22,22 +24,63 @@ public class ContractorServicesImpl implements ContractorServices {
 
 	@Override
 	public boolean updateContarctor(int cid, ContractorBean contarctorToUpdate) {
-		return contractDao.updateContarctor(cid, contarctorToUpdate);
+		try {
+			if (Validations.numberValidation(cid) 
+					&& Validations.numberValidation(contarctorToUpdate.getContractId())
+					&& Validations.numberValidation(contarctorToUpdate.getCustomerId())
+					&& Validations.numberValidation(contarctorToUpdate.getProductId())
+					&& Validations.dateValidation(contarctorToUpdate.getDeliveryDate())
+					&& Validations.haulierIdVallidation(contarctorToUpdate.getHaulierId())) {
+				return contractDao.updateContarctor(cid, contarctorToUpdate);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean deletecontarctor(int cid) {
-		return contractDao.deletecontarctor(cid);
+		try {
+			if (Validations.numberValidation(cid)) {
+				return contractDao.deletecontarctor(cid);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean addContarctor(ContractorBean contractor) {
-		return contractDao.addContarctor(contractor);
+		try {
+			if ( Validations.numberValidation(contractor.getContractId())
+					&& Validations.numberValidation(contractor.getCustomerId())
+					&& Validations.numberValidation(contractor.getProductId())
+					&& Validations.dateValidation(contractor.getDeliveryDate())
+					&& Validations.haulierIdVallidation(contractor.getHaulierId())
+					&& Validations.numberValidation(contractor.getQunatity())) {
+				return contractDao.addContarctor(contractor);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public ContractorBean searchContarctor(int cid) {
-		return contractDao.searchContarctor(cid);
+		try {
+			if (Validations.numberValidation(cid)) {
+				return contractDao.searchContarctor(cid);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return null;
 	}
-
 }

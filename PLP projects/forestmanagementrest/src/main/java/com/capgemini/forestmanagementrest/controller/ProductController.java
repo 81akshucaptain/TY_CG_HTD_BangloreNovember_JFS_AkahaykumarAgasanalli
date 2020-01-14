@@ -35,7 +35,12 @@ public class ProductController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("Product with same name already exists");
+			response.setDescription("FAILED TO ADD PRODUCT: - may be  "
+					+ "1.Invalid ProductName(must be alphabets) "
+					+ "2.Invalid Location (must be alphabets) "
+					+ "3.Invalid Resources (must be alphabets)"
+					+ "4.Invalid Product Cost(must be number) "
+					+ "5.Invalid Quantity (must be number) ");
 		}
 		return response;
 	}
@@ -52,7 +57,7 @@ public class ProductController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("Product id does not exist");
+			response.setDescription("Product id does not exist OR Invalid PID must be number");
 		}
 		return response;
 	}
@@ -69,7 +74,7 @@ public class ProductController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("No data");
+			response.setDescription("No Data Found");
 		}
 		return response;
 		
@@ -85,7 +90,8 @@ public class ProductController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("Product not found");
+			response.setDescription("Product not found Or"
+					+ "Invalid ID Must be Number");
 		}
 		return response;
 	}
@@ -102,7 +108,12 @@ public class ProductController {
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("Product not found");
+			response.setDescription("FAILED TO UPDATE PRODUCT: - may be  "
+					+ "1.Invalid ProductName(must be alphabets) "
+					+ "2.Invalid Location (must be alphabets) "
+					+ "3.Invalid Resources (must be alphabets)"
+					+ "4.Invalid Product Cost And ID(must be number) "
+					+ "5.Invalid Quantity (must be number) ");
 		}
 		return response;
 	}
