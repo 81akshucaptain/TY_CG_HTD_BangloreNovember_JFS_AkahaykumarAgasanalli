@@ -1,0 +1,54 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" [(ngModel)]='search'
+        placeholder="Enter Contract ID  to search...">
+</div>
+<div class="col-md-3 float-left mt-3" *ngFor='let contract of contracts | filterContracts: search'>
+    <div class="card text-center">
+        <div class="card-header bg-muted">
+            <h5>ContractID : {{contract.contractId}}</h5>
+        </div>
+        <div class="card-body center">
+            <img src="https://cdn1.iconfinder.com/data/icons/corporate-development-3/96/Artboard_9-512.png" alt="" style="align-content: center;"
+                height="150px" width="50%">
+            <table>
+                <tr>
+                    <td>
+                        <p>CustomerId : {{contract.customerId}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ProductID : {{contract.productId}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>HualierId : {{contract.haulierId}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Deliver Date : {{contract.deliveryDate}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Ordered Quantity : {{contract.qunatity}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedContract(contract)'>
+                    Update
+                </button>
+                <button class="btn btn-outline-dark" (click)='deleteContracts(contract)'>
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</div>

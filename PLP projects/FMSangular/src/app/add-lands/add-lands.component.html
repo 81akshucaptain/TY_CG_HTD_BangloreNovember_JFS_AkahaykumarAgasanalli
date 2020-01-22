@@ -1,0 +1,34 @@
+<div class="alert alert-success" *ngIf='message'>
+    {{message}}
+</div>
+<div class="alert alert-danger" *ngIf='error'>
+    {{error}}
+</div>
+<div class="col-md-4 offset-4 mt-2">
+    <form #landBeanForm='ngForm' (ngSubmit)='addLand(landBeanForm)'>
+        <div class="card">
+            <div class="card-header">
+                <h4>Add Land Details</h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="landLocation">Location</label>
+            <input type="text" name="landLocation" id="landLocation" class="form-control" placeholder="Enter Land Location" #landLocation='ngModel'
+                ngModel>
+        </div>
+        <div class="form-group">
+            <label for="landSize">Size (acre's)</label>
+            <input type="number" name="landSize" id="landSize" class="form-control" placeholder="Enter Land Size"
+                #landSize='ngModel' ngModel>
+        </div>
+        <div class="form-group">
+            <label for="landResources">Resources</label>
+            <input type="text" name="landResources" id="landResources" class="form-control" placeholder="Enter land Resources"
+                #landResources='ngModel' ngModel>
+        </div>
+        <div class="card-footer float-right">
+            <button type="submit" class="btn btn-success">Add-Land</button>
+        </div>
+        <br>
+    </form>
+</div>

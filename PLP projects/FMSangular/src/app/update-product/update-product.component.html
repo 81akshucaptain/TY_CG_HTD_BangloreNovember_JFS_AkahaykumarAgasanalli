@@ -1,0 +1,41 @@
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="col-md-4 offset-md-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="text-centre text-secondary"> Update Product Details</h4>
+        </div>
+        <form #editForm='ngForm' (ngSubmit)='updateProduct(editForm)'>
+
+            <label for="pid">PID : {{adminService.selectedProductToUpdate.pid}} </label> <br><br>
+            <input type="hidden" name="pid" id="pid" #pid='ngModel' class="form-control"
+                [(ngModel)]='adminService.selectedProductToUpdate.pid'>
+
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" name="name" id="name" #name='ngModel' class="form-control" required
+                    [(ngModel)]='adminService.selectedProductToUpdate.name'>
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost </label>
+                <input type="number" name="cost" id="cost" #cost='ngModel' ngModel class="form-control" required
+                    [(ngModel)]='adminService.selectedProductToUpdate.cost'>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity </label>
+                <input type="number" name="quantity" id="quantity" #quantity='ngModel' class="form-control" required
+                    [(ngModel)]='adminService.selectedProductToUpdate.quantity'>
+            </div>
+            <div class="form-group">
+                <label for="productClass">ProductClass </label>
+                <input type="text" name="productClass" id="productClass" #productClass='ngModel' class="form-control" required
+                    [(ngModel)]='adminService.selectedProductToUpdate.productClass'>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-outline btn-success float-right">
+                    Update</button>
+            </div>
+        </form>
+
+    </div>
+</div>

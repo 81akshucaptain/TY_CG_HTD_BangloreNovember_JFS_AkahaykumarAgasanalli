@@ -1,0 +1,11 @@
+div{
+    float: left;
+    margin-left: 2em;
+    padding-left: 1px;
+    border-spacing: 2em;
+    margin-block-end: 2em;
+}
+.card{
+    margin-top: 2em;
+    margin-left: 5em;
+}

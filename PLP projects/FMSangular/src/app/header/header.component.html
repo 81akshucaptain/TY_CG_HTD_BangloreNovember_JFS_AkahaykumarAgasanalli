@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-sm navbar-light ">
+    <a class="navbar-brand" routerLink="/">
+        <img src="http://4.bp.blogspot.com/-KXQsqU0As30/VWlBroXaQbI/AAAAAAAABxk/MlzVHjkd_Fo/s1600/OuTrop_logo.jpg"  height="70px" width="80px" alt="" style="border-radius: 50%;"></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <!-- <li class="nav-item active">
+                <a class="nav-link" routerLink="/home" *ngIf='true'>Home <span
+                        class="sr-only">(current)</span></a>
+            </li> -->
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/home"><h1>KFD</h1> <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/about" ><h5>About</h5> <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/contact" ><h5>Contact-us</h5><span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/admin-home"  *ngIf='isAdmin()'><h5>Admin-Actions</h5><span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/customer-home"  *ngIf='isCustomer()'><h5>Customer-Actions</h5><span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/scheduler-home"  *ngIf='isScheduler()'><h5>Scheduler-Actions</h5><span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" *ngIf='isLoggedIn()'>
+                <button class="btn btn-outline-dark" (click)='logout()'>
+                   <h5>LogOut</h5></button>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/login" *ngIf='!isLoggedIn()'>
+                    <h5>Login</h5><span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+

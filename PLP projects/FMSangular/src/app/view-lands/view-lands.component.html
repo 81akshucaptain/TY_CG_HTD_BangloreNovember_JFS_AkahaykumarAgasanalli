@@ -1,0 +1,44 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" [(ngModel)]='search'
+        placeholder="Enter Land Land-Location to search...">
+</div>
+
+<div class="col-md-3 float-left mt-3" *ngFor='let lan of lands | filterLands: search'>
+    <div class="card text-center">
+        <div class="card-header bg-muted">
+            <h5>Land-Location : {{lan.landLocation}}</h5>
+        </div>
+        <div class="card-body ">
+            <img src="https://ak7.picdn.net/shutterstock/videos/3217207/thumb/1.jpg"
+                alt="" height="150px" width="90%">
+            <table>
+                <tr>
+                    <td>
+                        <p>LID : {{lan.landId}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Resources : {{lan.landResources}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Size (acre's) : {{lan.landSize}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedLand(lan)'>
+                    Update
+                </button>
+                <button class="btn btn-outline-dark" (click)='deleteLand(lan)'>
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

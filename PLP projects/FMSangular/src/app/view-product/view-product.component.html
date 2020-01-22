@@ -1,0 +1,48 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" [(ngModel)]='search'
+        placeholder="Enter ProductName to search...">
+</div>
+<div class="col-md-3 float-left mt-3" *ngFor='let product of products | filterProduct: search'>
+    <div class="card text-center">
+        <div class="card-header bg-muted">
+            <h5>ProductName : {{product.name}}</h5>
+        </div>
+        <div class="card-body ">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5mjwx3IURel3_Jk-L-R8pC95zzy453LrHO1jtVVYqFEVhGhx_zA&s"
+                alt="" height="150px" width="50%">
+            <table>
+                <tr>
+                    <td>
+                        <p>ProductID : {{product.pid}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Cost : {{product.cost}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Quantity : {{product.quantity}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ProductClass : {{product.productClass}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedProduct(product)'>
+                    Update
+                </button>
+                <button class="btn btn-outline-dark" (click)='deleteproduct(product)'>
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

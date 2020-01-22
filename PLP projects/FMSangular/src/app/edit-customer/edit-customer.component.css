@@ -1,0 +1,12 @@
+.card-header{
+    text-emphasis-color: initial;
+    font-style: initial;
+    }
+    h4{
+        text-align: center;
+    }
+    .card{
+        padding: 1em;
+        border-color: darkgoldenrod;
+        
+    }

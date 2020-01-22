@@ -1,0 +1,55 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" [(ngModel)]='search'
+        placeholder="Enter CustomerName  to search...">
+</div>
+<div class="col-md-3 float-left mt-3" *ngFor='let customer of customers | filteCustomer: search'>
+    <div class="card text-center">
+        <div class="card-header bg-muted">
+            <h5>Name : {{customer.name}}</h5>
+        </div>
+        <div class="card-body center">
+            <img src="https://cdn4.iconfinder.com/data/icons/various-solid/32/icon-profile-solid-512.png" alt="" style="align-content: center;"
+                height="150px" width="50%">
+            <table>
+                <tr>
+                    <td>
+                        <p>CID : {{customer.cid}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Email : {{customer.email}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Town : {{customer.town}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Postal : {{customer.postal}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Phone : {{customer.phone}}</p>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedCustomer(customer)'>
+                    Update
+                </button>
+                <button class="btn btn-outline-dark" (click)='deleteCustomer(customer)'>
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

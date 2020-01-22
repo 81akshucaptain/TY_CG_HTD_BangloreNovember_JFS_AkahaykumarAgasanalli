@@ -1,0 +1,12 @@
+.card{
+    padding: 20px;
+    margin-left: 10em;
+    border-left-color: darkgoldenrod;
+    border-right-color: goldenrod;
+    border-width: 3px;
+}
+.card-header{
+    background-color:lightblue;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 20px;
+}

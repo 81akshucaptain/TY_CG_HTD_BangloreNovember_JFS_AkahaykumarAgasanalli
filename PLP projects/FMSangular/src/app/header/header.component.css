@@ -1,0 +1,28 @@
+a{
+    text-decoration-color: white;
+    text-decoration: white;
+    font-style: normal;
+    font-weight: bold;
+
+}
+h5{
+    font-style: normal;
+    font-weight: bold;
+}
+h6{
+    font-style: normal;
+}
+h4{
+    border-style: 2px solid black;
+}
+.navbar{
+    /* border-style: 1px solid blue; */
+    border-style: solid darkgray;
+    border-spacing: 0px;
+    background-color: darkgray;
+    text-emphasis-color: white;
+    text-decoration-color: white;
+}
+#navImage{
+    border-radius: 50%;
+}

@@ -1,0 +1,68 @@
+<!-- Card -->
+<div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='canScheduleTheContract' >
+<div class="card card-cascade wider reverse">
+
+    <!-- Card image -->
+    <div class="view view-cascade overlay" style="margin-top: 3em; height: 200px; width: 300px; margin-left: 22em;">
+      <img class="card-img-top" src="https://cdn.pixabay.com/photo/2017/02/18/23/15/icon-2078488_1280.png"  alt="Card image cap"  >
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+  
+    <!-- Card content -->
+    <div class="card-body card-body-cascade text-center" >
+  
+      <!-- Title -->
+      <h4 class="card-title" ><strong >CONTRACT HAS BEEN SCHEDULED SUCCESFULLY</strong></h4>
+      <!-- Subtitle -->
+      <h6 class="font-weight-bold indigo-text py-2">delivred with expected date</h6>
+      <!-- Text -->
+      <p class="card-text">The order succesfully scheduled, hence the requested product will be delivered on the requested date through the mentioned vehicle
+      </p>
+  
+      <!-- Linkedin -->
+      <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
+      <!-- Twitter -->
+      <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
+      <!-- Dribbble -->
+      <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
+  
+    </div>
+  
+  </div>
+</div>
+  <!-- Card -->
+  <div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='!canScheduleTheContract'>
+    <div class="card card-cascade wider reverse">
+    
+        <!-- Card image -->
+        <div class="view view-cascade overlay" style="margin-top: 3em; height: 400px; width: 500px; margin-left: 15em;">
+          <img class="card-img-top" src="https://cdn.pixabay.com/photo/2016/10/06/19/59/sign-1719892_1280.png" alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+      
+          <!-- Title -->
+          <h4 class="card-title"><strong>CONTRACT SCHEDULED HAS BEEN FAILED</strong></h4>
+          <!-- Subtitle -->
+          <h6 class="font-weight-bold indigo-text py-2">due to insufficient requested products type</h6>
+          <!-- Text -->
+          <p class="card-text">Requested products are insuffient to delivery, suggested to try with other products
+          </p>
+      
+          <!-- Linkedin -->
+          <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
+          <!-- Twitter -->
+          <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
+          <!-- Dribbble -->
+          <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
+      
+        </div>
+      
+      </div>
+    </div>
