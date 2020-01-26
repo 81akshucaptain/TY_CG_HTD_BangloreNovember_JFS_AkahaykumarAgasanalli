@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ViewProductComponent implements OnInit {
   products: Products[];
   message: string;
-
+  pid: number;
   constructor(
     private adminService: AdminService,
     private router: Router
@@ -43,9 +43,17 @@ export class ViewProductComponent implements OnInit {
   }
 
   selectedProduct(productBean) {
-    this.adminService.selectedProductToUpdate = productBean;
-    console.log(this.adminService.selectedProductToUpdate);
-    this.router.navigateByUrl('/update-product');
+    // this.adminService.selectedProductToUpdate = productBean;
+    // console.log(this.adminService.selectedProductToUpdate);
+
+    this.router.navigate([`update-product/${productBean.productId}`],
+      {
+        queryParams: {
+          name: productBean.name, cost: productBean.cost,
+          quantity: productBean.quantity, productClass: productBean.productClass
+        }
+      }
+    );
   }
   ngOnInit() {
   }

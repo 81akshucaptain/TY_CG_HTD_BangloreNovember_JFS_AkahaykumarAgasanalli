@@ -1,6 +1,7 @@
 interface Products {
-    pid?: number;
+    productId?: number;
     name: string;
     cost: number;
     quantity: number;
+    productClass: string;
 }

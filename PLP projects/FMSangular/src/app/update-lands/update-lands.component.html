@@ -6,25 +6,51 @@
         </div>
         <form #editForm='ngForm' (ngSubmit)='updateLand(editForm)'>
 
-            <label for="landId">LID : {{adminService.selectedLandToUpdate.landId}} </label> <br><br>
+            <label for="landId">LandId: {{landId1}} </label> <br><br>
             <input type="hidden" name="landId" id="landId" #landId='ngModel' class="form-control"
-                [(ngModel)]='adminService.selectedLandToUpdate.landId'>
+                [(ngModel)]='landId1' >
 
             <div class="form-group">
                 <label for="landLocation">Location</label>
-                <input type="text" name="landLocation" id="landLocation" #landLocation='ngModel' class="form-control" required
-                    [(ngModel)]='adminService.selectedLandToUpdate.landLocation'>
+                <input type="text" name="landLocation" id="landLocation" #landLocation='ngModel' class="form-control" 
+                    [(ngModel)]='landLocation1' pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50"
+                    required>
+                <div class="text-danger" *ngIf='(landLocation.touched || landLocation.dirty) && landLocation.invalid'>
+                    <div class="alert alert-danger" *ngIf='landLocation.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='landLocation.errors.pattern'>
+                        *Can contain only alphabets seperated by space with minimum length 2
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="landSize">Size (acre's) </label>
                 <input type="number" name="landSize" id="landSize" #landSize='ngModel' ngModel class="form-control" required
-                    [(ngModel)]='adminService.selectedLandToUpdate.landSize'>
+                    [(ngModel)]='landSize1' pattern="[1-9][0-9]*" min="1" required>
+                    <div class="text-danger" *ngIf='landSize.touched && landSize.invalid'>
+                        <div class="alert alert-danger" *ngIf='landSize.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='landSize.errors.pattern'>
+                            *Invalid land size, size must be numbers  and greater than zero
+                        </div>
+                    </div>
             </div>
 
             <div class="form-group">
                 <label for="landResources">Resources </label>
                 <input type="text" name="landResources" id="landResources" #landResources='ngModel' class="form-control" required
-                    [(ngModel)]='adminService.selectedLandToUpdate.landResources'>
+                    [(ngModel)]='landResources1'  pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50"
+                    required>
+                <div class="text-danger" *ngIf='(landResources.touched || landResources.dirty) && landResources.invalid'>
+                    <div class="alert alert-danger" *ngIf='landResources.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='landResources.errors.pattern'>
+                        *Can contain only alphabets seperated by space with minimum length 2
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-outline btn-success float-right">

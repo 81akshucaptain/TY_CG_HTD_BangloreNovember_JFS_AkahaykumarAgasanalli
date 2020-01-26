@@ -25,34 +25,56 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { SchedulerHomeComponent } from './scheduler-home/scheduler-home.component';
 import { ScheduleContractsComponent } from './schedule-contracts/schedule-contracts.component';
 import { ViewContractsBySchedulerComponent } from './view-contracts-by-scheduler/view-contracts-by-scheduler.component';
+import { ViewCustomerBySchedulerComponent } from './view-customer-by-scheduler/view-customer-by-scheduler.component';
+import { AuthGaurd } from './auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NgModel } from '@angular/forms';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactUsComponent },
-  { path: 'customer-home', component: CustomerHomeComponent },
+  {
+    path: 'customer-home', component: CustomerHomeComponent,
+    canActivate: [AuthGaurd], data: {
+      expectedRoles: ['customer']
+    }
+  },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'admin-home', component: AdminHomeComponent },
+  {
+    path: 'admin-home', component: AdminHomeComponent,
+    canActivate: [AuthGaurd], data: {
+      expectedRoles: ['admin']
+    }
+  },
   { path: 'add-customers', component: AddCustomerComponent },
-  { path: 'update-customer', component: UpdateCustomerComponent },
+  { path: 'update-customer/:customerId', component: UpdateCustomerComponent },
   { path: 'view-customers', component: ViewCustomerComponent },
   { path: 'add-products', component: AddProductComponent },
   { path: 'view-products', component: ViewProductComponent },
-  { path: 'update-product', component: UpdateProductComponent },
+  { path: 'update-product/:productId', component: UpdateProductComponent },
   { path: 'add-lands', component: AddLandsComponent },
-  { path: 'update-land', component: UpdateLandsComponent },
+  { path: 'update-land/:landId', component: UpdateLandsComponent },
   { path: 'view-lands', component: ViewLandsComponent },
   { path: 'view-contracts', component: ViewContractsComponent },
   { path: 'add-contract', component: AddContractComponent },
   { path: 'get-contracts', component: GetContractsComponent },
-  { path: 'update-contract', component: UpdateContractsComponent },
-  {path: 'get-products', component: GetProductsComponent},
-  {path: 'edit-customer', component: EditCustomerComponent},
-  {path: 'scheduler-home', component: SchedulerHomeComponent},
-  {path: 'schedule-contracts', component: ScheduleContractsComponent},
-  {path: 'view-contract-by-scheduler', component: ViewContractsBySchedulerComponent}
+  { path: 'update-contract/:contractId', component: UpdateContractsComponent },
+  { path: 'get-products', component: GetProductsComponent },
+  { path: 'edit-customer/:customerId', component: EditCustomerComponent },
+  {
+    path: 'scheduler-home', component: SchedulerHomeComponent,
+    canActivate: [AuthGaurd], data: {
+      expectedRoles: ['scheduler']
+    }
+  },
+  { path: 'schedule-contracts', component: ScheduleContractsComponent },
+  { path: 'view-contract-by-scheduler', component: ViewContractsBySchedulerComponent },
+  { path: 'view-customers-by-scheduler', component: ViewCustomerBySchedulerComponent },
+  { path: '**', component: PageNotFoundComponent }
+
 ];
 
 @NgModule({

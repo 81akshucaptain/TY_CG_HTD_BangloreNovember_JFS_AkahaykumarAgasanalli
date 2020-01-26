@@ -22,12 +22,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userDetails', JSON.stringify(response));
         console.log('user deatils are in local storage');
         const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-        if (userDetails.user[0].user === 'admin') {
-          console.log(userDetails.user[0].user);
+        if (userDetails.user[0].userType === 'admin') {
           this.router.navigateByUrl('/admin-home');
-        } else if (userDetails.user[0].user === 'customer') {
+        } else if (userDetails.user[0].userType === 'customer') {
           this.router.navigateByUrl('/customer-home');
-        } else if (userDetails.user[0].user === 'scheduler') {
+        } else if (userDetails.user[0].userType === 'scheduler') {
           this.router.navigateByUrl('/scheduler-home');
         } else {
           this.router.navigateByUrl('\login');

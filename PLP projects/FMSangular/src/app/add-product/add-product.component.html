@@ -1,9 +1,11 @@
+<body>
 <div class="alert alert-success" *ngIf='message'>
     {{message}}
 </div>
 <div class="alert alert-danger" *ngIf='error'>
     {{error}}
 </div>
+<div class="akshay">
 <div class="col-md-4 offset-4 mt-2">
     <form #productBeanForm='ngForm' (ngSubmit)='addProduct(productBeanForm)'>
         <div class="card">
@@ -11,25 +13,57 @@
                 <h4>Add Product Details</h4>
             </div>
         </div>
-        .<div class="form-group">
-            <label for="name">Prosuct Name</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Enter product name" #name='ngModel'
-                ngModel>
+        <div class="form-group">
+            <label for="name">product name</label>
+            <input type="text" name="name" id="name" class="form-control" #name='ngModel' ngModel
+                placeholder="Enter product name" pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50"
+                required>
+            <div class="text-danger" *ngIf='(name.touched || name.dirty) && name.invalid'>
+                <div class="alert alert-danger" *ngIf='name.errors.required'>
+                    *This Field Is invalid
+                </div>
+                <div class="alert alert-danger" *ngIf='name.errors.pattern'>
+                    *Can contain only alphabets seperated by space with minimum length 2
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            <label for="cost">Cost</label>
-            <input type="number" name="cost" id="cost" class="form-control" placeholder="Enter product cost"
-                #cost='ngModel' ngModel>
+            <label for="number">Cost</label>
+            <input type="number" name="cost" id="cost" class="form-control" placeholder="Enter product cost" 
+             minlength="1" maxlength="12"
+                #cost='ngModel' ngModel pattern="[1-9][0-9]*" min="1">
+                <div class="text-danger" *ngIf='cost.touched && cost.invalid'>
+                    <div class="alert alert-danger" *ngIf='cost.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='cost.errors.pattern'>
+                        *Invalid cost, cost must be numbers and greater than zero
+                    </div>
+                </div>
         </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>
             <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Enter product quantity"
-                #quantity='ngModel' ngModel>
+                #quantity='ngModel' ngModel minlength="1" maxlength="12"  pattern="[1-9][0-9]*" min="1">
+                <div class="text-danger" *ngIf='quantity.touched && quantity.invalid'>
+                    <div class="alert alert-danger" *ngIf='quantity.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='quantity.errors.pattern'>
+                        *Invalid cost, cost must be and numbers and greater than zero
+                    </div>
+                </div>
         </div>
         <div class="form-group">
-            <label for="productClass">Prooduct Class</label>
-            <input type="text" name="productClass" id="productClass" class="form-control" placeholder="Enter product Class"
-                #productClass='ngModel' ngModel>
+            <label for="productClass">Prooduct Class (select)</label>
+            <select name="productClass" id="productClass" class="form-control" placeholder="Enter product Class"
+                #productClass='ngModel' ngModel> 
+                <option value="A">class-1</option>
+            <option value="B">class-2</option>
+            <option value="C">class-3</option>
+            <option value="D">class-4</option>
+            <option value="E">class-5</option>
+            </select>
         </div>
         <div class="card-footer float-right">
             <button type="submit" class="btn btn-success">Add-Product</button>
@@ -37,3 +71,5 @@
         <br>
     </form>
 </div>
+</div>
+</body>

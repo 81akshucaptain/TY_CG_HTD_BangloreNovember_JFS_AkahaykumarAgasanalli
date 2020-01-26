@@ -1,18 +1,47 @@
+
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
 h4{
-    font-style: italic;
-    text-align: center;
-    font-size: 30px;
-    text-decoration: lightgoldenrodyellow;
-    text-shadow: darkturquoise;
-}
-.card-header{
-text-emphasis-color: initial;
-font-style: initial;
-margin-top: 5%;
+        font-style: italic;
+        text-align: center;
+        text-shadow: darkturquoise;
+        text-decoration-color: gold;
+        margin-top: 3%;
+        font-family: 'Oleo Script', cursive;
+        font-size: 30px;
+
+    }
+body{
+    
+        padding: 2em;
+             padding: 2em;
+             font-family: 'Oleo Script', cursive;
+             /* background-image: url('https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_1280.jpg'); */
+             height: 100%;
+             border-image-width: 100%;
+        
 }
 .card{
-    padding: 1em;
-    border-color: darkgoldenrod;
-    border-radius: 2em;
-    margin-top: 10%;
-}
+    padding: 2em;
+         border: 2px solid gold;
+         border-color: goldenrod;
+         padding: 2em;
+         font-family: 'Oleo Script', cursive;
+         background-image: url('https://cdn.pixabay.com/photo/2018/09/29/22/50/sunrise-3712483_1280.jpg');
+         height: 100%;
+         width: 100%;
+
+    }
+    label{
+        font-family: 'Oleo Script', cursive;
+   font-size: 1.5em;
+    }
+    .card-footer{
+        margin-top: 1em;
+        padding: 3em;
+        text-align: justify;
+        font-family: 'Oleo Script', cursive;
+        padding-bottom: 2em;align-items: center;
+    }
+    
+    

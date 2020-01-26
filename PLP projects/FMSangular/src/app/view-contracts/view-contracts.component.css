@@ -1,4 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
 td{
     float: left;
     padding-left: 3em;
 }
+.card{
+    backdrop-filter: initial;
+    -moz-box-pack: start;
+    -webkit-backface-visibility: hidden;
+     border-block-start-style: groove;
+     backdrop-filter: inherit;
+     background-image: url();
+     font-family: 'Oleo Script', cursive;
+
+}
+
+.card-header{
+    background-color:powderblue;
+}
+
+.card-body
+{ 
+background-image: url('https://image.freepik.com/free-vector/blue-geometric-transparent-background_1055-6879.jpg'); 
+background-size: cover; 
+height: 470px; 
+-webkit-box-shadow: Oleo; 
+box-shadow: chocolate; 
+border: 20px; 
+border-radius: 4px;
+font-family: 'Oleo Script', cursive;
+font-size: 20px;
+
+}   
+.card-footer{
+    font-size: 30px;
+}
+input{
+    border: 2px solid black;
+    border-width: 3px;
+    font-size: 18px;
+    color: black;
+}
+

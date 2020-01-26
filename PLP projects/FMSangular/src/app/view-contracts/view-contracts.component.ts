@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-contracts',
@@ -12,10 +12,9 @@ export class ViewContractsComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private router: Router
+    private router: Router,
   ) {
     this.getContracts();
-
   }
   getContracts() {
     this.adminService.viewContracts().subscribe(response => {

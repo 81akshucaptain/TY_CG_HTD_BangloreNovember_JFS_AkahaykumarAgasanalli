@@ -5,4 +5,5 @@ interface Contracts {
     haulierId: string;
     deliveryDate: string;
     qunatity: number;
+    status: string;
 }

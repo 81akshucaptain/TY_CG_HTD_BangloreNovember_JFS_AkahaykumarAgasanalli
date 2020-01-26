@@ -44,9 +44,16 @@ export class ViewLandsComponent implements OnInit {
   }
 
   selectedLand(landbean) {
-    this.adminService.selectedLandToUpdate = landbean;
-    console.log(this.adminService.selectedLandToUpdate);
-    this.router.navigateByUrl('/update-land');
+    // this.adminService.selectedLandToUpdate = landbean;
+    // console.log(this.adminService.selectedLandToUpdate);
+    this.router.navigate([`update-land/${landbean.landId}`],
+    {
+      queryParams: {
+        landLocation: landbean.landLocation, landSize: landbean.landSize,
+        landResources: landbean.landResources
+      }
+    }
+  );
   }
   ngOnInit() {
   }

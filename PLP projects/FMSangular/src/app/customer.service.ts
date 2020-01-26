@@ -8,15 +8,16 @@ import { Observable } from 'rxjs';
 export class CustomerService {
 
   selectedContractToUpdate: Contracts;
+  cudtomerIdForValidation: number;
 
   url = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
-  // GET FRO CUSTOMER
+  // FOR CUSTOMER
   searchCustomer(): Observable<any> {
     let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    return this.http.get<any>(`${this.url}/search-customer-by-email?email=${userDetails.user[0].user_name}`);
+    return this.http.get<any>(`${this.url}/search-customer-by-email?email=${userDetails.user[0].userName}`);
   }
   addContract(contractBean): Observable<any> {
     return this.http.post<any>(`${this.url}/add-contract`, contractBean);
@@ -26,7 +27,7 @@ export class CustomerService {
   }
   viewContractById(): Observable<any> {
     let customerDetails = JSON.parse(localStorage.getItem('customerDetails'));
-    return this.http.get<any>(`${this.url}//get-allcontracts-by-customer-id?cid=${customerDetails.customer[0].cid}`);
+    return this.http.get<any>(`${this.url}//get-allcontracts-by-customer-id?cid=${customerDetails.customer[0].customerId}`);
   }
   deleteContract(contractBean: Contracts): Observable<any> {
     return this.http.delete<any>(`${this.url}/delete-contract/${contractBean.contractId}`);

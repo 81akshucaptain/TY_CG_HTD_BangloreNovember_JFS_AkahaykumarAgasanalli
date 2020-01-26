@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,11 +32,12 @@ import { AddContractComponent } from './add-contract/add-contract.component';
 import { GetContractsComponent } from './get-contracts/get-contracts.component';
 import { UpdateContractsComponent } from './update-contracts/update-contracts.component';
 import { ScheduleContractsComponent } from './schedule-contracts/schedule-contracts.component';
-import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { GetProductsComponent } from './get-products/get-products.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { SchedulerHomeComponent } from './scheduler-home/scheduler-home.component';
 import { ViewContractsBySchedulerComponent } from './view-contracts-by-scheduler/view-contracts-by-scheduler.component';
+import { ViewCustomerBySchedulerComponent } from './view-customer-by-scheduler/view-customer-by-scheduler.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -68,17 +69,19 @@ import { ViewContractsBySchedulerComponent } from './view-contracts-by-scheduler
     GetContractsComponent,
     UpdateContractsComponent,
     ScheduleContractsComponent,
-    UpdatePasswordComponent,
     GetProductsComponent,
     EditCustomerComponent,
     SchedulerHomeComponent,
     ViewContractsBySchedulerComponent,
+    ViewCustomerBySchedulerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

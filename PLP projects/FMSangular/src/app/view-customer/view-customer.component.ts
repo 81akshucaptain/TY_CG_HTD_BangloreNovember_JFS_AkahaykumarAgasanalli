@@ -43,9 +43,15 @@ export class ViewCustomerComponent implements OnInit {
   }
 
   selectedCustomer(customerBean) {
-    this.adminService.selectedCustomerToUpdate = customerBean;
-    console.log(this.adminService.selectedCustomerToUpdate);
-    this.router.navigateByUrl('/update-customer');
+    // this.adminService.selectedCustomerToUpdate = customerBean;
+    // console.log(this.adminService.selectedCustomerToUpdate);
+    this.router.navigate([`update-customer/${customerBean.customerId}`],
+      {
+        queryParams: {
+          name: customerBean.name, email: customerBean.email, phone: customerBean.phone,
+          postal: customerBean.postal, town: customerBean.town
+        }
+      });
   }
   ngOnInit() {
   }

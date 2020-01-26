@@ -1,5 +1,5 @@
 <!-- Card -->
-<div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='canScheduleTheContract' >
+<div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='canScheduleTheContract1' >
 <div class="card card-cascade wider reverse">
 
     <!-- Card image -->
@@ -16,7 +16,7 @@
       <!-- Title -->
       <h4 class="card-title" ><strong >CONTRACT HAS BEEN SCHEDULED SUCCESFULLY</strong></h4>
       <!-- Subtitle -->
-      <h6 class="font-weight-bold indigo-text py-2">delivred with expected date</h6>
+      <h6 class="font-weight-bold indigo-text py-2">deliverable with demanded date</h6>
       <!-- Text -->
       <p class="card-text">The order succesfully scheduled, hence the requested product will be delivered on the requested date through the mentioned vehicle
       </p>
@@ -30,10 +30,10 @@
   
     </div>
   
-  </div>
+</div>
 </div>
   <!-- Card -->
-  <div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='!canScheduleTheContract'>
+  <div class="col-md-8" style="margin-left: 17em; margin-top: 2em;" *ngIf='canScheduleTheContract2'>
     <div class="card card-cascade wider reverse">
     
         <!-- Card image -->
@@ -48,11 +48,11 @@
         <div class="card-body card-body-cascade text-center">
       
           <!-- Title -->
-          <h4 class="card-title"><strong>CONTRACT SCHEDULED HAS BEEN FAILED</strong></h4>
+          <h4 class="card-title"><strong>CONTRACT SCHEDULE HAS BEEN FAILED</strong></h4>
           <!-- Subtitle -->
-          <h6 class="font-weight-bold indigo-text py-2">due to insufficient requested products type</h6>
+          <h6 class="font-weight-bold indigo-text py-2">due to insufficient requested product type</h6>
           <!-- Text -->
-          <p class="card-text">Requested products are insuffient to delivery, suggested to try with other products
+          <p class="card-text">Requested product are insuffient to deliver, suggested to try with other products
           </p>
       
           <!-- Linkedin -->

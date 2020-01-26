@@ -42,10 +42,18 @@ export class GetContractsComponent implements OnInit {
     this.message = this.message;
   }
 
-  selectedContract(customerBean) {
-    this.customerService.selectedContractToUpdate = customerBean;
-    console.log(this.customerService.selectedContractToUpdate);
-    this.router.navigateByUrl('/update-contract');
+  selectedContract(contractBean) {
+    // this.customerService.selectedContractToUpdate = customerBean;
+    // console.log(this.customerService.selectedContractToUpdate);
+    this.router.navigate([`/update-contract/${contractBean.contractId}`],
+      {
+        queryParams: {
+           customerId: contractBean.customerId,
+          productId: contractBean.productId, haulierId: contractBean.haulierId,
+          deliveryDate: contractBean.deliveryDate, qunatity: contractBean.qunatity
+        }
+      }
+    );
   }
   ngOnInit() {
   }

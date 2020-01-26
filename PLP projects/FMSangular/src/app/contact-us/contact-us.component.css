@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Zilla+Slab&display=swap');
 div{
     float: left;
     margin-left: 2em;
@@ -7,5 +8,9 @@ div{
 }
 .card{
     margin-top: 2em;
-    margin-left: 5em;
+    margin-left: 4em;
+    font-family: 'Lobster', cursive;
+    font-family: 'Zilla Slab', serif;   
+     height: 550px;
+    font-size: 17px;
 }

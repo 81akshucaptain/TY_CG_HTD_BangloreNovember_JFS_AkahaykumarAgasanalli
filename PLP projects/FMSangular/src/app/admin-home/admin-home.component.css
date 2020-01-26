@@ -1,12 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
 .card{
     padding: 20px;
     margin-left: 10em;
     border-left-color: darkgoldenrod;
     border-right-color: goldenrod;
     border-width: 3px;
+    border-top-color:darkorange;
+    border-bottom-color:darkorange;
+    font-family: 'Oleo Script', cursive;
+    margin-bottom: 2em;
+
 }
 .card-header{
     background-color:lightblue;
 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 font-size: 20px;
+padding: 1em;
+margin-bottom: 40px;
+font-family: 'Oleo Script', cursive;
+
+}
+td{
+    float: left;
+    padding-left: 5em;
+    padding: 8px;
+    margin-left: 2em;
+    font-size: 20px;
+    font-family: 'Oleo Script', cursive;
+
+}
+
+
+.card-header{
+    font-family: 'Oleo Script', cursive;
+    padding: 0em;
+    font-size: 25px;
+    height: 50px;
+    text-shadow: tomato;
+    box-shadow: yellow;
+    text-align: center;
+
+}
+
+.card-body
+{ 
+background-image: url('https://cdn.pixabay.com/photo/2017/09/26/22/27/triangle-2790346_960_720.png'); 
+background-size: cover; 
+height: 470px; 
+-webkit-box-shadow: Oleo; 
+box-shadow: chocolate; 
+border: 20px; 
+border-radius: 4px;
+font-family: 'Oleo Script', cursive;
+font-size: 55px;
+margin-left: 0em;
+padding: 0em;
+
+}   
+.card-footer{
+    font-size: 22px;
+}
+.akshay,h4{
+background-image: url('https://wallpapershome.com/images/pages/pic_h/172.jpg');
+background-size: 100%;
+background-repeat: repeat;
+font-family: 'Oleo Script', cursive;
+
+}
+a{
+    color: black;
+    font-size: 22px;
+    padding: 0em;
 }

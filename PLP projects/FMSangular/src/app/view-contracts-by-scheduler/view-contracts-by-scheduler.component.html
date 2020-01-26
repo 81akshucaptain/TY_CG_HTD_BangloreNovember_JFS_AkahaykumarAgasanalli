@@ -36,11 +36,16 @@
                         <p>Ordered Quantity : {{contract.qunatity}}</p>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <p>Contract Status : {{contract.status}}</p>
+                    </td>
+                </tr>
             </table>
         </div>
         <div class="card-footer">
             <div class="btn-group col-md-12">
-                <button class="btn btn-outline-success" (click)='scheduleContract(contract)'>
+                <button class="btn btn-outline-success" (click)='scheduleContract(contract)' style="font-size: 23px;">
                     schedule this contract
                 </button>
             </div>

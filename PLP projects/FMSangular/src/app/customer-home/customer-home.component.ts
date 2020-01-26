@@ -24,8 +24,16 @@ export class CustomerHomeComponent implements OnInit {
 
   selectedCustomer(customerBean) {
     console.log(customerBean);
-    this.adminServices.selectedCustomerToUpdate = customerBean;
-    this.router.navigateByUrl('/edit-customer');
+    // this.adminServices.selectedCustomerToUpdate = customerBean;
+    // this.router.navigateByUrl('/edit-customer');
+    this.router.navigate([`edit-customer/${customerBean.customerId}`],
+    {
+      queryParams: {
+        name: customerBean.name, email: customerBean.email, phone: customerBean.phone,
+        postal: customerBean.postal, town: customerBean.town ,
+        password: customerBean.password
+      }
+    });
   }
 
   updateCustomer(form: NgForm) {
@@ -45,6 +53,9 @@ export class CustomerHomeComponent implements OnInit {
       localStorage.setItem('customerDetails', JSON.stringify(response));
       console.log('Customer Details  are in local storage');
       const customerDetails = JSON.parse(localStorage.getItem('customerDetails'));
+      console.log(customerDetails);
+      this.customerService.cudtomerIdForValidation = customerDetails.customer[0].customerId;
+      console.log('THE CUSTOMER ID IS :', this.customerService.cudtomerIdForValidation);
       this.customers = response.customer;
     }, err => {
       console.log(err);

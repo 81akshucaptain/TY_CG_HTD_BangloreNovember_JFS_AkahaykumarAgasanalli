@@ -1,1 +1,68 @@
-<p>update-contracts works!</p>
+<div class="alert alert-success" *ngIf='message'>
+    {{message}}
+</div>
+<div class="alert alert-danger" *ngIf='error'>
+    {{error}}
+</div>
+<div class="col-md-4 offset-4 mt-2">
+    <form #contractBeanForm='ngForm' (ngSubmit)='updateContract(contractBeanForm)'>
+        <div class="card">
+            <div class="card-header">
+                <h4>Update Contract Details</h4>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contractId">ContractID: {{contractId1}} </label>
+            <input type="hidden" name="contractId" id="contractId" class="form-control"
+                placeholder="Enter your contractId" #contractId='ngModel' pattern="[1-9][0-9]*" min="1"
+                [(ngModel)]='contractId1'>
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+            <label for="customerId" style="margin-left:12em;">CustomerID: {{customerId1}}</label>
+            <input type="hidden" name="customerId" id="customerId" class="form-control"
+                placeholder="Enter your customerId" #customerId='ngModel' pattern="[1-9][0-9]*" min="1"
+                [(ngModel)]='customerId1'>
+        </div>
+        <div class="form-group">
+            <label for="haulierId">HaulierID</label>
+            <input type="text" name="haulierId" id="haulierId" class="form-control" placeholder="Enter haulierId"
+                #haulierId='ngModel' [(ngModel)]='haulierId1' pattern="^[A-Z]{2}-[0-9]{2}-[A-Z]{2}-[0-9]{4}$" required>
+            <div class="text-danger" *ngIf='(haulierId.touched || haulierId.dirty) && haulierId.invalid'>
+                <div class="alert alert-danger" *ngIf='haulierId.errors.required'>
+                    *This Field Is invalid
+                </div>
+                <div class="alert alert-danger" *ngIf='haulierId.errors.pattern'>
+                    *VehicleId/HualierId must follow the pattern, Ex: KA-89-FF-9636
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="productId">Products (select)</label>
+            <select id='productId' name="productId" class="form-control" #productId='ngModel' ngModel [(ngModel)]="productId1">
+                <option *ngFor='let product of products' [ngValue]="product.productId">{{product.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="deliveryDate">DeliveryDate</label>
+            <input type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="deliveryDate1" class="form-control"
+                placeholder="Enter  deliveryDate" #deliveryDate='ngModel'>
+        </div>
+        <div class="form-group">
+            <label for="qunatity">Quantity</label>
+            <input type="number" name="qunatity" id="qunatity" class="form-control" placeholder="Enter qunatity"
+                [(ngModel)]="qunatity1" #qunatity='ngModel' pattern="[1-9][0-9]*" min="1" required>
+            <div class="text-danger" *ngIf='qunatity.touched && qunatity.invalid'>
+                <div class="alert alert-danger" *ngIf='qunatity.errors.required'>
+                    *This Field Is invalid
+                </div>
+                <div class="alert alert-danger" *ngIf='qunatity.errors.pattern'>
+                    *Invalid qunatity, qunatity must be numbers and greater than zero
+                </div>
+            </div>
+        </div>
+        <div class="card-footer float-right">
+            <button type="submit" class="btn btn-success">update</button>
+        </div>
+        <br>
+    </form>
+</div>

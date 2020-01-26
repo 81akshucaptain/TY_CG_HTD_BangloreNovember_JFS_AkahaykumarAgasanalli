@@ -10,7 +10,9 @@ export class AdminService {
   selectedCustomerToUpdate: Customers;
   selectedProductToUpdate: Products;
   selectedLandToUpdate: Lands;
-  canScheduleTheContract: boolean;
+  canScheduleTheContract1: boolean;
+  canScheduleTheContract2: boolean;
+
   url = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
@@ -29,11 +31,11 @@ export class AdminService {
     return this.http.get<any>(`${this.url}/get-allcustomer`);
   }
   deleteCustomer(customerBean: Customers): Observable<any> {
-    return this.http.delete<any>(`${this.url}/delete-customer/${customerBean.cid}`);
+    return this.http.delete<any>(`${this.url}/delete-customer/${customerBean.customerId}`);
   }
   updateCustomer(customerBeanToUpdate): Observable<any> {
     return this.http.put<any>(
-      `${this.url}/update-customer`, customerBeanToUpdate);
+      `${this.url}/update-customer/`, customerBeanToUpdate);
   }
 
   // PRODUCT RELATED FUNCTIONS
@@ -45,11 +47,10 @@ export class AdminService {
     return this.http.get<any>(`${this.url}/get-allproducts`);
   }
   deleteProduct(productBean: Products): Observable<any> {
-    return this.http.delete<any>(`${this.url}/delete-product/${productBean.pid}`);
+    return this.http.delete<any>(`${this.url}/delete-product/${productBean.productId}`);
   }
-
   searchProduct(contract): Observable<any> {
-    return this.http.get<any>(`${this.url}/search-product?pid${contract.productId}`);
+    return this.http.get<any>(`${this.url}/search-product?productId=${contract.productId}`);
   }
   updateProduct(productBeanToUpdate): Observable<any> {
     return this.http.put<any>(
@@ -74,6 +75,9 @@ export class AdminService {
   // CONTRACTS RELATED FUNCTIONS
   viewContracts(): Observable<any> {
     return this.http.get<any>(`${this.url}/get-allcontracts`);
+  }
+  updateContractStatus(contract): Observable<any> {
+    return this.http.put<any>(`${this.url}/update-contract-status`, contract);
   }
 
 }

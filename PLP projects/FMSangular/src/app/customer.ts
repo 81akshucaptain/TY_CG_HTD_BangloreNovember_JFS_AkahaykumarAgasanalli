@@ -1,5 +1,5 @@
 interface Customers {
-    cid?: number;
+    customerId?: number;
     name: string;
     town: string;
     postal: number;

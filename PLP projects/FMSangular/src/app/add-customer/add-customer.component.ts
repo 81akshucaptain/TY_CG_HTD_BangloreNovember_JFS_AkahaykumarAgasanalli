@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { Router } from '@angular/router';
 
@@ -30,9 +30,11 @@ export class AddCustomerComponent implements OnInit {
         }, 2000);
       }
     });
+    form.reset();
   }
 
   ngOnInit() {
   }
 
 }
+

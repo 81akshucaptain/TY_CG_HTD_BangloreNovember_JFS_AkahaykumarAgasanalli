@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) { }
   isAdmin() {
     let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    if (userDetails && userDetails.user[0].user === 'admin') {
+    if (userDetails && userDetails.user[0].userType === 'admin') {
       return true;
     } else {
       return false;
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   isCustomer() {
     let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    if (userDetails && userDetails.user[0].user === 'customer') {
+    if (userDetails && userDetails.user[0].userType === 'customer') {
       return true;
     } else {
       return false;
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   isScheduler() {
     let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    if (userDetails && userDetails.user[0].user === 'scheduler') {
+    if (userDetails && userDetails.user[0].userType === 'scheduler') {
       return true;
     } else {
       return false;

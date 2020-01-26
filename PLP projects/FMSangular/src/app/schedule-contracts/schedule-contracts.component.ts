@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-schedule-contracts',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleContractsComponent implements OnInit {
 
-  constructor() { }
+  canScheduleTheContract1: boolean;
+  canScheduleTheContract2: boolean;
 
+
+  constructor(private adminServices: AdminService) {
+    this.checkDeliverable();
+  }
+  checkDeliverable() {
+    this.canScheduleTheContract1 = this.adminServices.canScheduleTheContract1;
+    this.canScheduleTheContract2 = this.adminServices.canScheduleTheContract2;
+
+  }
   ngOnInit() {
   }
 

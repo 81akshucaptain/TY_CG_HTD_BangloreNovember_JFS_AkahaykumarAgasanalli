@@ -1,12 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
 h4{
         font-style: italic;
         text-align: center;
         text-shadow: darkturquoise;
         text-decoration-color: gold;
         margin-top: 3%;
- }
- form{
+        font-family: 'Oleo Script', cursive;
+
+    }
+body{
          border: 2px solid gold;
          border-color: goldenrod;
          padding: 2em;
- }
+         font-family: 'Oleo Script', cursive;
+         background-image: url('https://wallpapercave.com/wp/wp37411.jpg');
+    }
+    label{
+        font-family: 'Oleo Script', cursive;
+   font-size: 1.5em;
+    }
+    

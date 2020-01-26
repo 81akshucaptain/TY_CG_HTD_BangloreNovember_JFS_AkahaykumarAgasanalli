@@ -1,44 +1,92 @@
-<div class="alert alert-success" *ngIf='message'>
-    {{message}}
-</div>
-<div class="alert alert-danger" *ngIf='error'>
-    {{error}}
-</div>
-<div class="col-md-4 offset-4 mt-2">
-    <form #customerBeanForm='ngForm' (ngSubmit)='addCustomer(customerBeanForm)'>
-        <div class="card">
-            <div class="card-header">
-                <h4>Add Customer Details</h4>
+<body>
+    <div class="alert alert-success" *ngIf='message'>
+        {{message}}
+    </div>
+    <div class="alert alert-danger" *ngIf='error'>
+        {{error}}
+    </div>
+
+    <div class="col-md-4 offset-4 mt-2">
+        <form #customerBeanForm='ngForm' (ngSubmit)='addCustomer(customerBeanForm)'>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Add Customer Details</h4>
+                </div>
             </div>
-        </div>
-        .<div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" #name='ngModel'
-                ngModel>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email"
-                #email='ngModel' ngModel>
-        </div>
-        <div class="form-group">
-            <label for="town">Town</label>
-            <input type="text" name="town" id="town" class="form-control" placeholder="Enter your town"
-                #town='ngModel' ngModel>
-        </div>
-        <div class="form-group">
-            <label for="postal">postal</label>
-            <input type="number" name="postal" id="postal" class="form-control" placeholder="Enter your town"
-                #postal='ngModel' ngModel>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="phone" name="phone" id="phone" class="form-control" placeholder="Enter your phone"
-                #phone='ngModel' ngModel>
-        </div>
-        <div class="card-footer float-right">
-            <button type="submit" class="btn btn-success">Add-Customer</button>
-        </div>
-        <br>
-    </form>
-</div>
+            <div class="form-group">
+                <label for="name">Full name</label>
+                <input type="text" name="name" id="name" class="form-control" #name='ngModel' ngModel
+                    placeholder="Enter your name" pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50"
+                    required>
+                <div class="text-danger" *ngIf='(name.touched || name.dirty) && name.invalid'>
+                    <div class="alert alert-danger" *ngIf='name.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='name.errors.pattern'>
+                        *Can contain only alphabets seperated by space with minimum length 2
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" name="email" id="email" required class="form-control" #email='ngModel' ngModel
+                    placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <div class="text-danger" *ngIf='email.touched && email.invalid'>
+                    <div class="alert alert-danger" *ngIf='email.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='email.errors.pattern'>
+                        *Invalid Email, email field that that must be in the following order:
+                        characters@characters.domain (characters followed by an
+                        @ sign, followed by more characters, and then a ".". After the "."
+                        sign, add at least 2 letters from a to z:
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="town">town</label>
+                <input type="text" name="town" id="town" class="form-control" placeholder="Enter your town"
+                    #town='ngModel' ngModel pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50" required>
+                <div class="text-danger" *ngIf='town.touched && town.invalid'>
+                    <div class="alert alert-danger" *ngIf='town.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='town.errors.pattern'>
+                        *Invalid town name, must be alphabets with length 2-50
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="postal">postal</label>
+                <input type="number" name="postal" id="postal" class="form-control" #postal='ngModel'
+                    pattern="^[0-9]{6}" placeholder="Enter your postal" required ngModel minlength="6">
+                <div class="text-danger" *ngIf='postal.touched && postal.invalid'>
+                    <div class="alert alert-danger" *ngIf='postal.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='postal.errors.pattern'>
+                        *Invalid postal code, postal must be 6 numbers
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="phone" name="phone" id="phone" class="form-control" #phone='ngModel' ngModel
+                    placeholder="Enter your phone" pattern="^[6789][0-9]{9}" required maxlength="10">
+                <div class="text-danger" *ngIf='phone.touched && phone.invalid'>
+                    <div class="alert alert-danger" *ngIf='phone.errors.required'>
+                        *This Field Is invalid
+                    </div>
+                    <div class="alert alert-danger" *ngIf='phone.errors.pattern'>
+                        *Can take only 10 digit number, must start with 6/7/8/9
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer float-right">
+                <button type="submit" class="btn btn-success">Add-Customer</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</body>

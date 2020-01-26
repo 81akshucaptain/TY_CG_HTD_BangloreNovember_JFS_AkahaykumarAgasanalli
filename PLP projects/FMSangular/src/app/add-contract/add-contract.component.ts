@@ -14,15 +14,26 @@ export class AddContractComponent implements OnInit {
   message: string;
   productIds: string[];
   products: Products[];
-
+  newDate;
+  customerForCustomerValidation;
   constructor(
     private customerService: CustomerService,
     private adminService: AdminService,
     private router: Router) {
-      this.getProducts();
-     }
+    this.customerForCustomerValidation = this.customerService.cudtomerIdForValidation;
+    this.getProducts();
+    const today = new Date();
+    const date = today.getDate();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    if (today.getMonth() > 8) {
+      this.newDate = year + '-' + month + '-' + date;
+    } else {
+      this.newDate = year + '-' + '0' + month + '-' + date;
+    }
+  }
 
-     addContract(form: NgForm) {
+  addContract(form: NgForm) {
     this.customerService.addContract(form.value).subscribe(response => {
       console.log(response);
       if (response.message === 'Contract Added Succesfully') {
