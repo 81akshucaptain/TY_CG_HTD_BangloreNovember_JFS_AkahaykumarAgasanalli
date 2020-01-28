@@ -29,12 +29,12 @@ public class CustomerApplication {
 				System.out.println("*Enter 5 to get all the customer");
 				System.out.println("*Enter 6 to Retur HOME");
 				String choice1 = scanner.next();
-				if(Validations.numberValidation(choice1)) {
-					int	choice2=Integer.parseInt(choice1);
+				if (Validations.numberValidation(choice1)) {
+					int choice2 = Integer.parseInt(choice1);
 
 					switch (choice2) {
 					case 1:
-						CustomerBean customerBean=new CustomerBean();
+						CustomerBean customerBean = new CustomerBean();
 						String password;
 
 //						boolean stay=true;
@@ -68,101 +68,102 @@ public class CustomerApplication {
 //							}
 //						} 
 
-						
-						boolean stay1=true;
-						while(stay1) {
+						boolean stay1 = true;
+						while (stay1) {
 							try {
 								System.out.println("Enter customer First Name: ");
-								String fname=scanner.next();
+								String fname = scanner.next();
 								System.out.println("Enter customer middle Name(if not please enter underscore): ");
-								String mname=scanner.next();
+								String mname = scanner.next();
 								System.out.println("Enter customer Last Name: ");
-								String lname=scanner.next();
-								String fullName=fname+" "+mname+" "+lname;
-								if(Validations.fullNameValidation(fullName)) {
+								String lname = scanner.next();
+								String fullName = fname + " " + mname + " " + lname;
+								if (Validations.fullNameValidation(fullName)) {
 									customerBean.setName(fullName);
-									stay1=false;
+									stay1 = false;
 								}
-							}catch (VallidationExceptionFMS e) {
-								String message=e.getMessage();
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
 								System.err.println(message);
-							}	
-						} 
+							}
+						}
 
-						boolean stay2=true;
-						while(stay2) 
-						{
-							try{ 
+						boolean stay2 = true;
+						while (stay2) {
+							try {
 								System.out.println("Enter customer Town: ");
-								String town=scanner.next();
-								if(Validations.alphabetsValidation(town)) {
+								String town = scanner.next();
+								if (Validations.alphabetsValidation(town)) {
 									customerBean.setTown(town);
-									stay2=false;
+									stay2 = false;
 								}
-							}catch (VallidationExceptionFMS e) {
-								String message=e.getMessage();
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
 								System.err.println(message);
 							}
 						}
 
-						boolean stay4=true;
-						while(stay4) {
-							try{
+						boolean stay4 = true;
+						while (stay4) {
+							try {
 								System.out.println("Enter customer Email: ");
-								String email=scanner.next();
-								if(Validations.emailValidation(email)) {
+								String email = scanner.next();
+								if (Validations.emailValidation(email)) {
 									customerBean.setEmail(email);
-									stay4=false;
+									stay4 = false;
 								}
-							}catch (VallidationExceptionFMS e) {
-								String message=e.getMessage();
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
 								System.err.println(message);
 							}
 						}
 
-						boolean stay3=true;
-						while(stay3) {
+						boolean stay3 = true;
+						while (stay3) {
 							try {
 								System.out.println("Enter customer Postal: ");
-								String postal=scanner.next();
-								if(Validations.postalValidation(postal)) {
-									Integer postal2=Integer.parseInt(postal);
-									if(postal2>0) {
+								String postal = scanner.next();
+								if (Validations.postalValidation(postal)) {
+									Integer postal2 = Integer.parseInt(postal);
+									if (postal2 > 0) {
 										customerBean.setPostal(postal2);
-										stay3=false;
-									}else {
-										throw new VallidationExceptionFMS("Please Enter Vallid Number,Must Be More Than Zero");
+										stay3 = false;
+									} else {
+										throw new VallidationExceptionFMS(
+												"Please Enter Vallid Number,Must Be More Than Zero");
 									}
 								}
-							}catch (VallidationExceptionFMS e) {
-								String message=e.getMessage();
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
 								System.err.println(message);
 							}
 						}
 
-						boolean stay5=true;
-						while(stay5) {
-							try{
+						boolean stay5 = true;
+						while (stay5) {
+							try {
 								System.out.println("Enter customer Phone: ");
-								String phone=scanner.next();
-								if(Validations.phoneNumberValidation(phone)) {
+								String phone = scanner.next();
+								if (Validations.phoneNumberValidation(phone)) {
 									customerBean.setPhone(phone);
-									stay5=false;
+									stay5 = false;
 								}
-							}catch (VallidationExceptionFMS e) {
-								String message=e.getMessage();
+							} catch (VallidationExceptionFMS e) {
+								String message = e.getMessage();
 								System.err.println(message);
 							}
 						}
-						password=customerBean.getEmail()+customerBean.getTown()+"@"+customerBean.getPostal();
+						password = customerBean.getEmail() + customerBean.getTown() + "@" + customerBean.getPostal();
 						customerBean.setPassword(password);
-						try{
-							if(customerDao.addCustomer(customerBean)) {
-								System.out.println("Customer Added Successfully with CustomerID: "+customerBean.getCid());
-								System.out.println("Customer Password is: "+password+ " Please Record It For Future Usage\n");
+						try {
+							if (customerDao.addCustomer(customerBean)) {
+								System.out.println(
+										"Customer Added Successfully with CustomerID: " + customerBean.getCustomerId());
+								System.out.println(
+										"Customer Password is: " + password + " Please Record It For Future Usage\n");
 							}
-						}catch (CustomerAppException e) {
-							String message=e.getMessage();
+						} catch (CustomerAppException e) {
+							String message = e.getMessage();
 							System.err.println(message);
 						}
 					case 2:
@@ -198,7 +199,7 @@ public class CustomerApplication {
 								if (CostumerIDmatcher.matches()) {
 									int ContractID2 = Integer.parseInt(CostumerID);
 									if (ContractID2 > 0) {
-										customerBean2.setCid(ContractID2);
+										customerBean2.setCustomerId(ContractID2);
 										stay10 = false;
 									} else {
 										stay10 = true;

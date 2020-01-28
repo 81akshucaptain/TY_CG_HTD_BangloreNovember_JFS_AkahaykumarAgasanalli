@@ -22,7 +22,7 @@ public class ForestHomeJpa {
 				System.out.println("2.Customer");
 				System.out.println("3.Schedular");
 				String choice1 = scanner.next();
-				if(Validations.numberValidation(choice1)) {
+				if (Validations.numberValidation(choice1)) {
 					int choice2 = Integer.parseInt(choice1);
 
 					switch (choice2) {
@@ -49,7 +49,7 @@ public class ForestHomeJpa {
 							System.out.println("                            :::CUSTOMER LOGIN::::");
 							System.out.println("Enter your Unique CustomerID:");
 							String costumerID = scanner.next();
-							if(Validations.numberValidation(costumerID)) {
+							if (Validations.numberValidation(costumerID)) {
 								costumerID2 = Integer.parseInt(costumerID);
 
 								System.out.println("Enter your Password:");

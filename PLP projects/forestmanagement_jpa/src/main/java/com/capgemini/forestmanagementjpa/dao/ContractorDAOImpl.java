@@ -124,6 +124,7 @@ public class ContractorDAOImpl implements ContractorDAO{
 	public boolean addContarctor(ContractorBean contractor) {
 		EntityTransaction transactiont=null;
 		try {
+			contractor.setStatus("schedule");
 			//persistence class is bootstrap class helps us create obj
 			//createEntityManagerFactory created only once in life
 			EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("TestPersistence");

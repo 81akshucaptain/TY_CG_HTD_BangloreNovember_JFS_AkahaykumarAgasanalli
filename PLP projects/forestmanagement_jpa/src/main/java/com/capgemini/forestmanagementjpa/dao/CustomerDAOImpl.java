@@ -41,7 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			etTransaction.begin();
 
 			String jpql = "update CustomerBean set name=:name,town=:town,postal=:postal,email=:email"
-					+ ",phone=:phone,password=:pswd where cid=:cid";
+					+ ",phone=:phone,password=:pswd where customerId=:customerId";
 			Query query = emManager.createQuery(jpql);
 			query.setParameter("name", CustomerToUpdate.getName());
 			query.setParameter("town", CustomerToUpdate.getTown());
@@ -49,7 +49,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			query.setParameter("email", CustomerToUpdate.getEmail());
 			query.setParameter("phone", CustomerToUpdate.getPhone());
 			query.setParameter("pswd", CustomerToUpdate.getPassword());
-			query.setParameter("cid", CustomerToUpdate.getCid());
+			query.setParameter("customerId", CustomerToUpdate.getCustomerId());
 			int result = query.executeUpdate();
 			etTransaction.commit();
 			emManager.close();
@@ -66,15 +66,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 	}
 
-	public boolean deleteCustomer(int cidTodelete) {
+	public boolean deleteCustomer(int customerIdTodelete) {
 		try {
 			EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager = emFactory.createEntityManager();
 			EntityTransaction etTransaction = emManager.getTransaction();
 			etTransaction.begin();
-			String jpql = "Delete from CustomerBean where cid=:cid";
+			String jpql = "Delete from CustomerBean where customerId=:customerId";
 			Query query = emManager.createQuery(jpql);
-			query.setParameter("cid", cidTodelete);
+			query.setParameter("customerId", customerIdTodelete);
 			int result = query.executeUpdate();
 			etTransaction.commit();
 			emManager.close();
@@ -84,7 +84,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				return false;
 			}
 		} catch (Exception e) {
-			System.out.println("There is problem in deleting Customer: " );
+			System.out.println("There is problem in deleting Customer: ");
 			return false;
 		}
 	}
@@ -114,11 +114,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 	}
 
-	public CustomerBean searchCustomer(int cid) {
+	public CustomerBean searchCustomer(int customerIdToSearch) {
 		try {
 			EntityManagerFactory eMFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager eManager = eMFactory.createEntityManager();
-			CustomerBean cbBean = eManager.find(CustomerBean.class, cid);
+			CustomerBean cbBean = eManager.find(CustomerBean.class, customerIdToSearch);
 			if (cbBean != null) {
 				return cbBean;
 			} else {
@@ -131,12 +131,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 
-	public boolean customerlogin(int cid, String password) {
+	public boolean customerlogin(int customerIdToLogin, String password) {
 		try {
 			EntityManagerFactory eMFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager eManager = eMFactory.createEntityManager();
-			CustomerBean cbBean = eManager.find(CustomerBean.class, cid);
-			if ((cbBean.getCid() == cid) && (cbBean.getPassword().equals(password))) {
+			CustomerBean cbBean = eManager.find(CustomerBean.class, customerIdToLogin);
+			if ((cbBean.getCustomerId() == customerIdToLogin) && (cbBean.getPassword().equals(password))) {
 				return true;
 			} else {
 				return false;

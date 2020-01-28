@@ -76,7 +76,7 @@ public class SchedularApp {
 							System.out.println(prBean);
 							// String productFields=prBean.toString();
 
-							if (coBean.getQunatity() < prBean.getQantity()) {
+							if (coBean.getQunatity() < prBean.getQuantity()) {
 								coBean.setStatus("ordered");
 								System.out.println("                   ::::::::STATUS::::::::\n"
 										+ "VERIFICATION DONE WITH PRODUCT STOCKS, REQUESTED PRODUCT WITH \n"
@@ -96,14 +96,14 @@ public class SchedularApp {
 						try {
 							List<ContractorBean> contractBeans = conDao.getAllContarctor();
 							if (contractBeans != null) {
-								boolean isOrder=false;
+								boolean isOrder = false;
 								for (ContractorBean contracts : contractBeans) {
 									if ((contracts.getStatus()).equals("ordered")) {
 										System.out.println(contracts);
-										isOrder=true;
+										isOrder = true;
 									}
 								}
-								if(isOrder==false) {
+								if (isOrder == false) {
 									System.out.println("No Ordered Contracts");
 								}
 							} else {

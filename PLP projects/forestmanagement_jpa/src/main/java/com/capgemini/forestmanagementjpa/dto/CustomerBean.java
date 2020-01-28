@@ -14,7 +14,7 @@ public class CustomerBean implements Serializable {
 	@Id
 	@Column
 	@GeneratedValue
-	private int cid;
+	private int customerId;
 	@Column
 	private String name;
 	@Column
@@ -34,13 +34,13 @@ public class CustomerBean implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getCid() {
-		return cid;
+		public int getCustomerId() {
+		return customerId;
 	}
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
-	public String getName() {
+		public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -74,7 +74,7 @@ public class CustomerBean implements Serializable {
 	public String toString() {
 
 		return "            ::::CUSTOMER DETAILS::::"+ 
-		        "\n CUSTOMER-ID = "+cid+
+		        "\n CUSTOMER-ID = "+customerId+
 			  "\n NAME        = " + name + 
 			  "\n TOWN        = " + town + 
 			  "\n POSTAL      = " + postal + 

@@ -182,7 +182,7 @@ public class ContractorApplication {
 									ContractorBean coBean = contractDao.searchContarctor(ContractID2);
 									if (coBean == null) {
 										System.out.println("CTID Not Exist..!");
-										stay15 = true;	
+										stay15 = true;
 									} else {
 										contractBean2.setContractId(ContractID2);
 										contractBean2.setStatus(coBean.getStatus());

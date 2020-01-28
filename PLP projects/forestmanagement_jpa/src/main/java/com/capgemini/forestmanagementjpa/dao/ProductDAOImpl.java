@@ -44,13 +44,13 @@ public class ProductDAOImpl implements ProductDAO {
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
 			String jpql = "update ProductBean set name=:name,productClass=:pclass,"
-					+ "quantity=:quantity,cost=:cost where PID=:pid";
+					+ "quantity=:quantity,cost=:cost where productId=:productId";
 			Query query = emManager.createQuery(jpql);
 			query.setParameter("name", ProductToUpdate.getName());
 			query.setParameter("pclass", ProductToUpdate.getProductClass());
-			query.setParameter("quantity", ProductToUpdate.getQantity());
+			query.setParameter("quantity", ProductToUpdate.getQuantity());
 			query.setParameter("cost", ProductToUpdate.getCost());
-			query.setParameter("pid", ProductToUpdate.getPID());
+			query.setParameter("productId", ProductToUpdate.getProductId());
 			int result = query.executeUpdate();
 			etTransaction.commit();
 
@@ -68,13 +68,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public boolean deleteProduct(int pid) {
+	public boolean deleteProduct(int productIdToDelete) {
 		try {
 			eFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager = eFactory.createEntityManager();
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
-			ProductBean cbBean = emManager.find(ProductBean.class, pid);
+			ProductBean cbBean = emManager.find(ProductBean.class, productIdToDelete);
 			emManager.remove(cbBean);
 			etTransaction.commit();
 			return true;
@@ -103,13 +103,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public ProductBean searchProduct(int pid) {
+	public ProductBean searchProduct(int productIdToSearch) {
 		try {
 			eFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager = eFactory.createEntityManager();
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
-			ProductBean productBean = emManager.find(ProductBean.class, pid);
+			ProductBean productBean = emManager.find(ProductBean.class, productIdToSearch);
 			etTransaction.commit();
 			if (productBean != null) {
 				return productBean;
@@ -125,15 +125,15 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public boolean checkIsTherePID(int pid) {
+	public boolean checkIsTherePID(int productId) {
 		try {
 			eFactory = Persistence.createEntityManagerFactory("TestPersistence");
 			EntityManager emManager = eFactory.createEntityManager();
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
-			ProductBean productBean = emManager.find(ProductBean.class, pid);
+			ProductBean productBean = emManager.find(ProductBean.class, productId);
 			etTransaction.commit();
-			if (productBean.getPID() == pid) {
+			if (productBean.getProductId() == productId) {
 				return true;
 			} else {
 				return false;
