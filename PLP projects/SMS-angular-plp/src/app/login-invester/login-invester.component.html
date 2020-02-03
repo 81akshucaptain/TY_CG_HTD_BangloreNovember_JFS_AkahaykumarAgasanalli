@@ -1,0 +1,91 @@
+<!-- <body style="height: 900px;">
+    <div class="alert alert-success" *ngIf='message'>
+        {{message}}
+    </div>
+    <div class="alert alert-danger" *ngIf='error'>
+        {{error}}
+    </div>
+	<div class="jumbotron">
+		<div class="col-md-4 offset-md-4">
+			<form #loginForm='ngForm' class="container" (ngSubmit)='login(loginForm)'>
+				<div class="card">
+					<div class="card-body">
+
+						<div class="card-header">
+							<h3>Investor Login</h3>
+						</div>
+						<div class="form-group">
+
+							<div class="input-group form-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+                                <input type="text" name="userName" id="userName" class="form-control input_user"
+                                #userName='ngModel' ngModel placeholder="username">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group form-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+                                <input type="password" name="password"id="password" class="form-control input_pass"
+                                #password='ngModel' placeholder="password">
+							</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<a href="#"><strong>Forgot your password?</strong></a>
+						</div>
+						<div class="d-flex justify-content-center mt-3 login_container"></div>
+						<button type="submit" name="button" class="btn login_btn btn btn-lg btn-info">
+							Login
+						</button>
+
+						<div class="d-flex justify-content-end social_icon">
+							<span><i class="fab fa-facebook-square"></i></span>
+							<span><i class="fab fa-google-plus-square"></i></span>
+							<span><i class="fab fa-twitter-square"></i></span>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body> -->
+<body style="background-image: url('https://cdn.pixabay.com/photo/2015/12/01/08/21/businessman-1071758_1280.jpg'); height: 900px; width: 100%;">
+    <div class="alert alert-success" *ngIf='message'>
+        {{message}}
+    </div>
+    <div class="alert alert-danger" *ngIf='error'>
+        {{error}}
+    </div>
+    <div class="col-md-4 offset-4 mt-1">
+        <form #loginForm='ngForm' (ngSubmit)='login(loginForm)'>
+            <div class="card" style="margin-top: 5%;">
+                <div class="card-header bg-light">
+                    <h4 style="text-align: center;"> Login Here
+                    </h4> <br>
+                </div>
+                <div class="card-body" style="font-size: 20px;">
+                <div class="form-group">
+                    <label for="userName"> <strong>userName</strong> </label>
+                    <input type="text" name="userName" id="userName" class="form-control" placeholder="Enter your email"
+                        #userName='ngModel' ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="password"> <strong>Password</strong> </label>
+                    <input type="password" name="password" id="password" class="form-control"
+                        placeholder="Enter your password" #password='ngModel' ngModel>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" [disabled]='loginForm.invalid' class="btn btn-success float-right btn-lg btn-block">
+                    Login
+                </button>
+            </div>
+            </div>
+            
+        </form>
+    </div>
+</body>

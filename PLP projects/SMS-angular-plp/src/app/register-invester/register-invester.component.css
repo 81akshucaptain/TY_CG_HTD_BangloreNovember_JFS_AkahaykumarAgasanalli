@@ -1,0 +1,50 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 0em;
+  }
+  .jumbotron {
+    background-image: url(https://pixabay.com/get/54e6d1404b5aa414ea9d8578c720347f1d36c3e45659714d732979d594/bitcoin-2643188.jpg);
+    height: 1000px;
+    margin-top: 0em;
+    background-size: cover;
+    object-fit: cover;
+    background-image: url('https://cdn.pixabay.com/photo/2016/09/02/04/59/background-1638299_1280.jpg');
+
+    }
+    .card{
+      height: 700px;
+      margin-top: 0em;
+      margin-bottom: 50px;
+      padding-top: 0em;
+      width: 450px;
+      background-color: rgba(0,0,0,0.5) !important;
+     
+      }
+      .container{
+        margin-top: 0em;
+        height: 100%;
+        padding-top: 0em;
+        align-content: center;
+      }
+        .card-header h3{
+          color: rgba(248, 245, 245, 0.89);
+          text-align: center;
+				font-family: 'Numans', sans-serif;
+          }
+          
+            .input:focus{
+              outline: 0 0 0 0  !important;
+              box-shadow: 0 0 0 0 !important; 
+              }
+              form{
+                margin-top: 0em;
+              }
+              label{
+                  padding: 0em;
+              }
+              input{
+                  padding: 1.2em;
+              }
+              
+

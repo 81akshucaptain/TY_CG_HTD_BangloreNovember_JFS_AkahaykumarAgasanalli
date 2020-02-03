@@ -1,0 +1,115 @@
+/* .jumbotron {
+    background-image: url('https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724248_1280.jpg');
+    height: 800px;
+    background-size: cover;
+    object-fit: cover;
+    }
+    .body {
+        background: rgb(248, 244, 244);
+        padding: 30px;
+        font-family: 'Numans', sans-serif;
+        text-align:center;
+        height: 800px;
+      }
+      .card-header h3{
+        color: rgba(255, 255, 255, 0.712);
+        text-align: center;
+        font-family: 'Numans', sans-serif;
+        }
+    .btn:hover {
+        opacity: 1;
+      }
+      .form input:focus { 
+          background-color: rgba(0,0,0,.4);
+         }
+      .form button[type=submit] {
+        width: 248px;
+        margin-bottom: 0;
+        color: white;
+        letter-spacing: .05em;
+        text-shadow: 0 1px 0 #133d3e;
+        text-transform: uppercase;
+        text-emphasis-color: white;
+        background: #225556;
+        border-top-color: #9fb5b5;
+        border-left-color: #608586;
+        border-bottom-color: #1b4849;
+        border-right-color: #1e4d4e;
+        cursor: pointer;
+      }
+     .container{
+        height: 100%;
+        align-content: center;
+        }
+     .card{
+            height: 330px;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0.411) !important;
+            }
+           
+            
+                
+
+.login_btn{
+    color: steelblue;
+    width: 100px;
+    }
+    .login_btn:hover{
+        color: black;
+        background-color: white;
+        }
+        .input-group-text {
+            background:whitesmoke !important;
+            color: rgba(255, 255, 255, 0.733) !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        } */
+        
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
+h4{
+        font-style: italic;
+        text-align: center;
+        text-shadow: darkturquoise;
+        text-decoration-color: gold;
+        margin-top: 3%;
+        font-family: 'Oleo Script', cursive;
+        font-size: 30px;
+
+    }
+body{
+    
+        padding: 2em;
+             padding: 2em;
+             font-family: 'Oleo Script', cursive;
+             /* background-image: url('https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_1280.jpg'); */
+             height: 100%;
+             border-image-width: 100%;
+        
+}
+.card{
+    padding: 2em;
+         border: 2px solid gold;
+         border-color: goldenrod;
+         padding: 2em;
+         font-family: 'Oleo Script', cursive;
+         background-image: url('https://cdn.pixabay.com/photo/2015/04/04/18/15/snow-706756_1280.jpg');
+         height: 100%;
+         width: 100%;
+
+    }
+    label{
+        font-family: 'Oleo Script', cursive;
+   font-size: 1.5em;
+    }
+    .card-footer{
+        margin-top: 1em;
+        padding: 3em;
+        text-align: justify;
+        font-family: 'Oleo Script', cursive;
+        padding-bottom: 2em;align-items: center;
+    }
+    
+    
