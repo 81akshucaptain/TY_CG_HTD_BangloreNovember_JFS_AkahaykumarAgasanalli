@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>investers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body
+    style=" background-image: url('https://cdn.pixabay.com/photo/2018/01/15/09/35/bitcoin-3083578_1280.jpg');
+     height: 800px; width: 100%;">
+    <!-- <div class="col-md-3 float-left mt-3" *ngFor='let customer of customers | filteCustomer: search'>
+    <div class="card text-center">
+        <div class="card-header bg-muted">
+            <h5>Name : {{customer.name}}</h5>
+        </div>
+        <div class="card-body center">
+            <img src="https://cdn4.iconfinder.com/data/icons/various-solid/32/icon-profile-solid-512.png" alt="" style="align-content: center;"
+                height="150px" width="50%">
+            <table>
+                <tr>
+                    <td>
+                        <p>CID : {{customer.cid}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Email : {{customer.email}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Town : {{customer.town}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Postal : {{customer.postal}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Phone : {{customer.phone}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+    <!-- Card -->
+    <div class="col-md-3 float-left mt-4 ml-offset mr-2 max-width:70em" *ngFor='let invester of investers'>
+        <div class="card promoting-card"
+            style="border: 5px solid wheat;height: 490px;box-shadow:
+             tomato; width: 300px; margin-right: 2em; margin-bottom: 50em;
+             background-image: url('https://cdn.pixabay.com/photo/2017/10/01/12/34/pattern-2805303_1280.jpg');">
+            <!-- https://cdn.pixabay.com/photo/2017/10/01/12/35/low-poly-2805310_1280.jpg -->
+            <!-- https://cdn.pixabay.com/photo/2016/05/22/19/19/background-1409037_1280.png -->
+            <!-- Card content -->
+            <div class="card-body d-flex flex-row">
+
+                <!-- Avatar -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBYowR8wJVPP30s2ee47xK_laD4yykl9TJqadUut_Y0_Zbc_ZxMw&s"
+                    class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+
+                <!-- Content -->
+                <div>
+
+                    <!-- Title -->
+                    <h4 class="card-title font-weight-bold mb-2"> {{invester.investerName}}</h4>
+                    <!-- Subtitle -->
+                    <p class="card-text"><i class="far fa-clock pr-2"></i> {{invester.investerEmail}}</p>
+
+                </div>
+
+            </div>
+
+            <!-- Card image -->
+            <div class="view overlay">
+                <table>
+                    <tr>
+                        <td>
+                            <p>investerID : {{invester.investerID}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Email : {{invester.investerEmail}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Phone : {{invester.investerPhone}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>City : {{invester.investerCity}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Postal : {{invester.investerPostal}}</p>
+                        </td>
+                    </tr>
+                </table>
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!-- Card content -->
+            <div class="card-body">
+                <div class="btn-group col-md-12">
+
+                    <button class="btn btn-outline-success" (click)='selectedInvester(invester)'>
+                        Update Details
+                    </button>
+                </div>
+                <div class="collapse-content">
+
+                    <!-- Text -->
+                    <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to
+                        our
+                        restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have
+                        some
+                        delicious wine and enjoy our juicy meals from around the world.</p>
+                    <!-- Button -->
+                    <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse"
+                        href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+                    <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip"
+                        data-placement="top" title="Share this post"></i>
+                    <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip"
+                        data-placement="top" title="I like it"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Card -->
+    <div class="card" style="max-width: 70%; margin-top: 2em;">
+        <!-- Card -->
+        <div class="container"
+            style="background-image: url('https://cdn.pixabay.com/photo/2016/01/30/23/30/wood-floor-1170744_1280.jpg'); color: aliceblue;border: 4px solid tan;">
+            <h2 style="margin-top: 2em;">" if you are persistent you will get it. if you are consistent you will keep it
+                "</h2>
+            <p style="font-size: 25px;">welcome to stock business platform, This portal helps you to maintain your
+                business track records.
+                This platform helps you to view the stocks of respective comapnies and your allowed to buy and sell
+                stocks,
+                please go with fallowing links.
+            </p>
+            <p><strong>Note :</strong>"Learn every day, but especially from the experiences of others. it’s
+                cheaper!"-Good Luck</p>
+            <!-- <div class="card-columns">
+        <div class="card bg-primary">
+          <div class="card-body text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5><a class="nav-link" routerLink="/add-contract">Add Contracts</a></h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card bg-warning">
+          <div class="card-body text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5><a class="nav-link" routerLink="/get-contracts">View Contracts</a></h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+         <div class="card bg-success">
+            <div class="card-body text-center">
+              <p class="card-text">View Profile</p>
+            </div>
+          </div> -->
+            <!-- <div class="card bg-success">
+          <div class="card-body text-center">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5><a class="nav-link" routerLink="/get-products">View Products</a></h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+
+            <div class="card-columns" style="color: black; ">
+                <div class="card" style="width: 18rem;height: 11em;background-color: slategrey;" *ngIf='!isInvesterRegistered()'>
+                    <div class="card-body">
+                        <h5 class="card-title">Add Your Details</h5>
+                        <p class="card-text">Please submit your contact details by clicking ADD, for further actions</p>
+                        <a class="nav-link" routerLink="/register-invester" class="btn btn-primary">Add details</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;height: 11em;background-color: slategrey;" >
+                    <div class="card-body">
+                        <h5 class="card-title">View Company Details</h5>
+                        <p class="card-text">Here you can view our clients, these are the trusted Companies among all</p>
+                        <a class="nav-link" routerLink="/view-all-company" class="btn btn-primary 
+                        ">Companies</a>                    </div>
+                </div>
+                <!-- animated infinite rubberBand -->
+
+
+
+                <!-- JACKYYYYYYY REMEBER MEE -->
+
+
+
+
+                <div class="card" style="width: 18rem;height: 11em; background-color: slategrey;">
+                    <div class="card-body">
+                        <h5 class="card-title">View Market Stocks</h5>
+                        <p class="card-text">Here you can view the various stock details, you can purchase here </p>
+                        <a class="nav-link" routerLink="/view-all-stocks" class="btn btn-primary">Stocks</a>                    </div>
+                </div>
+                <div class="card" style="width: 18rem;height: 11em; background-color: slategrey;" *ngIf='isInvesterRegistered()'>
+                    <div class="card-body">
+                        <h5 class="card-title">View My Shares</h5>
+                        <p class="card-text">Here you can view the your stock details, with purchased details </p>
+                        <a class="nav-link" routerLink="/view-all-invester-stock-info" class="btn btn-primary">MyStocks</a>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

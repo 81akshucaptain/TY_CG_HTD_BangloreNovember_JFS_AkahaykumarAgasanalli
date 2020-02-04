@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+td{
+    float: left;
+    padding-left: 5em;
+    padding: 8px;
+    margin-left: 2em;
+}
+.card{
+    backdrop-filter: initial;
+    -moz-box-pack: start;
+     border-block-start-style: groove;
+     backdrop-filter: inherit;
+     background-image: url();
+     font-family: 'Oleo Script', cursive;
+     border: 3px solid sandybrown;
+     margin-bottom: 0em;
+     padding-left: 0em;
+     padding-bottom: 0em;
+}
+
+
+
+.card-body
+{ 
+background-image: url('https://cdn.pixabay.com/photo/2017/09/26/22/27/triangle-2790346_960_720.png'); 
+background-size: cover; 
+height: 730px; 
+-webkit-box-shadow: Oleo; 
+box-shadow: chocolate; 
+border: 20px; 
+border-radius: 4px;
+font-family: 'Oleo Script', cursive;
+font-size: 20px;
+margin-left: 0em;
+padding: 0em;
+
+}   
+.card-footer{
+    font-size: 30px;
+}

@@ -1,0 +1,93 @@
+<body>
+    
+    <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+    <div class="col-md-4 offset-md-4 mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-centre text-secondary"> Update Your Details</h4>
+            </div>
+            <form #editUserForm='ngForm' (ngSubmit)='updateInvester(editUserForm)'>
+                <label for="investerID">investerID : {{investerID1}} </label> <br><br>
+                <input type="hidden" name="investerID" id="investerID" #investerID='ngModel'
+                [(ngModel)]='investerID1' class="form-control">
+                <div class="form-group">
+                    <label for="investerEmail">Email : {{investerEmail1}} </label>
+                    <input type="hidden" name="investerEmail" id="investerEmail" #investerEmail='ngModel'  class="form-control" required
+                        placeholder="Enter your email" [(ngModel)]='investerEmail1'>
+                    <!-- <div class="text-danger" *ngIf='email.touched && email.invalid'>
+                        <div class="alert alert-danger" *ngIf='email.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='email.errors.pattern'>
+                            *Invalid Email, email field that that must be in the following order:
+                            characters@characters.domain (characters followed by an
+                            @ sign, followed by more characters, and then a ".". After the "."
+                            sign, add at least 2 letters from a to z:
+                        </div>
+                    </div> -->
+                </div>
+                <div class="form-group">
+                    <label for="investerName">Name</label>
+                    <input type="text" name="investerName" id="investerName" #investerName='ngModel' class="form-control" required
+                        [(ngModel)]='investerName1' pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50">
+                    <div class="text-danger" *ngIf='(investerName.touched || investerName.dirty) && investerName.invalid'>
+                        <div class="alert alert-danger" *ngIf='investerName.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='investerName.errors.pattern'>
+                            *Can contain only alphabets seperated by space with minimum length 2
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="investerCity">Town </label>
+                    <input type="text" name="investerCity" id="investerCity" #investerCity='ngModel' class="form-control" required
+                        [(ngModel)]='investerCity1' pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" minlength="2" maxlength="50">
+                    <div class="text-danger" *ngIf='investerCity.touched && investerCity.invalid'>
+                        <div class="alert alert-danger" *ngIf='investerCity.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='investerCity.errors.pattern'>
+                            *Invalid town name, must be alphabets with length 2-50
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="investerPostal">Postal </label>
+                    <input type="number" name="investerPostal" id="investerPostal" #investerPostal='ngModel' class="form-control"
+                        [(ngModel)]='investerPostal1' pattern="^[0-9]{6}" placeholder="Enter your postal" required ngModel
+                        minlength="6">
+                    <div class="text-danger" *ngIf='investerPostal.touched && investerPostal.invalid'>
+                        <div class="alert alert-danger" *ngIf='investerPostal.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='investerPostal.errors.pattern'>
+                            *Invalid postal code, postal must be 6 numbers
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="investerPhone">Phone </label>
+                    <input type="phone" name="investerPhone" id="investerPhone" #investerPhone='ngModel' class="form-control"
+                        [(ngModel)]='investerPhone1' placeholder="Enter your phone" pattern="^[6789][0-9]{9}" required
+                        maxlength="10">
+                    <div class="text-danger" *ngIf='investerPhone.touched && investerPhone.invalid'>
+                        <div class="alert alert-danger" *ngIf='investerPhone.errors.required'>
+                            *This Field Is invalid
+                        </div>
+                        <div class="alert alert-danger" *ngIf='investerPhone.errors.pattern'>
+                            *Can take only 10 digit number, must start with 6/7/8/9
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline btn-success float-right btn-large" 
+                     [disabled]="editUserForm.form.invalid">
+                        Update</button>
+                </div>
+            </form>
+    
+        </div>
+    </div>
+    </body>

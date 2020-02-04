@@ -1,0 +1,65 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" 
+        placeholder="Enter Company Name to search...">
+</div>
+<!-- | filterCompany: search -->
+<div class="col-md-3 float-left mt-3" *ngFor='let company of companies '>
+    <div class="card">
+        <div class="card-header bg-muted">
+            <h5>companyName : {{company.companyName}}</h5>
+        </div>
+       
+        <div class="card-body center">
+            <div class="card-header">
+            <img src="https://lh3.googleusercontent.com/proxy/PO9IOrnVKU1Wovq3_L46qiIyaZYsJ1tcq2TbZXQzbWspaBgRsBpEcgbuTP2DKJcDuF18TU_rPW7HaTBPkcqx0Mw" alt="" 
+                height="150px" width="150px" style="margin-left: 80px; margin-top:0em;padding: 0em;">
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <p>Company Name : {{company.companyName}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company Director  : {{company.companyDirector}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company Chairman : {{company.companyChairman}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company Email : {{company.companyEmail}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company Phone : {{company.companyPhone}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company City : {{company.companyCity}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>MaxInvest : {{company.maxInvest}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>MaxStocksPurchase : {{company.maxStocksPurchase}}</p>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+

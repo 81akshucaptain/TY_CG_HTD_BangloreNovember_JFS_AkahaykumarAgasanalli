@@ -1,0 +1,126 @@
+<body>
+    <div class="jumbotron">
+        <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+        <div class="alert alert-danger" *ngIf='error'>{{error}}</div>
+        <div class="col-md-4 offset-6 mt-5 padding-top:6px">
+
+            <div class="d-flex justify-content-center h-100">
+                <form #investerForm='ngForm' class="container" style="margin-top: 0em;" (ngSubmit)='registerInvester(investerForm)'>
+                    <div class="card mt-0" style="margin-top: 0em;">
+                        <div class="card-header" style="margin-top: 2em;">
+                            <h3>invester Register</h3>
+                        </div>
+                        <div class="card-body" class="col-lg-12 well">
+                            <div class="form-group">
+                                <label for="investerName">
+                                    <h5 style="color: azure">*investerName</h5>
+                                </label>
+                                <input type="text" name="investerName" id="investerName" minlength="4"
+                                    class="form-control" #investerName='ngModel' ngModel required
+                                    placeholder="Enter Your Name" pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$">
+                                <div *ngIf='(investerName.dirty || investerName.touched )&& investerName.invalid'>
+                                    <div class="alert alert-danger" *ngIf='investerName.errors.required'>
+                                        *This field is mandatory
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf='investerName.errors.pattern'>
+                                        *Only alphabets are allowed
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="investerEmail">
+                                    <h5 style="color: azure">*investerEmail: {{investerDefaultEmail}}</h5>
+                                </label>
+                                <input type="email" name="investerEmail" id="investerEmail"
+                                    #investerEmail='ngModel' [(ngModel)]='investerDefaultEmail' ngModel pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+                                    class="form-control" required placeholder="Enter your email">
+                                <div class="alert alert-danger" *ngIf='investerEmail.touched && investerEmail.invalid'>
+                                    <div *ngIf='investerEmail.errors.required'>
+                                        *This field is mandatory
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf='investerEmail.errors.pattern'>
+                                        *Ex:(abc@gmail.com)
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label for="investerPhone">
+                                    <h5 style="color: azure">*invester Contact Number</h5>
+                                </label>
+                                <input type="phone" name="investerPhone" id="investerPhone" minlength="10" maxlength="10"
+                                    class="form-control" pattern="^[6789]{1}[0-9]{9}$" #investerPhone='ngModel' ngModel
+                                    placeholder="Enter valid contact number..." required>
+                                <div *ngIf="investerPhone.invalid && (investerPhone.dirty ||investerPhone.touched)">
+                                    <div class="alert alert-danger" *ngIf="investerPhone.errors.required">
+                                        *Contact Number is required.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerPhone.errors.minlength">
+                                        Contact Number must be 10 digits long.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerPhone.errors.maxlength">
+                                        Contact Number must be 10 digits long.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerPhone.errors.pattern">
+                                        Contact Number must be start with [6,7,8,9].
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="investerCity">
+                                    <h5 style="color: azure">*invester City</h5>
+                                </label>
+                                <input type="text" name="investerCity" id="investerCity" minlength="5" maxlength="25"
+                                    #investerCity='ngModel' ngModel pattern="^[a-zA-Z]+(?: [a-zA-Z]+)*$" class="form-control"
+                                    placeholder="Enter valid City..." required>
+                                <div *ngIf="investerCity.invalid && (investerCity.dirty || investerCity.touched)">
+                                    <div class="alert alert-danger" *ngIf="investerCity.errors.required">
+                                        *Address is required.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerCity.errors.minlength">
+                                        Address must be atleast 5 characters long.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerCity.errors.maxlength">
+                                        Address must be 25 characters long.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerCity.errors.pattern">
+                                        It can only accept alphabets
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="investerPostal">
+                                    <h5 style="color: azure">*Postal Code</h5>
+                                </label>
+                                <input type="number" name="investerPostal" id="postalCode" #investerPostal='ngModel'
+                                    ngModel minlength="6" maxlength="6" pattern="[0-9]{6}" class="form-control"
+                                    placeholder="Enter valid postal code..." required>
+                                <div *ngIf="investerPostal.invalid && (investerPostal.dirty || investerPostal.touched)">
+                                    <div class="alert alert-danger" *ngIf="investerPostal.errors.required">
+                                        PostalCode is required.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerPostal.errors.minlength">
+                                        PostalCode must be 6 digit long.
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="investerPostal.errors.maxlength">
+                                        PostalCode must be 6 digit long.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer" >
+                                <button type="submit" class="btn btn-lg btn-info" style="padding-bottom: 1px;">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>

@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Oleo+Script&display=swap");
+
+.collapse-content .fa.fa-heart:hover {
+  color: #f44336 !important;
+}
+.collapse-content .fa.fa-share-alt:hover {
+  color: #0d47a1 !important;
+}
+td{
+  float: left;
+  padding-left: 1em;
+  font-family: 'Oleo Script', cursive;
+  font-size: 22px;
+}
+body{
+  border: 2px solid gold;
+  border-color: goldenrod;
+  padding: 2em;
+  font-family: 'Oleo Script', cursive;
+  background-size: 100%;
+}
+
+

@@ -1,0 +1,70 @@
+
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" 
+        placeholder="Enter companyName  to search...">
+</div>
+<div class="col-md-3 float-left mt-3" *ngFor='let stock of stocks '>
+    <div class="card">
+        <div class="card-header bg-muted">
+            <h5>companyName : {{stock.companyName}}</h5>
+        </div>
+       
+        <div class="card-body center">
+            <div class="card-header">
+            <img src="https://samco1-zonsoftwaresolut.netdna-ssl.com/images/nuovo/lowest-margin.png" alt="" 
+            style="align-content: center;border: 2px solid white; border-radius: 100px; margin-left: 70px;"
+                height="170px" width="170px">
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <p>Stock ID : {{stock.stockID}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>CompanyName : {{stock.companyName}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Company ID : {{stock.companyID}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Current Price : {{stock.currentPrice}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Last Price : {{stock.lastPrice}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Change Percentage : {{stock.changePercentage}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Available Stocks : {{stock.availableStocks}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Total Stocks : {{stock.totalStocks}}</p>
+                    </td>
+                </tr>
+            </table>
+            <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedStocks(stock)' 
+                style="font-size: 23px; border: 2px solid green;">
+                    Buy Stocks
+                </button>
+            </div>
+        </div>
+        </div>  
+    </div>
+</div>
