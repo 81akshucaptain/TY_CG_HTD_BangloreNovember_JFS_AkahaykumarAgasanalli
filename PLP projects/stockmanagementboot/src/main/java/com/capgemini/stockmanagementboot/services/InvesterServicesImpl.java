@@ -88,10 +88,10 @@ public class InvesterServicesImpl implements InvesterServices {
 	}
 
 	@Override
-	public InvesterBean searchInvesterByName(String investerName) {
+	public InvesterBean searchInvesterByEmail(String investerEmail) {
 		try {
-			if (Validations.emailValidation(investerName)) {
-				return investerDao.searchInvesterByName(investerName);
+			if (Validations.emailValidation(investerEmail)) {
+				return investerDao.searchInvesterByEmail(investerEmail);
 			}
 		} catch (VallidationExceptionFMS e) {
 			System.out.println(e.getMessage());

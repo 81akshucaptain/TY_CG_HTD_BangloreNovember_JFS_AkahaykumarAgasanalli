@@ -24,6 +24,7 @@ import com.capgemini.stockmanagementboot.services.ManagerServices;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
 public class InvestersController {
+	
 	@Autowired
 	InvesterServices service;
 
@@ -101,7 +102,7 @@ public class InvestersController {
 	}
 
 	@PutMapping(path = "/update-invester", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public StocksManagementResponse updateManager(@RequestBody InvesterBean invester) {
+	public StocksManagementResponse updateInvester(@RequestBody InvesterBean invester) {
 		StocksManagementResponse response = new StocksManagementResponse();
 		if (service.updateInvesters(invester.getInvesterID(), invester)){
 			response.setStatusCode(201);
@@ -119,19 +120,19 @@ public class InvestersController {
 					+ "6.Invalid investerID (must be digit)");		}
 		return response;
 	}
-	@GetMapping(path="/search-invester-by-name",produces = MediaType.APPLICATION_JSON_VALUE)
-	public StocksManagementResponse searchManagerByEmail(@RequestParam("investerName") String investerName) {
+	@GetMapping(path="/search-invester-by-email",produces = MediaType.APPLICATION_JSON_VALUE)
+	public StocksManagementResponse searchInvesterByEmailId(@RequestParam("investerEmail") String investerEmail) {
 		StocksManagementResponse response = new StocksManagementResponse();
-		InvesterBean invester=service.searchInvesterByName(investerName);
+		InvesterBean invester=service.searchInvesterByEmail(investerEmail);
 		if(invester!=null) {
 			response.setStatusCode(201);
 			response.setMessage("Success");
-			response.setDescription("manager found");
+			response.setDescription("invester found");
 			response.setInvesters(Arrays.asList(invester));
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failure");
-			response.setDescription("1.Name does-not exist");
+			response.setDescription("1.email does-not exist");
 		}
 		return response;
 	}

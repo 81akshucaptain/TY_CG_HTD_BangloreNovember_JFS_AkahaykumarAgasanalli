@@ -17,4 +17,8 @@ public interface StocksDAO {
 	public StocksBean searchStocks(int managerId);
 
 	public StocksBean searchStocksByCompanyID(int companyID);
+		
+	public boolean updateInvesterStocksInfoBasedOnCurrrentPrice(int stockID, int currentPrice) ;
+
+	
 }

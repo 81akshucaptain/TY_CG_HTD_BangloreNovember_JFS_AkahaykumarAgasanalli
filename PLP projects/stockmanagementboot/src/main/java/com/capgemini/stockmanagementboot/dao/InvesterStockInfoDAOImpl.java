@@ -9,6 +9,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.stockmanagementboot.dto.InvesterStocksInfoBean;
@@ -18,6 +19,9 @@ import com.capgemini.stockmanagementboot.dto.StocksBean;
 public class InvesterStockInfoDAOImpl implements InvestersStockInfoDAO {
 	@PersistenceUnit
 	EntityManagerFactory emFactory;
+
+	@Autowired
+	StocksDAO stocksDao;
 
 	EntityTransaction etTransaction = null;
 
@@ -75,14 +79,20 @@ public class InvesterStockInfoDAOImpl implements InvestersStockInfoDAO {
 	}
 
 	@Override
-	public boolean deleteInvesterStockInfo(int transactionId) {
+	public boolean deleteInvesterStockInfo(InvesterStocksInfoBean investerStocksInfoBean) {
 		try {
+			System.out.println("STOCK ID: " + investerStocksInfoBean.getStockID());
+			System.out.println("VOLUME : " + investerStocksInfoBean.getStocksVolume());
+			System.out.println("TRANSACTION ID: " + investerStocksInfoBean.getTransactionID());
+			
+			updateStockCountBasedOnPurchase(investerStocksInfoBean.getStockID(),
+					investerStocksInfoBean.getStocksVolume(), "addStocks");
 			EntityManager emManager = emFactory.createEntityManager();
 			EntityTransaction etTransaction = emManager.getTransaction();
 			etTransaction.begin();
 			String jpql = "Delete from InvesterStocksInfoBean where transactionId=:transactionId";
 			Query query = emManager.createQuery(jpql);
-			query.setParameter("transactionId", transactionId);
+			query.setParameter("transactionId", investerStocksInfoBean.getTransactionID());
 			int result = query.executeUpdate();
 			etTransaction.commit();
 			emManager.close();
@@ -103,6 +113,14 @@ public class InvesterStockInfoDAOImpl implements InvestersStockInfoDAO {
 		try {
 			EntityManager entityManager = emFactory.createEntityManager();
 			transactiont = entityManager.getTransaction();
+
+			int profitAmount = investerStockInfo.getCurrentPrice() - investerStockInfo.getPurchasedPrice();
+			investerStockInfo.setProfitAmount(profitAmount);
+
+			// Update the balance Stock info in Stocks table
+			updateStockCountBasedOnPurchase(investerStockInfo.getStockID(),
+					investerStockInfo.getStocksVolume(), "removeStocks");
+
 			transactiont.begin();
 
 			entityManager.persist(investerStockInfo);
@@ -146,11 +164,107 @@ public class InvesterStockInfoDAOImpl implements InvestersStockInfoDAO {
 			if (investerStockInfo != null) {
 				return investerStockInfo;
 			} else {
-				return null;	
+				return null;
 			}
 		} catch (Exception e) {
 			System.out.println("problem in searching investerStockInfo by name:" + e.getMessage());
 			return null;
 		}
 	}
-}
+
+	@Override
+	public List<InvesterStocksInfoBean> searchInvesterStockInfoByInvesterID(int investerID) {
+		try {
+			EntityManager eManager = emFactory.createEntityManager();
+			String jpql = "from InvesterStocksInfoBean where investerID=:investerID";
+			TypedQuery<InvesterStocksInfoBean> query = eManager.createQuery(jpql, InvesterStocksInfoBean.class);
+			query.setParameter("investerID", investerID);
+			List<InvesterStocksInfoBean> investerStockInfo = query.getResultList();
+			if (investerStockInfo != null) {
+				return investerStockInfo;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("problem in searching investerStockInfo by InvesterID :" + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public InvesterStocksInfoBean searchInvesterStockInfoByStockID(int stockID) {
+		try {
+			EntityManager eManager = emFactory.createEntityManager();
+			String jpql = "from InvesterStocksInfoBean where stockID=:stockID";
+			TypedQuery<InvesterStocksInfoBean> query = eManager.createQuery(jpql, InvesterStocksInfoBean.class);
+			query.setParameter("stockID", stockID);
+			InvesterStocksInfoBean investerStockInfo = query.getSingleResult();
+			if (investerStockInfo != null) {
+				return investerStockInfo;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("problem in searching investerStockInfo by InvesterID :" + e.getMessage());
+			return null;
+		}
+	}
+	@Override
+	public void updateStockCountBasedOnPurchase(int stockID, int stockVolume, String status) {
+		int newAvailableStocks;
+		
+		try {
+			System.out.println("IM STARTED...........");
+			EntityManager emManager = emFactory.createEntityManager();
+			etTransaction = emManager.getTransaction();
+			System.out.println("String STATUS: "+status);
+			System.out.println("STOCK-ID: " +stockID);
+			
+			StocksBean stock = searchStocks(stockID);
+			
+			int existingStocks = stock.getAvailableStocks();
+		
+			if (status.equals("addStocks")) {
+				newAvailableStocks = existingStocks + stockVolume;
+
+			} else {
+				newAvailableStocks = existingStocks - stockVolume;
+			}
+
+			etTransaction.begin();
+
+			String jpql = "update StocksBean set availableStocks=:availableStock where stockID=:sID";
+			Query query = emManager.createQuery(jpql);
+			query.setParameter("sID", stockID);
+			query.setParameter("availableStock", newAvailableStocks);
+			int result = query.executeUpdate();
+			etTransaction.commit();
+			emManager.close();
+			if (result > 0) {
+				System.out.println("Updated new stock");
+			} else {
+				System.out.println("Failure in updating New Stocks");
+			}
+		} catch (Exception e) {
+			System.err.println("Problem in Updating New stock Details, try again:");
+			etTransaction.rollback();
+		}
+	}
+	@Override
+	public StocksBean searchStocks(int stockId) {
+		try {
+			EntityManager eManager = emFactory.createEntityManager();
+			StocksBean stock = eManager.find(StocksBean.class, stockId);
+			if (stock != null) {
+				return stock;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			String message = e.getMessage();
+			System.out.println("There Is Problem In Searching The stock:" + message);
+		}
+		return null;
+	}
+
+	}

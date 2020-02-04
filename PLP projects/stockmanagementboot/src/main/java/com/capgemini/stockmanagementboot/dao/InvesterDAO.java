@@ -17,6 +17,6 @@ public interface InvesterDAO {
 
 	public InvesterBean searchInvester(int investerId);
 
-	public InvesterBean searchInvesterByName(String investerName);
+	public InvesterBean searchInvesterByEmail(String investerEmail);
 
 }

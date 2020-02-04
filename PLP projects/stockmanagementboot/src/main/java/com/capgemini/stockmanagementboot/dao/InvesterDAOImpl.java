@@ -136,12 +136,12 @@ public class InvesterDAOImpl implements InvesterDAO {
 	}
 
 	@Override
-	public InvesterBean searchInvesterByName(String investerName) {
+	public InvesterBean searchInvesterByEmail(String investerEmail) {
 		try {
 			EntityManager eManager = emFactory.createEntityManager();
-			String jpql = "from InvesterBean where investerName=:investerName";
+			String jpql = "from InvesterBean where investerEmail=:investerEmail";
 			TypedQuery<InvesterBean> query = eManager.createQuery(jpql, InvesterBean.class);
-			query.setParameter("investerName", investerName);
+			query.setParameter("investerEmail", investerEmail);
 			InvesterBean invester = query.getSingleResult();
 			if (invester != null) {
 				return invester;

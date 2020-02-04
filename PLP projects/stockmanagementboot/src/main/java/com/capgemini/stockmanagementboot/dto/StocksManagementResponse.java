@@ -15,7 +15,6 @@ public class StocksManagementResponse {
 	private List<InvesterBean> investers;
 	private List<InvesterStocksInfoBean> investerInfo;
 	private List<UsersAuthenticationBean> users;
-
 	public List<UsersAuthenticationBean> getUsers() {
 		return users;
 	}

@@ -13,9 +13,21 @@ public class UsersServiceImpl implements UsersServices {
 	UsersDAO userDao;
 
 	@Override
-	public UsersAuthenticationBean usersLogin(String email, String password) {
+	public UsersAuthenticationBean usersLogin(String userName, String password) {
 		// TODO Auto-generated method stub
-		return userDao.usersLogin(email, password) ;
+		return userDao.usersLogin(userName, password) ;
+	}
+
+	@Override
+	public boolean updatePassword(UsersAuthenticationBean usersBean) {
+		// TODO Auto-generated method stub
+		return userDao.updatePassword(usersBean);
+	}
+
+	@Override
+	public UsersAuthenticationBean searchUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return userDao.searchUserByEmail(email);
 	}
 
 }

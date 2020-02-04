@@ -56,7 +56,6 @@ public class CompanyServicesImpl implements CompanyServices {
 		return false;
 	}
 
-
 	@Override
 	public boolean addCompany(CompanyBean company) {
 		try {
@@ -91,7 +90,6 @@ public class CompanyServicesImpl implements CompanyServices {
 		}
 		return null;
 	}
-
 
 	@Override
 	public CompanyBean searchCompanyByMail(String email) {

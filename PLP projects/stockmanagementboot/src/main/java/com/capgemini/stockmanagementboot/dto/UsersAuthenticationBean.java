@@ -14,11 +14,21 @@ public class UsersAuthenticationBean {
 	@Column
 	private int id;
 	@Column
+	private String email;
+	@Column
 	private String password;
 	@Column
 	private String userName;
 	@Column
 	private String userType;
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public int getId() {
 		return id;

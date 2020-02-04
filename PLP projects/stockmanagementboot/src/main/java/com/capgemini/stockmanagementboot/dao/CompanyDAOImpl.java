@@ -149,7 +149,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	public CompanyBean searchCompanyByMail(String email) {
 		try {
 			EntityManager eManager = emFactory.createEntityManager();
-			String jpql = "from CompanyBean where email=:email";
+			String jpql = "from CompanyBean where CompanyEmail=:email";
 			TypedQuery<CompanyBean> query = eManager.createQuery(jpql, CompanyBean.class);
 			query.setParameter("email", email);
 			CompanyBean auth = query.getSingleResult();

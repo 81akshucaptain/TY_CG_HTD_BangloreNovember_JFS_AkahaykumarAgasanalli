@@ -9,6 +9,7 @@ import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.stockmanagementboot.dto.ManagerBean;
@@ -43,15 +44,22 @@ public class StocksDAOImpl implements StocksDAO {
 	}
 
 	@Override
-	public boolean updateStocks(int stockId, StocksBean stocksToUpdate) {
+	public boolean updateStocks(int stockID, StocksBean stocksToUpdate) {
 		try {
+			// Updated The Current Price In Purchased Tables i.e, in
+			// InvesterStockInformation
+			boolean update=updateInvesterStocksInfoBasedOnCurrrentPrice(stockID, stocksToUpdate.getCurrentPrice());
+			if(update) {
+				System.out.println("new Current Price IS Updated For InvesterInfoTable");
+			}else {
+				System.out.println("new Current Price IS Updation FAILED..");
+			}
 			EntityManager emManager = emFactory.createEntityManager();
 			etTransaction = emManager.getTransaction();
 			etTransaction.begin();
-
 			String jpql = "update StocksBean set companyID=:cID,currentPrice=:cPrice,"
 					+ "lastPrice=:lPrice,changePercentage=:cPercentage,availableStocks=:aStocks,"
-					+ "companyName=:cName,totalStocks=:tStocks where stockId=:sID";
+					+ "companyName=:cName,totalStocks=:tStocks where stockID=:sID";
 			Query query = emManager.createQuery(jpql);
 			query.setParameter("cID", stocksToUpdate.getCompanyID());
 			query.setParameter("cName", stocksToUpdate.getCompanyName());
@@ -60,7 +68,7 @@ public class StocksDAOImpl implements StocksDAO {
 			query.setParameter("cPercentage", stocksToUpdate.getChangePercentage());
 			query.setParameter("aStocks", stocksToUpdate.getAvailableStocks());
 			query.setParameter("tStocks", stocksToUpdate.getTotalStocks());
-			query.setParameter("sID", stocksToUpdate.getStockID());
+			query.setParameter("sID", stockID);
 			int result = query.executeUpdate();
 			etTransaction.commit();
 			emManager.close();
@@ -70,7 +78,7 @@ public class StocksDAOImpl implements StocksDAO {
 				return false;
 			}
 		} catch (Exception e) {
-			System.err.println("Problem in Updating stock Details, try again:");
+			System.err.println("Problem in Updating stock Details, try again:"+ e.getMessage());
 			etTransaction.rollback();
 			return false;
 		}
@@ -151,8 +159,37 @@ public class StocksDAOImpl implements StocksDAO {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.println("problem in searching investerStockInfo by name:"+e.getMessage());
+			System.out.println("problem in searching investerStockInfo by name:" + e.getMessage());
 			return null;
 		}
 	}
+
+	
+	@Override
+	public boolean updateInvesterStocksInfoBasedOnCurrrentPrice(int stockID, int currentPrice) {
+		try {
+			EntityManager emManager = emFactory.createEntityManager();
+			etTransaction = emManager.getTransaction();
+
+			etTransaction.begin();
+
+			String jpql = "update InvesterStocksInfoBean set currentPrice=:currentPrice where stockID=:sID";
+			Query query = emManager.createQuery(jpql);
+			query.setParameter("currentPrice", currentPrice);
+			query.setParameter("sID", stockID);
+			int result = query.executeUpdate();
+			etTransaction.commit();
+			emManager.close();
+			if (result > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			System.err.println("Problem in Updating New CurrentPrice for InvestrStockInfo Details, try again:");
+			etTransaction.rollback();
+			return false;
+		}
+	}
+
 }

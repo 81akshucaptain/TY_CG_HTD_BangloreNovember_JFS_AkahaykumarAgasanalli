@@ -41,13 +41,13 @@ public class Validations {
 
 	public static boolean FloatingNumberValidation(Double number1) {
 		String number2 = Double.toString(number1);
-		String numberregex = "([+-]?([0-9]*[.])?[0-9]+\r\n)|([0-9]*)";
+		String numberregex = "([+-]?([0-9]*[.])?[0-9]+)";
 		Pattern numberpattern = Pattern.compile(numberregex);
 		Matcher numbermatcher = numberpattern.matcher(number2);
 		if (numbermatcher.matches()) {
 			return true;
 		} else {
-			throw new VallidationExceptionFMS("Please Enter The Valid Input, Must be Number..!");
+			throw new VallidationExceptionFMS("Please Enter The Valid Input, Must be Floating Number..!");
 		}
 	}
 

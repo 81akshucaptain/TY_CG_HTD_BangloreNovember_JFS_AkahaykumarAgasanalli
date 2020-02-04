@@ -12,11 +12,11 @@ import com.capgemini.stockmanagementboot.exceptions.VallidationExceptionFMS;
 import com.capgemini.stockmanagementboot.util.Validations;
 
 @Service
-public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
+public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices {
 
 	@Autowired
 	InvestersStockInfoDAO investerStockInfoDao;
-	
+
 	@Override
 	public List<InvesterStocksInfoBean> getAllInvesterStockInfo() {
 		// TODO Auto-generated method stub
@@ -26,6 +26,7 @@ public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
 	@Override
 	public boolean updateInvesterStocksInfo(int transactionId, InvesterStocksInfoBean investerStockInfo) {
 		try {
+		
 			if (Validations.numberValidation(transactionId)
 					&& Validations.alphabetsValidation(investerStockInfo.getCompanyName())
 					&& Validations.numberValidation(investerStockInfo.getCompanyID())
@@ -43,23 +44,17 @@ public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
 		}
 	}
 
-
 	@Override
-	public boolean deleteInvesterStockInfo(int transactionId) {
-		try {
-			if (Validations.numberValidation(transactionId)) {
-				return investerStockInfoDao.deleteInvesterStockInfo(transactionId);
-			}
-		} catch (VallidationExceptionFMS e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
-		return false;
+	public boolean deleteInvesterStockInfo(InvesterStocksInfoBean investerStocksInfoBean) {
+				return investerStockInfoDao.deleteInvesterStockInfo(investerStocksInfoBean);
 	}
 
 	@Override
 	public boolean addInvesterStockInfo(InvesterStocksInfoBean investerStockInfo) {
 		try {
+			int totalPrice=(investerStockInfo.getPurchasedPrice() * investerStockInfo.getStocksVolume());
+			investerStockInfo.setTotalPrice(totalPrice);
+			
 			if (Validations.alphabetsValidation(investerStockInfo.getCompanyName())
 					&& Validations.numberValidation(investerStockInfo.getCompanyID())
 					&& Validations.numberValidation(investerStockInfo.getCurrentPrice())
@@ -75,7 +70,6 @@ public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
 			return false;
 		}
 	}
-
 
 	@Override
 	public InvesterStocksInfoBean searchInvesterStockInfo(int transactionId) {
@@ -93,7 +87,7 @@ public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
 	@Override
 	public InvesterStocksInfoBean searchInvesterInfoByCompanyName(String investerStockInfoName) {
 		try {
-			if (Validations.emailValidation(investerStockInfoName)) {
+			if (Validations.alphabetsValidation(investerStockInfoName)) {
 				return investerStockInfoDao.searchInvesterInfoByCompanyName(investerStockInfoName);
 			}
 		} catch (VallidationExceptionFMS e) {
@@ -102,4 +96,18 @@ public class InvesterStockInfoServicesImpl implements InvesterStockInfoServices{
 		}
 		return null;
 	}
+
+	@Override
+	public List<InvesterStocksInfoBean> searchInvesterStockInfoByInvesterID(int investerID) {
+		try {
+			if (Validations.numberValidation(investerID)) {
+				return investerStockInfoDao.searchInvesterStockInfoByInvesterID(investerID);
+			}
+		} catch (VallidationExceptionFMS e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return null;
+	}
+
 }

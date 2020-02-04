@@ -15,6 +15,10 @@ public class InvesterStocksInfoBean {
 	@Column
 	private int transactionID;
 	@Column
+	private int investerID;
+	@Column
+	private int stockID;
+	@Column
 	private String companyName;
 	@Column
 	private int companyID;
@@ -26,7 +30,28 @@ public class InvesterStocksInfoBean {
 	private int totalPrice;
 	@Column
 	private int currentPrice;
+	@Column
+	private int profitAmount;
+	
 
+	public int getProfitAmount() {
+		return profitAmount;
+	}
+	public void setProfitAmount(int profitAmount) {
+		this.profitAmount = profitAmount;
+	}
+	public int getInvesterID() {
+		return investerID;
+	}
+	public void setInvesterID(int investerID) {
+		this.investerID = investerID;
+	}
+	public int getStockID() {
+		return stockID;
+	}
+	public void setStockID(int stockID) {
+		this.stockID = stockID;
+	}
 	public String getCompanyName() {
 		return companyName;
 	}
