@@ -1,5 +1,6 @@
 interface InvesterStockInfo {
     transactionID: number;
+    stockID: number;
     investerID: number;
     companyName: string;
     companyID: number;
@@ -7,4 +8,5 @@ interface InvesterStockInfo {
     purchasedPrice: number;
     totalPrice: number;
     currentPrice: number;
+    profitAmount: number;
 }

@@ -56,9 +56,15 @@
                         <p>Total Stocks : {{stock.totalStocks}}</p>
                     </td>
                 </tr>
-
-
             </table>
+            <div class="card-footer">
+            <div class="btn-group col-md-12">
+                <button class="btn btn-outline-success" (click)='selectedStocks(stock)' 
+                style="font-size: 23px; border: 2px solid green;">
+                    Buy Stocks
+                </button>
+            </div>
+        </div>
         </div>  
     </div>
 </div>

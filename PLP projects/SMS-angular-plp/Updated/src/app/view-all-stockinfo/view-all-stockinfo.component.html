@@ -1,0 +1,83 @@
+<div class="col-md-4 offset-4 mt-3 mb-3">
+    <input type="search" name="search" class="form-control" [(ngModel)]='search'
+        placeholder="Enter ProductName to search...">
+</div>
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="alert alert-danger" *ngIf='error'>{{error}}</div>
+<div class="col-md-3 float-left mt-3" *ngFor='let investerStockInfo of investerStockInfos '>
+    <!-- <form #sellForm='ngForm' (ngSubmit)='sellStocks(sellForm)'> -->
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+
+                    <div class="card text-center">
+                        <div class="card-header bg-muted">
+                            <h5>TransactionID : {{investerStockInfo.transactionID}}</h5>
+                        </div>
+                        <div class="card-body ">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRAxKudoW3yq4wOuC9ntNt9gDF_eh3-pLX40cbNQYDctON7A9ll"
+                                alt="" height="150px" width="45%" style="border-radius: 50%;margin-top: 1em;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>StockID : {{investerStockInfo.stockID}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>investerID : {{investerStockInfo.investerID}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>companyName : {{investerStockInfo.companyName}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>companyID : {{investerStockInfo.companyID}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>stocksVolume : {{investerStockInfo.stocksVolume}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>purchasedPrice : {{investerStockInfo.purchasedPrice}}</p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <p>currentPrice : {{investerStockInfo.currentPrice}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>totalPrice : {{investerStockInfo.totalPrice}}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer float-right">
+                            <button type="submit" class="btn btn-outline-success success" (click)='sellStocks(investerStockInfo)'
+                                style="font-size: 23px; border: 2px solid green; width: 250px; margin-left: 30px;">Sell</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <h1 style="margin-top: 20px;">Profit Amount: {{investerStockInfo.profitAmount}}</h1>
+                    <p>Good news, You Are Profiting With A good amount, If You
+                        Wish To Sell The Stocks Click On Sell Option, The Amount Will Be Credit To your Account
+                    </p>
+                    <p>Good Luck</p>
+                    <img src="https://media0.giphy.com/media/nQFMUc3khOGLS/giphy.webp?cid=790b7611838ad7c93a5cdaa379dc619f0d33e82178dfe480&rid=giphy.webp"
+                        alt="" srcset="" height="500px" width="340px">
+                </div>
+            </div>
+        </div>
+    <!-- </form> -->
+</div>

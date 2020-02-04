@@ -13,6 +13,8 @@ import { RegisterInvesterComponent } from './register-invester/register-invester
 import { ViewAllCompanyComponent } from './view-all-company/view-all-company.component';
 import { ViewAllStockinfoComponent } from './view-all-stockinfo/view-all-stockinfo.component';
 import { ViewStocksComponent } from './view-stocks/view-stocks.component';
+import { PurchaseStocksComponent } from './purchase-stocks/purchase-stocks.component';
+import { CongratsComponent } from './congrats/congrats.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ViewStocksComponent } from './view-stocks/view-stocks.component';
     ViewAllCompanyComponent,
     ViewAllStockinfoComponent,
     ViewStocksComponent,
+    PurchaseStocksComponent,
+    CongratsComponent,
   ],
   imports: [
     BrowserModule,

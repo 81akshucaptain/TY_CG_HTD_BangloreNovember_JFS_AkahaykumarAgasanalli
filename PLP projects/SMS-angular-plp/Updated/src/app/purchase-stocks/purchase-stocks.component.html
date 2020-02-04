@@ -1,0 +1,76 @@
+<body>
+    <div class="alert alert-danger" *ngIf='message'>
+        {{message}}
+    </div>
+    <div class="col-md-4 offset-4 mt-2">
+        <form #addInvesterStockInfoFrom='ngForm' (ngSubmit)='addInvesterStockInfo(addInvesterStockInfoFrom)'>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Buying Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="investerID">InvesterID: {{investerID1}} </label>
+                        <input type="hidden" name="investerID" id="investerID" class="form-control"
+                            #investerID='ngModel' [(ngModel)]='investerID1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="stockID">StockID: {{stockID1}}</label>
+                        <input type="hidden" name="stockID" id="stockID" class="form-control" #stockID='ngModel'
+                            [(ngModel)]='stockID1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">CompanyName: {{companyName1}}</label>
+                        <input type="hidden" name="companyName" id="companyName" class="form-control"
+                            #companyName='ngModel' [(ngModel)]='companyName1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyID">companyID: {{companyID1}}</label>
+                        <input type="hidden" name="companyID" id="companyID" class="form-control" #companyID='ngModel'
+                            [(ngModel)]='companyID1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="purchasedPrice"> PurchasedPrice: {{purchasedPrice1}}</label>
+                        <input type="hidden" name="purchasedPrice" id="purchasedPrice" class="form-control"
+                            #purchasedPrice='ngModel' [(ngModel)]='purchasedPrice1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentPrice"> CurrentPrice: {{currentPrice1}}</label>
+                        <input type="hidden" name="currentPrice" id="currentPrice" class="form-control"
+                            #currentPrice='ngModel' [(ngModel)]='currentPrice1'>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentPrice"> Avialable Stocks: {{availableStocks1}}</label>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="stocksVolume">Stock Volume :</label>
+                        <input type="number" name="stocksVolume" id="stocksVolume" class="form-control"
+                            placeholder="Enter stocks Volume, less than available stocks" #stocksVolume='ngModel'
+                            ngModel min="0" max="10" required pattern="[1-9][0-9]*" style="width: 320px;margin-left: 15px;">
+                        <div class="text-danger" *ngIf='stocksVolume.touched && stocksVolume.invalid'>
+                            <div class="alert alert-danger" *ngIf='stocksVolume.errors.required'>
+                                *This Field Is invalid
+                            </div>
+                            <div class="alert alert-danger" *ngIf='stocksVolume.errors.min'>
+                                *Volume must be less than available stocks
+                            </div>
+                            <div class="alert alert-danger" *ngIf='stocksVolume.errors.max'>
+                                *Invalid stocksVolume, stocksVolume must be less than available stocks
+                            </div>
+                            <div class="alert alert-danger" *ngIf='stocksVolume.errors.pattern'>
+                                Please enter the vallid number
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer float-right">
+                    <button type="submit" class="btn btn-outline-success success" 
+                        [disabled]="addInvesterStockInfoFrom.form.invalid" style="font-size: 23px; border: 2px solid green; width: 250px; margin-left: 30px;">Buy</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</body>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InvesterServicesService } from '../invester-services.service';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-all-stockinfo',
@@ -10,7 +12,11 @@ export class ViewAllStockinfoComponent implements OnInit {
 
   investerStockInfos: InvesterStockInfo[];
   investerDetails;
-  constructor(private investerService: InvesterServicesService) {
+  message;
+  error;
+
+  constructor(private investerService: InvesterServicesService,
+    private router: Router) {
     this.getInvesterStocksInfo();
   }
 
@@ -29,6 +35,25 @@ export class ViewAllStockinfoComponent implements OnInit {
     }, err => {
       console.log('FALIED STOCKS INFO NOT FOUND');
       console.log(err);
+    });
+  }
+
+  sellStocks(investerInfoBean) {
+
+    this.investerService.updateStocksBackToStockTable(investerInfoBean).subscribe(response => {
+      console.log(response);
+      if (response.message === 'Success') {
+        this.message = 'The Stock Sold Out';
+        setTimeout(() => {
+          this.message = null;
+        }, 3000);
+        this.router.navigateByUrl('/congrats');
+      } else {
+        this.error = response.message;
+        setTimeout(() => {
+          this.error = null;
+        }, 2000);
+      }
     });
   }
 

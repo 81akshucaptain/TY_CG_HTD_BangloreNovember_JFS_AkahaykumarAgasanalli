@@ -30,5 +30,13 @@ export class InvesterServicesService {
   viewStocks(): Observable<any> {
     return this.http.get<any>(`${this.url}/get-allstocks`);
   }
+  addInvesterStockPurchases(investerStockInfoBean): Observable<any> {
+    return this.http.post<any>(`${this.url}/add-stock-info`, investerStockInfoBean);
+  }
+  updateStocksBackToStockTable(updateStockBySelling): Observable<any> {
+    console.log('JACKYY IM THE VALUE: ', updateStockBySelling);
+
+    return this.http.post<any>(`${this.url}/delete-InvesterStockInfo`, updateStockBySelling);
+  }
 
 }

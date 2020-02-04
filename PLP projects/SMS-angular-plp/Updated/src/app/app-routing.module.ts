@@ -8,6 +8,8 @@ import { RegisterInvesterComponent } from './register-invester/register-invester
 import { ViewAllCompanyComponent } from './view-all-company/view-all-company.component';
 import { ViewAllStockinfoComponent } from './view-all-stockinfo/view-all-stockinfo.component';
 import { ViewStocksComponent } from './view-stocks/view-stocks.component';
+import { PurchaseStocksComponent } from './purchase-stocks/purchase-stocks.component';
+import { CongratsComponent } from './congrats/congrats.component';
 
 
 const routes: Routes = [
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'register-invester', component: RegisterInvesterComponent },
   { path: 'view-all-company', component: ViewAllCompanyComponent },
   { path: 'view-all-invester-stock-info', component: ViewAllStockinfoComponent },
-  { path: 'view-all-stocks', component: ViewStocksComponent }
+  { path: 'view-all-stocks', component: ViewStocksComponent },
+  { path: 'purchase-stocks/:stockID', component: PurchaseStocksComponent },
+  { path: 'congrats', component: CongratsComponent }
 ];
 
 @NgModule({
